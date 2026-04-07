@@ -10,3 +10,6 @@ build/
 .DS_Store
 dist/
 *.egg-info/
+
+.mcpregistry_*
+mcp-publisher

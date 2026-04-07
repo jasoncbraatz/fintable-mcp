@@ -260,3 +260,5 @@ This project is not affiliated with, endorsed by, or officially supported by fin
 ## License
 
 MIT
+
+<!-- mcp-name: io.github.jasoncbraatz/fintable-mcp -->
