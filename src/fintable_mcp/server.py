@@ -9,6 +9,8 @@ Livewire component snapshots from page HTML, and making Livewire update
 calls to invoke server-side methods.
 
 Authentication (in priority order):
+    0. Persisted cookie jar: If --persist-cookies flag is set and a valid
+       cookie jar file exists, use those cookies (self-refreshing session).
     1. Auto-extract: If rookiepy is installed, cookies are pulled directly from
        Chrome's local cookie database on each run. Zero manual effort.
        Install with: pip install rookiepy
@@ -16,11 +18,14 @@ Authentication (in priority order):
     3. FINTABLE_SESSION_COOKIE env var: Just the session cookie value.
 """
 
+import argparse
 import json
 import re
 import os
 import sys
 import logging
+import time
+from pathlib import Path
 from typing import Optional, List, Dict, Any
 from enum import Enum
 
@@ -57,6 +62,78 @@ ROUTES = {
 }
 
 # ---------------------------------------------------------------------------
+# Persistent Cookie Jar (opt-in via --persist-cookies)
+# ---------------------------------------------------------------------------
+_persist_cookies: bool = False
+_cookie_jar_path: Path = Path.home() / ".fintable-mcp-cookies.json"
+
+
+def _load_persisted_cookies() -> Optional[str]:
+    """Load cookies from the persisted cookie jar file, if it exists and is fresh."""
+    if not _persist_cookies:
+        return None
+    if not _cookie_jar_path.exists():
+        logger.debug("No persisted cookie jar found.")
+        return None
+    try:
+        data = json.loads(_cookie_jar_path.read_text())
+        saved_at = data.get("saved_at", 0)
+        max_age = data.get("max_age_hours", 24) * 3600
+        if time.time() - saved_at > max_age:
+            logger.info("Persisted cookie jar has expired — falling through to other auth methods.")
+            return None
+        cookie_str = data.get("cookies", "")
+        if cookie_str:
+            logger.info(f"Loaded persisted cookies (saved {int((time.time() - saved_at) / 60)} min ago).")
+            return cookie_str
+    except (json.JSONDecodeError, KeyError, OSError) as e:
+        logger.warning(f"Failed to load persisted cookie jar: {e}")
+    return None
+
+
+def _save_persisted_cookies(cookie_str: str, max_age_hours: int = 24) -> None:
+    """Save the current cookie string to the persisted jar file."""
+    if not _persist_cookies:
+        return
+    try:
+        data = {
+            "cookies": cookie_str,
+            "saved_at": time.time(),
+            "max_age_hours": max_age_hours,
+            "note": "Auto-managed by fintable-mcp. Delete this file to force re-authentication.",
+        }
+        _cookie_jar_path.write_text(json.dumps(data, indent=2))
+        logger.debug("Persisted cookie jar updated.")
+    except OSError as e:
+        logger.warning(f"Failed to save cookie jar: {e}")
+
+
+def _update_cookies_from_response(response: httpx.Response) -> None:
+    """Capture Set-Cookie headers from a response and update the persisted jar."""
+    if not _persist_cookies:
+        return
+    set_cookies = response.headers.get_list("set-cookie")
+    if not set_cookies:
+        return
+    # Load current jar, merge in new cookies
+    current = {}
+    existing = _load_persisted_cookies()
+    if existing:
+        for pair in existing.split("; "):
+            if "=" in pair:
+                k, v = pair.split("=", 1)
+                current[k.strip()] = v.strip()
+    # Parse new Set-Cookie headers (just name=value, ignore directives)
+    for sc in set_cookies:
+        cookie_part = sc.split(";")[0].strip()
+        if "=" in cookie_part:
+            k, v = cookie_part.split("=", 1)
+            current[k.strip()] = v.strip()
+    merged = "; ".join(f"{k}={v}" for k, v in current.items())
+    _save_persisted_cookies(merged)
+
+
+# ---------------------------------------------------------------------------
 # MCP Server
 # ---------------------------------------------------------------------------
 mcp = FastMCP("fintable_mcp")
@@ -89,36 +166,54 @@ def _extract_cookies_from_browser() -> Optional[str]:
 
 
 def _build_cookie_header() -> str:
-    """Build the Cookie header from browser, environment, or raise an error.
+    """Build the Cookie header from persisted jar, browser, environment, or raise an error.
 
     Priority order:
+    0. Persisted cookie jar (if --persist-cookies is active)
     1. rookiepy auto-extraction from Chrome (if installed)
     2. FINTABLE_COOKIES env var (full cookie string)
     3. FINTABLE_SESSION_COOKIE env var (just session value)
     """
-    # Try auto-extraction from Chrome first
+    # Try persisted cookie jar first
+    persisted = _load_persisted_cookies()
+    if persisted:
+        return persisted
+
+    # Try auto-extraction from Chrome
     browser_cookies = _extract_cookies_from_browser()
     if browser_cookies:
+        # Seed the persisted jar if persistence is enabled
+        _save_persisted_cookies(browser_cookies)
         return browser_cookies
 
     # Fall back to env vars
     cookies = os.environ.get("FINTABLE_COOKIES", "")
     if cookies:
+        _save_persisted_cookies(cookies)
         return cookies
     session = os.environ.get("FINTABLE_SESSION_COOKIE", "")
     if session:
-        return f"fintable_session={session}"
+        cookie_str = f"fintable_session={session}"
+        _save_persisted_cookies(cookie_str)
+        return cookie_str
     raise RuntimeError(
         "Authentication not configured. Either:\n"
+        "  0. Use --persist-cookies with an initial login to self-refresh the session\n"
         "  1. Install rookiepy (pip install rookiepy) and be logged into fintable.io in Chrome\n"
         "  2. Set FINTABLE_COOKIES env var (full cookie string from Chrome DevTools)\n"
         "  3. Set FINTABLE_SESSION_COOKIE env var (just the session cookie value)"
     )
 
 
+def _on_response(response: httpx.Response) -> None:
+    """httpx event hook — capture Set-Cookie headers to keep the session alive."""
+    _update_cookies_from_response(response)
+
+
 def _get_client() -> httpx.AsyncClient:
     """Create an httpx client with auth cookies and standard headers."""
     cookie_header = _build_cookie_header()
+    event_hooks = {"response": [_on_response]} if _persist_cookies else {}
     return httpx.AsyncClient(
         base_url=BASE_URL,
         headers={
@@ -128,6 +223,7 @@ def _get_client() -> httpx.AsyncClient:
         },
         timeout=30.0,
         follow_redirects=True,
+        event_hooks=event_hooks,
     )
 
 
@@ -1126,5 +1222,28 @@ async def fintable_resync_spreadsheets(params: ResyncToAirtableInput) -> str:
 # ===========================================================================
 # Entry Point
 # ===========================================================================
+def _parse_args() -> argparse.Namespace:
+    """Parse CLI arguments (processed before MCP stdio takes over)."""
+    parser = argparse.ArgumentParser(
+        description="Unofficial MCP server for fintable.io",
+        add_help=False,  # Don't conflict with MCP's own arg handling
+    )
+    parser.add_argument(
+        "--persist-cookies",
+        action="store_true",
+        default=False,
+        help="Enable self-refreshing cookie jar. Saves session cookies to "
+             "~/.fintable-mcp-cookies.json and auto-updates them from server "
+             "responses. The session stays alive without rookiepy or Chrome.",
+    )
+    # Parse known args only — let MCP handle anything else
+    args, _ = parser.parse_known_args()
+    return args
+
+
 if __name__ == "__main__":
+    args = _parse_args()
+    if args.persist_cookies:
+        _persist_cookies = True
+        logger.info("Cookie persistence enabled — session will self-refresh via %s", _cookie_jar_path)
     mcp.run()

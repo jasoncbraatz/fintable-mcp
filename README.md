@@ -85,6 +85,14 @@ pip install rookiepy
 
 That's it. As long as you're logged into [fintable.io](https://fintable.io) in Chrome, the server grabs fresh cookies on every run. No manual copying, no expiration headaches.
 
+**Option A½: Self-refreshing cookie jar (advanced)**
+
+If you want the server to maintain its own session without needing Chrome or rookiepy after the first run, add the `--persist-cookies` flag to your config (see step 4). This saves session cookies to `~/.fintable-mcp-cookies.json` and auto-updates them from server responses — the session stays alive as long as it doesn't expire server-side between runs.
+
+The initial seed comes from whichever auth method is available (rookiepy, env var, etc.). After that, the server is self-sufficient.
+
+> **Security note**: This stores session cookies on disk. The file is a dotfile in your home directory and isn't advertised anywhere, but anyone with read access to your home folder could find it. If that's a concern, stick with Option A.
+
 > **Note for Python 3.13+**: You may need to set `PYO3_USE_ABI3_FORWARD_COMPATIBILITY=1` before installing rookiepy:
 > ```bash
 > PYO3_USE_ABI3_FORWARD_COMPATIBILITY=1 pip install rookiepy
@@ -123,6 +131,19 @@ Add the following to your Claude Desktop config file:
 }
 ```
 
+**If using `--persist-cookies` (Option A½)** — pair with rookiepy or env var for initial seed:
+
+```json
+{
+  "mcpServers": {
+    "fintable": {
+      "command": "python",
+      "args": ["/absolute/path/to/fintable-mcp/fintable_mcp.py", "--persist-cookies"]
+    }
+  }
+}
+```
+
 **If using manual cookies (Option B)**:
 
 ```json
@@ -153,9 +174,12 @@ This server authenticates using your fintable.io browser session cookies — the
 
 **Cookie resolution order:**
 
+0. **Persisted cookie jar** — If `--persist-cookies` is active and `~/.fintable-mcp-cookies.json` exists with fresh cookies, use those. Self-updates from server `Set-Cookie` headers.
 1. **rookiepy** — If installed, cookies are extracted fresh from Chrome's local database on every server start. Zero maintenance.
 2. **`FINTABLE_COOKIES` env var** — Full cookie string from Chrome DevTools (fallback if rookiepy isn't installed).
 3. **`FINTABLE_SESSION_COOKIE` env var** — Just the session cookie value (simplest manual option).
+
+When `--persist-cookies` is active, whichever method provides the initial cookies will also seed the jar. On subsequent runs, the jar takes priority — and every server response refreshes it automatically.
 
 **Your credentials are never stored to disk by this server** — they live only in memory while the server is running.
 
@@ -209,7 +233,9 @@ This server runs **locally** on your machine as a stdio subprocess of your MCP c
 - Only communicates with fintable.io using your existing browser session
 - Runs as a single-user, single-client process
 
-Your session cookies are kept in memory only while the server is running. With rookiepy, they're extracted fresh from Chrome on each launch — no environment variables or config files needed.
+By default, session cookies are kept in memory only while the server is running. With rookiepy, they're extracted fresh from Chrome on each launch — no environment variables or config files needed.
+
+If `--persist-cookies` is enabled, cookies are saved to `~/.fintable-mcp-cookies.json` (a dotfile in your home directory). This is an opt-in tradeoff: convenience of a self-refreshing session in exchange for cookies existing on disk. Delete the file at any time to revoke the session.
 
 ---
 
