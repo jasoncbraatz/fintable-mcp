@@ -8,12 +8,12 @@ Livewire 3 backend by maintaining an authenticated session, extracting
 Livewire component snapshots from page HTML, and making Livewire update
 calls to invoke server-side methods.
 
-Authentication:
-    Set FINTABLE_SESSION_COOKIE to your browser session cookie value.
-    You can extract this from Chrome DevTools > Application > Cookies > fintable.io
-    Copy the value of the 'fintable_session' cookie (or the Laravel session cookie name).
-
-    Alternatively, set FINTABLE_COOKIES to the full cookie header string from your browser.
+Authentication (in priority order):
+    1. Auto-extract: If rookiepy is installed, cookies are pulled directly from
+       Chrome's local cookie database on each run. Zero manual effort.
+       Install with: pip install rookiepy
+    2. FINTABLE_COOKIES env var: Full cookie header string from Chrome DevTools.
+    3. FINTABLE_SESSION_COOKIE env var: Just the session cookie value.
 """
 
 import json
@@ -65,8 +65,43 @@ mcp = FastMCP("fintable_mcp")
 # ---------------------------------------------------------------------------
 # HTTP Client Helpers
 # ---------------------------------------------------------------------------
+def _extract_cookies_from_browser() -> Optional[str]:
+    """Try to extract fintable.io cookies directly from Chrome using rookiepy.
+
+    Returns the cookie header string, or None if rookiepy is unavailable or fails.
+    """
+    try:
+        import rookiepy
+        cookies = rookiepy.chrome(["fintable.io"])
+        if not cookies:
+            logger.warning("rookiepy found no cookies for fintable.io — are you logged in to Chrome?")
+            return None
+        # Build a cookie header string from the extracted cookies
+        cookie_str = "; ".join(f"{c['name']}={c['value']}" for c in cookies)
+        logger.info(f"Auto-extracted {len(cookies)} cookies from Chrome for fintable.io")
+        return cookie_str
+    except ImportError:
+        logger.debug("rookiepy not installed — skipping browser cookie auto-extraction")
+        return None
+    except Exception as e:
+        logger.warning(f"rookiepy cookie extraction failed: {e}")
+        return None
+
+
 def _build_cookie_header() -> str:
-    """Build the Cookie header from environment variables."""
+    """Build the Cookie header from browser, environment, or raise an error.
+
+    Priority order:
+    1. rookiepy auto-extraction from Chrome (if installed)
+    2. FINTABLE_COOKIES env var (full cookie string)
+    3. FINTABLE_SESSION_COOKIE env var (just session value)
+    """
+    # Try auto-extraction from Chrome first
+    browser_cookies = _extract_cookies_from_browser()
+    if browser_cookies:
+        return browser_cookies
+
+    # Fall back to env vars
     cookies = os.environ.get("FINTABLE_COOKIES", "")
     if cookies:
         return cookies
@@ -74,9 +109,10 @@ def _build_cookie_header() -> str:
     if session:
         return f"fintable_session={session}"
     raise RuntimeError(
-        "Authentication not configured. Set FINTABLE_COOKIES (full cookie string from browser) "
-        "or FINTABLE_SESSION_COOKIE (just the session cookie value). "
-        "Get these from Chrome DevTools → Application → Cookies → fintable.io"
+        "Authentication not configured. Either:\n"
+        "  1. Install rookiepy (pip install rookiepy) and be logged into fintable.io in Chrome\n"
+        "  2. Set FINTABLE_COOKIES env var (full cookie string from Chrome DevTools)\n"
+        "  3. Set FINTABLE_SESSION_COOKIE env var (just the session cookie value)"
     )
 
 
