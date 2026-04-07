@@ -183,7 +183,7 @@ PRs welcome! Some ideas for future improvements:
 
 ## Disclaimer
 
-This project is not affiliated with, endorsed by, or officially supported by fintable.io. It was built by reverse-engineering the Livewire 3 frontend protocol (with the developer's blessing). Use at your own risk — the underlying Livewire protocol may change without notice.
+This project is not affiliated with, endorsed by, or officially supported by fintable.io. It was built by reverse-engineering the Livewire 3 frontend protocol. Use at your own risk — the underlying Livewire protocol may change without notice.
 
 ## License
 
