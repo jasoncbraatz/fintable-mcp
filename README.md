@@ -71,7 +71,28 @@ Or with uv (faster):
 uv pip install -r requirements.txt
 ```
 
-### 3. Get your session cookies
+### 3. Authentication setup
+
+You have two options — automatic (recommended) or manual.
+
+**Option A: Automatic cookie extraction (recommended)**
+
+Install [rookiepy](https://github.com/nicogaspa/rookiepy), which reads cookies directly from Chrome's local database using your OS credentials:
+
+```bash
+pip install rookiepy
+```
+
+That's it. As long as you're logged into [fintable.io](https://fintable.io) in Chrome, the server grabs fresh cookies on every run. No manual copying, no expiration headaches.
+
+> **Note for Python 3.13+**: You may need to set `PYO3_USE_ABI3_FORWARD_COMPATIBILITY=1` before installing rookiepy:
+> ```bash
+> PYO3_USE_ABI3_FORWARD_COMPATIBILITY=1 pip install rookiepy
+> ```
+
+**Option B: Manual cookie export**
+
+If you'd rather not install rookiepy (or you're using a browser other than Chrome):
 
 1. Open Chrome and go to [fintable.io](https://fintable.io) — make sure you're logged in
 2. Open DevTools (F12 or Cmd+Option+I)
@@ -80,12 +101,29 @@ uv pip install -r requirements.txt
 5. Find the **Cookie** header in Request Headers
 6. Copy the entire cookie string
 
+You'll pass this as an environment variable in the next step.
+
 ### 4. Configure Claude Desktop
 
 Add the following to your Claude Desktop config file:
 
 **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+
+**If using rookiepy (Option A)** — no env vars needed:
+
+```json
+{
+  "mcpServers": {
+    "fintable": {
+      "command": "python",
+      "args": ["/absolute/path/to/fintable-mcp/fintable_mcp.py"]
+    }
+  }
+}
+```
+
+**If using manual cookies (Option B)**:
 
 ```json
 {
@@ -111,13 +149,21 @@ After saving the config, fully quit and relaunch Claude Desktop. The `fintable` 
 
 ## Authentication
 
-This server authenticates using your fintable.io browser session cookies — the same cookies your browser uses when you're logged in. Sessions are kept in memory only while the server is running.
+This server authenticates using your fintable.io browser session cookies — the same cookies your browser uses when you're logged in.
 
-**Your credentials are never stored to disk** — they live only in the environment variable you configure above.
+**Cookie resolution order:**
+
+1. **rookiepy** — If installed, cookies are extracted fresh from Chrome's local database on every server start. Zero maintenance.
+2. **`FINTABLE_COOKIES` env var** — Full cookie string from Chrome DevTools (fallback if rookiepy isn't installed).
+3. **`FINTABLE_SESSION_COOKIE` env var** — Just the session cookie value (simplest manual option).
+
+**Your credentials are never stored to disk by this server** — they live only in memory while the server is running.
 
 ### Session Expiration
 
-Your browser cookies will eventually expire. When they do, the server will return an authentication error. Just re-export your cookies from Chrome and update the `FINTABLE_COOKIES` environment variable.
+If you're using **rookiepy (recommended)**, session expiration is handled automatically — fresh cookies are pulled from Chrome on every server start. Just make sure you stay logged into fintable.io in Chrome.
+
+If you're using **manual cookie export**, your cookies will eventually expire. When they do, the server will return an authentication error. Re-export your cookies from Chrome and update the `FINTABLE_COOKIES` environment variable.
 
 ---
 
@@ -163,7 +209,7 @@ This server runs **locally** on your machine as a stdio subprocess of your MCP c
 - Only communicates with fintable.io using your existing browser session
 - Runs as a single-user, single-client process
 
-Your session cookies are passed via environment variable and kept in memory only while the server is running.
+Your session cookies are kept in memory only while the server is running. With rookiepy, they're extracted fresh from Chrome on each launch — no environment variables or config files needed.
 
 ---
 
@@ -183,7 +229,7 @@ PRs welcome! Some ideas for future improvements:
 
 ## Disclaimer
 
-This project is not affiliated with, endorsed by, or officially supported by fintable.io. It was built by reverse-engineering the Livewire 3 frontend protocol. Use at your own risk — the underlying Livewire protocol may change without notice.
+This project is not affiliated with, endorsed by, or officially supported by fintable.io. It was built by reverse-engineering the Livewire 3 frontend protocol (with the developer's blessing). Use at your own risk — the underlying Livewire protocol may change without notice.
 
 ## License
 
