@@ -8,7 +8,7 @@ An unofficial MCP (Model Context Protocol) server for [fintable.io](https://fint
 
 ## What it does
 
-Once installed, you can ask Claude things like:
+Once installed, you can ask Claude or your favorite MCP Client things like:
 
 - *"Create these expense categories: Office Supplies, Shipping, Packaging, Equipment Rental, Software Subscriptions"*
 - *"Create rules: 'Staples' → Office Supplies, 'UPS' → Shipping, 'USPS' → Shipping"*
