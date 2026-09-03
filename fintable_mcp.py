@@ -297,6 +297,14 @@ async def _fetch_page(client: httpx.AsyncClient, route_key: str) -> tuple[str, s
     resp = await client.get(path)
     resp.raise_for_status()
     html = resp.text
+    # parity26: an expired session 302s to /login, which parses as a page with ZERO rules /
+    # categories / transactions. A silent 0 where a loud 401 belongs -- refuse, name the cure.
+    if str(resp.url).rstrip("/").endswith("/login") or "Log in to your account" in html:
+        raise RuntimeError(
+            "Not authenticated: Fintable redirected to /login (session cookie expired or missing). "
+            "The page would parse as EMPTY -- refusing rather than reporting 0. "
+            "Fix: log into fintable.io in Chrome (rookiepy) or refresh FINTABLE_COOKIES / --persist-cookies."
+        )
     csrf = _extract_csrf_token(html)
     _extract_livewire_update_path(html)  # Auto-discover and cache the update path
     snapshots = _extract_livewire_snapshots(html)
