@@ -747,28 +747,27 @@ async def fintable_list_transactions(params: ListTransactionsInput) -> str:
         async with _get_client() as client:
             html, csrf, snapshots = await _fetch_page(client, "transactions")
 
+            # SM 1218196401036558: the initial GET never renders the grid at all -- it is a
+            # Livewire component that paints client-side, so page 1 with no search used to skip
+            # this block entirely and parse the pre-render HTML (0 <table> elements, every time).
+            # The component must always be asked to render, not just when paginating/searching.
             snap = snapshots.get("transactions-table")
-            if snap and (params.search or (params.page and params.page > 1)):
-                updates = {}
-                if params.search:
-                    updates["search"] = params.search
-                calls = []
-                if params.page and params.page > 1:
-                    calls.append({
-                        "path": "",
-                        "method": "gotoPage",
-                        "params": [params.page, "page"],
-                    })
+            if snap:
                 if params.search:
                     result = await _livewire_call(
                         client, csrf, snap["snapshot_raw"],
                         "$refresh", [],
                         updates={"search": params.search},
                     )
-                elif calls:
+                elif params.page and params.page > 1:
                     result = await _livewire_call(
                         client, csrf, snap["snapshot_raw"],
                         "gotoPage", [params.page, "page"],
+                    )
+                else:
+                    result = await _livewire_call(
+                        client, csrf, snap["snapshot_raw"],
+                        "$refresh", [],
                     )
                 if "components" in result:
                     for comp in result.get("components", []):
