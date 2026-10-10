@@ -297,6 +297,14 @@ async def _fetch_page(client: httpx.AsyncClient, route_key: str) -> tuple[str, s
     resp = await client.get(path)
     resp.raise_for_status()
     html = resp.text
+    # parity26: an expired session 302s to /login, which parses as a page with ZERO rules /
+    # categories / transactions. A silent 0 where a loud 401 belongs -- refuse, name the cure.
+    if str(resp.url).rstrip("/").endswith("/login") or "Log in to your account" in html:
+        raise RuntimeError(
+            "Not authenticated: Fintable redirected to /login (session cookie expired or missing). "
+            "The page would parse as EMPTY -- refusing rather than reporting 0. "
+            "Fix: log into fintable.io in Chrome (rookiepy) or refresh FINTABLE_COOKIES / --persist-cookies."
+        )
     csrf = _extract_csrf_token(html)
     _extract_livewire_update_path(html)  # Auto-discover and cache the update path
     snapshots = _extract_livewire_snapshots(html)
@@ -435,29 +443,85 @@ def _parse_categories_from_html(html: str) -> List[Dict[str, Any]]:
     return categories
 
 
-def _parse_rules_from_html(html: str) -> List[Dict[str, Any]]:
-    """Parse category rules from the rules page HTML."""
-    soup = BeautifulSoup(html, "html.parser")
-    rules = []
+def _silent_zero_guard(kind: str, html: str, count: int, selector_note: str) -> None:
+    """A 200 that parses to ZERO rows is a scrape that lost the DOM, not an empty account.
 
-    # Rules are displayed as rows with format: 'pattern' » Category
+    smDrainScripts3 s3 / SM 1218170437065088: the rules page answered 200 with 237 real
+    rule rows on it and the parser returned total=0 for weeks, because the DOM moved and
+    nothing was watching. `0` and `I could not read the page` are DIFFERENT STATES and the
+    scrape cannot tell them apart -- so it must refuse rather than report the one that
+    blames the data. A genuinely empty account is rare, loud, and better served by a
+    refusal you can read than by a zero you cannot.
+    """
+    if count > 0:
+        return
+    excerpt = re.sub(r"\s+", " ", BeautifulSoup(html, "html.parser").get_text(" ", strip=True))[:400]
+    raise RuntimeError(
+        f"Parsed 0 {kind} from a {len(html)}-byte page that authenticated successfully. "
+        f"This is a PARSER/DOM failure, not an empty account -- refusing to report 0. "
+        f"Expected: {selector_note}. "
+        f"Page text excerpt: {excerpt!r}"
+    )
+
+
+# The rules table renders one <tr> per rule. Two display forms exist:
+#   simple   : 'Home Depot' » COGS
+#   advanced : COGS (Advanced) | description contains 'X' and the cents portion ...
+_RULE_SIMPLE_RE = re.compile(r"^\s*['\"‘“]?(?P<pattern>.*?)['\"’”]?\s*»\s*(?P<category>.+?)\s*$")
+_RULE_ADVANCED_RE = re.compile(r"^\s*(?P<category>.+?)\s*\(Advanced\)\s*\|\s*(?P<expr>.+?)\s*$")
+
+
+def _parse_rules_from_html(html: str) -> List[Dict[str, Any]]:
+    """Parse category rules from the rules page HTML.
+
+    Anchored on the rule ROW, not on the view-rule button. The button used to carry the
+    rule's display text; it is now an icon-only action inside a tooltip in the actions
+    cell, so `button.get_text()` is the empty string and the old
+    `len(text.split("»")) == 2` test dropped every row on the floor -- silently, because
+    a drop and an absence looked the same. Measured 2026-09-05: 237 rows, 233 simple and
+    4 advanced. A row we cannot classify is EMITTED as kind="unknown" with its raw text,
+    never discarded: an unparseable rule is a finding for the caller, not a missing one.
+    """
+    soup = BeautifulSoup(html, "html.parser")
+    rules: List[Dict[str, Any]] = []
+    seen_rows = set()
+
     for el in soup.find_all(attrs={"wire:click": re.compile(r"view-rule")}):
+        row = el.find_parent("tr")
+        if row is None or id(row) in seen_rows:
+            continue
+        seen_rows.add(id(row))
+
         wire_click = el.get("wire:click", "")
         rid_match = re.search(r"rid:\s*'([^']+)'", wire_click)
         rid = rid_match.group(1) if rid_match else ""
 
-        text = el.get_text(strip=True)
-        # Format: 'Home Depot' » COGS
-        parts = text.split("»")
-        if len(parts) == 2:
-            pattern = parts[0].strip().strip("'\"")
-            category = parts[1].strip()
-            rules.append({
-                "id": rid,
-                "pattern": pattern,
-                "category": category,
-                "display": text,
-            })
+        cells = row.find_all("td")
+        display = cells[0].get_text(" ", strip=True) if cells else row.get_text(" ", strip=True)
+        # The second cell is the category on its own -- authoritative, and free of the
+        # quoting/guillemet games the display cell plays.
+        cell_category = cells[1].get_text(" ", strip=True) if len(cells) > 1 else ""
+
+        m = _RULE_ADVANCED_RE.match(display)
+        if m:
+            kind, pattern = "advanced", m.group("expr")
+            category = cell_category or m.group("category")
+        else:
+            m = _RULE_SIMPLE_RE.match(display)
+            if m and "»" in display:
+                kind, pattern = "simple", m.group("pattern").strip().strip("'\"")
+                category = cell_category or m.group("category")
+            else:
+                kind, pattern = "unknown", ""
+                category = cell_category
+
+        rules.append({
+            "id": rid,
+            "pattern": pattern,
+            "category": category,
+            "kind": kind,
+            "display": display,
+        })
 
     return rules
 
@@ -641,7 +705,17 @@ async def fintable_list_rules(params: ListRulesInput) -> str:
                                 html = effects_html
 
             rules = _parse_rules_from_html(html)
-            return json.dumps({"total": len(rules), "page": params.page, "rules": rules}, indent=2)
+            _silent_zero_guard(
+                "rules", html, len(rules),
+                "one <tr> per rule containing a wire:click=\"$dispatch('view-rule', ...)\" button",
+            )
+            by_kind: Dict[str, int] = {}
+            for r in rules:
+                by_kind[r["kind"]] = by_kind.get(r["kind"], 0) + 1
+            return json.dumps(
+                {"total": len(rules), "page": params.page, "by_kind": by_kind, "rules": rules},
+                indent=2,
+            )
     except Exception as e:
         return _handle_error(e)
 
@@ -673,28 +747,27 @@ async def fintable_list_transactions(params: ListTransactionsInput) -> str:
         async with _get_client() as client:
             html, csrf, snapshots = await _fetch_page(client, "transactions")
 
+            # SM 1218196401036558: the initial GET never renders the grid at all -- it is a
+            # Livewire component that paints client-side, so page 1 with no search used to skip
+            # this block entirely and parse the pre-render HTML (0 <table> elements, every time).
+            # The component must always be asked to render, not just when paginating/searching.
             snap = snapshots.get("transactions-table")
-            if snap and (params.search or (params.page and params.page > 1)):
-                updates = {}
-                if params.search:
-                    updates["search"] = params.search
-                calls = []
-                if params.page and params.page > 1:
-                    calls.append({
-                        "path": "",
-                        "method": "gotoPage",
-                        "params": [params.page, "page"],
-                    })
+            if snap:
                 if params.search:
                     result = await _livewire_call(
                         client, csrf, snap["snapshot_raw"],
                         "$refresh", [],
                         updates={"search": params.search},
                     )
-                elif calls:
+                elif params.page and params.page > 1:
                     result = await _livewire_call(
                         client, csrf, snap["snapshot_raw"],
                         "gotoPage", [params.page, "page"],
+                    )
+                else:
+                    result = await _livewire_call(
+                        client, csrf, snap["snapshot_raw"],
+                        "$refresh", [],
                     )
                 if "components" in result:
                     for comp in result.get("components", []):
@@ -703,6 +776,19 @@ async def fintable_list_transactions(params: ListTransactionsInput) -> str:
                             html = effects_html
 
             transactions = _parse_transactions_from_html(html)
+            # "no rows in the table" and "no table at all" are DIFFERENT STATES. The first is
+            # a real empty result a caller can act on; the second is the scrape losing the
+            # page. Measured 2026-09-05: this route returns a 200 with ZERO <table> elements
+            # (the grid is rendered client-side by Livewire), so the friendly
+            # "No transactions found" below was unreachable-as-true and every caller was
+            # told the account was empty. Separate them; the DOM failure raises.
+            if not BeautifulSoup(html, "html.parser").find("table"):
+                _silent_zero_guard(
+                    "transactions", html, 0,
+                    "a <table> of transactions in the server-rendered HTML (this route now "
+                    "renders the grid client-side via Livewire -- the table must be fetched "
+                    "from the livewire component, see SM 1218170437065088)",
+                )
             if not transactions:
                 return "No transactions found. Try adjusting your search or check that transactions are synced."
             return json.dumps({
