@@ -156,3 +156,5 @@ specific enough to this card that I didn't see it as reusable; happy to be told 
 Every one of the 1 card(s) in the frozen manifest lane-ncCurie1009fm.json is closed on the State Machine with a bb-close.py receipt (or PARKED by a CEO ruling via smdrain-lane.py park), and `bash $HOME/repos/claude-blackbook/scripts/verify-smdrain.sh ncCurie1009fm` exits 0.
 
 _Reconcile (local-curie-1678-a 2026-10-10T21:08:46Z): cites 1219341347963917 "fintable-mcp: confirm list_transactions fix renders real transactions (needs you" — now CLOSED: NO-AAR: REAL, done + verified LIVE 2026-10-10 by local-curie-1678-a (ncCurie1010il), read-only against Jason's real Fintable session (cookies read over CDP from darwin's logged-in pw-lane Chrome, used_
+
+_Reconcile (local-curie-1678-a 2026-10-10T21:09:05Z): cites 1218196401036558 "[near-miss] fintable-mcp list_transactions cannot parse the transactions page at" — now CLOSED: NO-AAR: FIXED + verified LIVE 2026-10-10 (local-curie-1678-a, via SM 1219341347963917): option (a), the Livewire fetch, per ruling #895. fintable-mcp c5db60b: component is now transactions-list (renam_
