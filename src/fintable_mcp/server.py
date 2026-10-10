@@ -531,7 +531,29 @@ def _parse_transactions_from_html(html: str) -> List[Dict[str, Any]]:
     soup = BeautifulSoup(html, "html.parser")
     transactions = []
 
-    # Transactions are in a table
+    # Current DOM (measured live 2026-10-10): one <div data-transaction-row wire:key="tx-..."> per
+    # transaction, no table -- the only <table> on the page is the date-picker calendar.
+    for row in soup.find_all(attrs={"data-transaction-row": True}):
+        acct = row.find(attrs={"dusk": "recent-transaction-account"})
+        amt = row.find("span", class_="tabular-nums")
+        desc_p = amt.find_parent("p") if amt else None
+        when = row.find("time")
+        date_span = when.find_next_sibling("span") if when else None
+        badge = row.find(attrs={"data-flux-badge": True})
+        txn = {
+            "id": (row.get("wire:key") or "").removeprefix("tx-"),
+            "date": date_span.get_text(strip=True) if date_span else "",
+            "datetime": when.get("datetime", "") if when else "",
+            "description": (desc_p.get("title") or "").strip() if desc_p else "",
+            "amount": amt.get_text(strip=True) if amt else "",
+            "category": badge.get("title", "").strip() if badge else "",
+            "account": acct.get_text(strip=True) if acct else "",
+        }
+        transactions.append(txn)
+    if transactions:
+        return transactions
+
+    # Legacy DOM: transactions in a table
     table = soup.find("table")
     if not table:
         return transactions
@@ -751,7 +773,9 @@ async def fintable_list_transactions(params: ListTransactionsInput) -> str:
             # Livewire component that paints client-side, so page 1 with no search used to skip
             # this block entirely and parse the pre-render HTML (0 <table> elements, every time).
             # The component must always be asked to render, not just when paginating/searching.
-            snap = snapshots.get("transactions-table")
+            # Fintable renamed the component transactions-table -> transactions-list (measured live
+            # 2026-10-10, SM 1219341347963917); keep the old name as a fallback.
+            snap = snapshots.get("transactions-list") or snapshots.get("transactions-table")
             if snap:
                 if params.search:
                     result = await _livewire_call(
@@ -782,7 +806,8 @@ async def fintable_list_transactions(params: ListTransactionsInput) -> str:
             # (the grid is rendered client-side by Livewire), so the friendly
             # "No transactions found" below was unreachable-as-true and every caller was
             # told the account was empty. Separate them; the DOM failure raises.
-            if not BeautifulSoup(html, "html.parser").find("table"):
+            _soup = BeautifulSoup(html, "html.parser")
+            if not _soup.find(attrs={"data-transaction-row": True}) and not _soup.find("table"):
                 _silent_zero_guard(
                     "transactions", html, 0,
                     "a <table> of transactions in the server-rendered HTML (this route now "
