@@ -154,3 +154,5 @@ specific enough to this card that I didn't see it as reusable; happy to be told 
 
 ## Definition of done
 Every one of the 1 card(s) in the frozen manifest lane-ncCurie1009fm.json is closed on the State Machine with a bb-close.py receipt (or PARKED by a CEO ruling via smdrain-lane.py park), and `bash $HOME/repos/claude-blackbook/scripts/verify-smdrain.sh ncCurie1009fm` exits 0.
+
+_Reconcile (local-curie-1678-a 2026-10-10T21:08:46Z): cites 1219341347963917 "fintable-mcp: confirm list_transactions fix renders real transactions (needs you" — now CLOSED: NO-AAR: REAL, done + verified LIVE 2026-10-10 by local-curie-1678-a (ncCurie1010il), read-only against Jason's real Fintable session (cookies read over CDP from darwin's logged-in pw-lane Chrome, used_
