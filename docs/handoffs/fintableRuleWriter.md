@@ -3,7 +3,7 @@ project: fintableRuleWriter
 session_n: 2
 gh_repo: "jasoncbraatz/fintable-mcp"
 branch: "main"
-gh_sha: "see git log rail/fintableRuleWriter"
+gh_sha: "b01fd7ce207cd89b8f5ee5d2a6d2282d78dde9e3"
 updated: "2026-11-10"
 definition_of_done: "create_rule and create_bulk_rules refuse to report success they did not observe (tests), and the live Fintable account holds the 24 rules from rule-translation.md section 1 with before/after exports and a rollback list of the new rule ids"
 verify_cmd: "cd ~/repos/fintable-mcp && python3 -m pytest -q tests && B=~/Desktop/downloads/bookkeeper/backups && test -s $B/fintable-rules-before-20261110.json && test -s $B/fintable-rules-after-20261110.json && python3 -c \"import json,os;d=json.load(open(os.path.expanduser(\\\"~/Desktop/downloads/bookkeeper/backups/fintable-rules-added-20261110.json\\\")));assert len(d)==24\""
