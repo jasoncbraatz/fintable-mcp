@@ -39,6 +39,8 @@ parking_lot: []
 ## Is the phase DONE?
 **Yes.** Both halves of the DoD are met and receipted. See `complete` status in rail_log. This handoff does not claim it ran.
 
+OPS: none -- this lane added 24 static categorization rules to Fintable and a code fix to the MCP writer; no service, cron, deploy or credential was created, so nothing runs that could break unwatched. Drift in the rule list is visible to any later list_rules vs fintable-rules-after-20261110.json.
+
 ## Rollback procedure
 `fintable_delete_rule` on each id in `fintable-rules-added-20261110.json` (rule list). Books side: the 39 rows were all blank before. `diy-categories-before-20261110.json` + `fintable-24rules-matched-rows-20261110.json` name them, and blanking them in Airtable restores the books. A rule delete alone does NOT un-categorize.
 
