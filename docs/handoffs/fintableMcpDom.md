@@ -3,7 +3,7 @@ project: fintableMcpDom
 session_n: 2
 gh_repo: "jasoncbraatz/fintable-mcp"
 branch: "main"
-gh_sha: "ce2b3b7c5ae7ef20727c097b1aa92fcfd2aa4f99"
+gh_sha: "085b675dcf5c126b4bb060c46d50306762e57583"
 updated: "2026-11-10"
 definition_of_done: "list_rules, list_accounts and list_categories each return real items from saved 2026-11-10 fixtures and from the live account, each refuses on a zero-item parse, and the copy in ~/Scripts/fintable-mcp is identical to the repo"
 verify_cmd: "cd ~/repos/fintable-mcp && python3 -m pytest -q tests && python3 scripts/smoke_readers.py && cmp -s fintable_mcp.py ~/Scripts/fintable-mcp/fintable_mcp.py"
@@ -12,11 +12,12 @@ verify_seat: ""     # (ruling #670) set to a roster box name ONLY if verify_cmd 
                     # keychain, not the board's bare ssh). Empty = run wherever `complete` runs.
 lessons_consulted: ["2026-10-10-fintable-mcp-live-verify-from-box", "2026-09-05-dom-scraper-anchors-clickable-element-breaks", "2026-09-03-fintable-mcp-s-fintable-list-categories"]
 live_theme: "inning 1 (local-mbp2024-10504-d): all three readers fixed against the 2026-11-10 DOM, fixtures committed (synthetic values, public repo), live smoke green"
-phase: "DoD believed MET at end of inning 1 -- see Is the phase DONE?"
+phase: "WORK DONE, verify_cmd GREEN; complete REFUSED ruler-moved -- parked on CEO write ruling #1313"
 gate_passed: true
-next_at_bat: "If `rail.py complete` has a row for fintableMcpDom fence 1, this project is DONE -- do nothing. Otherwise: run the verify_cmd from ~/repos/fintable-mcp (after `git -C ~/Scripts/fintable-mcp pull --ff-only`) and, if green, run `rail.py complete --project fintableMcpDom --fence <N>`. Follow-ons that are NOT this DoD (see parking_lot): second-workspace accounts, the other write-tools still pointing at the old DOM."
+next_at_bat: "Nothing for a worker until ruling #1313 is PERFORMED. Then: the CEO (or the worker the ruling names) runs `rail.py ruler amend --project fintableMcpDom --by ceo --why ...` and `rail.py complete --project fintableMcpDom --fence <current>`. verify_cmd was green on main b89928e. If a worker lands here after the amend and complete still has not run: git -C ~/Scripts/fintable-mcp pull --ff-only, run verify_cmd from ~/repos/fintable-mcp, then complete."
 deploys_to: []
-blockers: []
+blockers:
+  - "ruler-moved: frozen digest hashes fintable_mcp.py + scripts/smoke_readers.py (both the at-bat itself). CEO write ruling #1313."
 drift_flags: []
 parking_lot:
   - "list_accounts reads only the CURRENT workspace (Primary: 18 accounts, 1 connection = Shopify Balance). The Airtable count of 39 likely includes the second workspace (Stephanie Braatz). Reading it needs a workspace switch -- a session-state change this lane did not make. Needs a ruling before anyone does."
@@ -62,8 +63,21 @@ Fence held: no create/delete/run/resync/sync tool was called. Only GETs.
 
 OPS: none -- read-only MCP readers called on demand by the desktop app, no daemon or schedule to watch; DOM drift surfaces as a loud PARSER/DOM refusal on the next call (every reader refuses a zero-item parse), and `python3 scripts/smoke_readers.py` (exit 0/1, counts only) is the manual check.
 
+## Why `complete` refused (and why it is not the work)
+`rail.py complete --project fintableMcpDom --fence 1` → `ruler-moved`: `fintable_mcp.py a504e5797e05 -> 4e9abe0f356c`,
+`scripts/smoke_readers.py absent -> 6591fa88bbeb`. The ruler auto-hashes every file the verify_cmd line
+names, and this verify_cmd names the code under repair plus a file the brief ordered created, so it
+could never have survived a correct inning. The verify_cmd TEXT is untouched and ran GREEN by hand on
+main b89928e (22 passed; smoke 258/18/37; cmp vs ~/Scripts identical). **What must be amended:**
+`rail.py ruler amend --project fintableMcpDom --by ceo --why "<ruler hashed the subject under test>"`,
+then `rail.py complete`. Opened as **ruling #1313** (needs-ceo-write). For future handoff-init briefs:
+a DoD whose verify_cmd names the file being fixed needs `ruler_files:` declared to the stable inputs.
+
+WAITING_ON: kind=ruling key=1313
+
 ## Is the phase DONE?
 The DoD has three legs: (1) real items from the saved fixtures AND live: yes, per the tests and the
 smoke above; (2) each refuses on a zero-item parse: yes, tested per reader and per tool; (3)
 `~/Scripts/fintable-mcp` identical to the repo: true only after the merge + push + pull at the end of
-this inning. The rail_log `complete` row is the evidence, not this paragraph. If it is there, DONE.
+this inning -- and it is (cmp passed on main b89928e). All three legs are met; the `complete` row is NOT
+there yet because of the ruler, not the work. Once #1313 is performed and complete runs, DONE.
