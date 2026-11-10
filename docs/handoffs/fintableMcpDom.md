@@ -1,6 +1,6 @@
 ---
 project: fintableMcpDom
-session_n: 1
+session_n: 2
 gh_repo: "jasoncbraatz/fintable-mcp"
 branch: "main"
 gh_sha: "7f5233d1c808225ff81c591dce49a351c4adf1fa"
@@ -10,47 +10,58 @@ verify_cmd: "cd ~/repos/fintable-mcp && python3 -m pytest -q tests && python3 sc
 verify_seat: ""     # (ruling #670) set to a roster box name ONLY if verify_cmd must run on a
                     # specific seat (e.g. it calls `claude -p`, which needs a logged-in
                     # keychain, not the board's bare ssh). Empty = run wherever `complete` runs.
-lessons_consulted: []
-live_theme: "session 0 — this skeleton was written by `rail.py handoff-init` and nobody has played an inning yet"
-phase: "SESSION 0. No inning has been played. The next worker's first act is to replace next_at_bat below with a real one."
-gate_passed: false
-next_at_bat: "REPAIR THE FINTABLE MCP'S READERS against Fintable's current pages. Read-only on Fintable.\n\nWHY: the DIY Bookkeeper's categories are written by Fintable's own categorizer (1,160 of 1,180 Airtable rows since 2026-10-01 carry a **Category and no n8n workflow writes that field). Jason's plan (2026-11-10) is that BraatzBooks is now the category source of truth and its rules get copied onto Fintable. That needs a Fintable reader we can trust, and today (measured 2026-11-10 from a Cowork session through the desktop bridge):\n- fintable_list_rules   -> \"RuntimeError: Parsed 0 rules from a 2877512-byte page that authenticated successfully. This is a PARSER/DOM failure ... Expected: one <tr> per rule containing a wire:click=\\\"$dispatch('view-rule', ...)\\\" button\" (the refusal is correct and stays; the parser is what is stale)\n- fintable_list_accounts -> \"No accounts found\" (39 account rows exist in Airtable; this one LIES instead of refusing)\n- fintable_list_categories -> returns 117 \"categories\" that are mostly UI chrome (\"Edit category\", \"Delete category\", \"Cancel\", \"Integrations\") plus the real ones\n\nRepo: ~/repos/fintable-mcp. The copy the desktop app runs: ~/Scripts/fintable-mcp/fintable_mcp.py (claude_desktop_config.json mcpServers.fintable). Find how the repo copy reaches ~/Scripts before you change anything, and keep them identical at the end.\n\nFIRST AT-BAT: save the three live pages the server fetches (rules, accounts, categories) as fixtures under tests/fixtures/2026-11-10/ with any secret/token/cookie scrubbed and account numbers reduced to last4, and commit them with a note on how each was captured. No parser change yet.\n\nTHEN: fix the three parsers against those fixtures. Every reader must REFUSE (raise, like list_rules already does) when it parses zero items from a page that authenticated -- a zero that measured nothing is never an empty account. list_categories must return only real category names. Tests: one per reader on the saved fixture (counts > 0, a known pattern->category pair present, no UI chrome), plus one per reader proving the zero-items refusal on a gutted fixture.\n\nLAST: a live smoke script (scripts/smoke_readers.py, exit 0/1) that calls the three readers once against the real account and prints counts only -- run it and paste its output in the handoff.\n\nFENCE: do NOT call create_rule, create_bulk_rules, delete_rule, create_category, run_all_rules, resync or sync_accounts -- nothing that changes Fintable or triggers a sync. Do not print or commit credentials. Pagination of rules: report how many pages exist and make list_rules able to return all of them."
+lessons_consulted: ["2026-10-10-fintable-mcp-live-verify-from-box", "2026-09-05-dom-scraper-anchors-clickable-element-breaks", "2026-09-03-fintable-mcp-s-fintable-list-categories"]
+live_theme: "inning 1 (local-mbp2024-10504-d): all three readers fixed against the 2026-11-10 DOM, fixtures committed (synthetic values, public repo), live smoke green"
+phase: "DoD believed MET at end of inning 1 -- see Is the phase DONE?"
+gate_passed: true
+next_at_bat: "If `rail.py complete` has a row for fintableMcpDom fence 1, this project is DONE -- do nothing. Otherwise: run the verify_cmd from ~/repos/fintable-mcp (after `git -C ~/Scripts/fintable-mcp pull --ff-only`) and, if green, run `rail.py complete --project fintableMcpDom --fence <N>`. Follow-ons that are NOT this DoD (see parking_lot): second-workspace accounts, the other write-tools still pointing at the old DOM."
 deploys_to: []
 blockers: []
 drift_flags: []
-parking_lot: []
+parking_lot:
+  - "list_accounts reads only the CURRENT workspace (Primary: 18 accounts, 1 connection = Shopify Balance). The Airtable count of 39 likely includes the second workspace (Stephanie Braatz). Reading it needs a workspace switch -- a session-state change this lane did not make. Needs a ruling before anyone does."
+  - "Write tools (create_rule, delete_rule, run_all_rules, create_category, ...) were NOT touched and were not called; several still read livepage-rules snapshots / old selectors and are unverified against the 2026-11-10 DOM. Fence forbids calling them; repairing them is a separate project."
+  - "fintable_list_transactions shares no code changed here; untouched."
 ---
 
-# fintableMcpDom — LIVING HANDOFF
+# fintableMcpDom — LIVING HANDOFF (session 2, written at the end of inning 1)
 
 ## Read first
-`docs/NORTH-STAR-fintableMcpDom.md` if it exists, else `docs/NORTH-STAR.md` (the invariants and the
-destination), then run the `verify_cmd` in the frontmatter above. Its RED lines are the at-bat
-and its GREEN lines are the guard rails.
+`docs/NORTH-STAR-fintableMcpDom.md` / `docs/NORTH-STAR.md` do not exist in this repo (checked
+inning 1). The at-bat came from the frontmatter brief (architect-diyTouchstone-01, ceo scope).
 
-## Where this came from
-`rail.py handoff-init --project fintableMcpDom` wrote this file as a SKELETON so an unattended
-worker would not arrive at a repo with no at-bat. Everything below the frontmatter is a
-placeholder. The first worker to play an inning here rewrites all of it.
+## What inning 1 did (commit 5e65c71 on rail/fintableMcpDom)
+- **How the copies sync:** `~/Scripts/fintable-mcp` (what claude_desktop_config runs) is its OWN
+  git clone of github.com/jasoncbraatz/fintable-mcp, not a symlink or copy. Sync = push from the
+  repo, then `git -C ~/Scripts/fintable-mcp pull --ff-only`. `src/fintable_mcp/server.py` must
+  stay byte-identical to `fintable_mcp.py` (tests/test_src_parity.py).
+- **The repo is PUBLIC** (`gh repo view` → visibility PUBLIC). The brief asked for the live pages
+  with secrets scrubbed; committing them would have published rule patterns (people's names),
+  account names and balances. So `scripts/capture_fixtures.py` keeps the DOM verbatim and swaps
+  every VALUE for a synthetic one, preserving counts, and refuses to write if any collected real
+  value survives. Raw pages: `~/.local/state/fintable-mcp/captures/2026-11-10/` (private, not in git).
+  Same convention as the 2026-09-05 fixture. Notes: `tests/fixtures/2026-11-10/README.md`.
+- **What the DOM is now:** every `/dash/v2/*` route 302s to `/w/<ws>/...`.
+  - rules: `<div wire:key="rule-<uuid>">` with a `<p>` display + `data-flux-badge` category.
+    **258 rules, ONE page** (no paginator in DOM or livepage-rules snapshot) → `page>1` now refuses.
+  - accounts: `<li wire:key="home-account-acc_…">` inside `<section wire:key="home-connection-group-PLAID~…" aria-label=institution>`.
+  - categories: `<div wire:key="category-<slug>_<cid>">` with `<p>` name inside `category-group-*` (badge = group).
+- **Parsers rewritten**; accounts + categories now go through `_silent_zero_guard` (they returned
+  "No … found" / chrome before). Legacy `<tr>` rule shape kept as a fallback so the 2026-09-05 tests still hold.
+- **Tests:** `tests/test_readers_2026_11_10.py`: positive count + known pair + no chrome per reader,
+  gutted-page refusal per reader, and each MCP tool end-to-end refusing on a gutted page. 22 passed.
 
-## If this lane RESTARTS a live surface, fill in `deploys_to:`
-The empty list in the frontmatter is the key, not a decoration (SM 1218841995855069, ruling
-#490). Name the surface this lane restarts the way another lane would spell it —
-`deploys_to: ["flowers:braatzledger-surface"]` — and `rail.py claim` will refuse to hold two
-live claims on it, estate-wide, printing which lane holds it. Two lanes restarting one surface
-starve each other through its own journal gate: each lane's verification traffic is what
-refuses the other lane's restart, so the second lane does not fail, it silently loses a
-deploy. Leave the list empty if this lane restarts nothing; an empty declaration is refused
-nothing.
-
-## If `verify_cmd` can only judge from ONE box, fill in `verify_seat:`
-Leave it empty unless the ruler calls `claude -p` or otherwise needs a seat this box is not --
-`complete` forwarded to the board host runs verify_cmd on the BOARD, and a ruler that needs a
-logged-in keychain fails there even though the exact same bits were GREEN on the seat that has
-one (ruling #670, SM 1219004888726763). Naming a seat does not move the completion: the verdict
-still lands on whichever box ran `complete`, only the verify_cmd's own execution is forwarded
-over ssh to the named box.
+## Live smoke (scripts/smoke_readers.py, run inning 1, read-only)
+```
+list_rules       OK    total=258  distinct_kind=2  kind={'simple': 254, 'advanced': 4}
+list_accounts    OK    total=18  distinct_state=1  state={'enabled': 18}
+list_categories  OK    total=37  distinct_group=5
+exit=0
+```
+Fence held: no create/delete/run/resync/sync tool was called. Only GETs.
 
 ## Is the phase DONE?
-No — no inning has been played. Ask this question explicitly in every handoff from here on:
-a milestone that is met but never declared keeps getting continued.
+The DoD has three legs: (1) real items from the saved fixtures AND live: yes, per the tests and the
+smoke above; (2) each refuses on a zero-item parse: yes, tested per reader and per tool; (3)
+`~/Scripts/fintable-mcp` identical to the repo: true only after the merge + push + pull at the end of
+this inning. The rail_log `complete` row is the evidence, not this paragraph. If it is there, DONE.
