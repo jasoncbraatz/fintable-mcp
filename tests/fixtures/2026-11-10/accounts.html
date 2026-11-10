@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-gray-900 dark" lang="en">
+<head>
+
+<meta content="0" name="openai-ads-allowed"/>
+
+<!-- Google tag (gtag.js) -->
+
+
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#101828" name="theme-color"/>
+<meta content="dark" name="color-scheme"/>
+
+
+
+
+
+<meta content="JQFIy8rKqX0KA5yk1rvAefmiV4WkPdZFQVKnLcUp" name="csrf-token"/>
+<meta content="" name="description"/>
+<title>Fintable - Accounts</title>
+
+
+
+<!-- Facebook Meta Tags -->
+<meta content="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts" property="og:url"/>
+<meta content="website" property="og:type"/>
+<meta content="Fintable - Accounts" property="og:title"/>
+<meta content="" property="og:description"/>
+<meta content="https://fintable.io/images/home/opengraph-en.png" property="og:image"/>
+<!-- Twitter Meta Tags -->
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="fintable.io" property="twitter:domain"/>
+<meta content="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts" property="twitter:url"/>
+<meta content="Fintable - Accounts" name="twitter:title"/>
+<meta content="" name="twitter:description"/>
+<meta content="https://fintable.io/images/home/opengraph-en.png" name="twitter:image"/>
+<!-- Meta Tags Generated via https://www.opengraph.xyz -->
+<!-- Livewire Styles -->
+
+</head>
+<body class="h-full dark [--mobile-nav-height:calc(4rem+env(safe-area-inset-bottom))] lg:[--mobile-nav-height:0px]">
+<div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+<div aria-hidden="true" class="absolute left-[max(-7rem,calc(50%-52rem))] top-1/2 -translate-y-1/2 transform-gpu blur-2xl">
+<div class="aspect-577/310 w-[36.0625rem] bg-linear-to-r from-[#ff80b5] to-[#9089fc] opacity-20" style="clip-path: polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)"></div>
+</div>
+<div aria-hidden="true" class="absolute left-[max(45rem,calc(50%+8rem))] top-1/2 -translate-y-1/2 transform-gpu blur-2xl">
+<div class="aspect-577/310 w-[36.0625rem] bg-linear-to-r from-[#ff80b5] to-[#9089fc] opacity-20" style="clip-path: polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)"></div>
+</div>
+</div>
+<div class="flex min-h-full flex-col">
+<div class="flex-1 min-h-0">
+<ui-sidebar-toggle class="z-20 fixed inset-0 bg-black/10 hidden data-flux-sidebar-on-mobile:not-data-flux-sidebar-collapsed-mobile:block" data-flux-sidebar-backdrop=""></ui-sidebar-toggle>
+<ui-sidebar class="[grid-area:sidebar] z-1 flex flex-col gap-4 [:where(&amp;)]:w-64 p-4 data-flux-sidebar-collapsed-desktop:w-14 data-flux-sidebar-collapsed-desktop:px-2 data-flux-sidebar-collapsed-desktop:cursor-e-resize rtl:data-flux-sidebar-collapsed-desktop:cursor-w-resize max-lg:data-flux-sidebar-cloak:hidden data-flux-sidebar-on-mobile:data-flux-sidebar-collapsed-mobile:-translate-x-full data-flux-sidebar-on-mobile:data-flux-sidebar-collapsed-mobile:rtl:translate-x-full z-20! data-flux-sidebar-on-mobile:start-0! data-flux-sidebar-on-mobile:fixed! data-flux-sidebar-on-mobile:top-0! data-flux-sidebar-on-mobile:min-h-dvh! data-flux-sidebar-on-mobile:max-h-dvh! max-h-dvh overflow-y-auto overscroll-contain bg-gray-900 border-r border-white/5" collapsible="true" data-flux-sidebar="" data-flux-sidebar-cloak="" id="dashboard-sidebar" sticky="" x-data="" x-init="$el.classList.add('transition-transform')">
+<ui-tooltip class="inline-flex" data-flux-tooltip="" position="top center">
+<button aria-label="Toggle sidebar" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-10 text-sm rounded-lg gap-2 w-10 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-white shrink-0 lg:hidden" data-flux-button="data-flux-button" data-flux-sidebar-toggle="data-flux-sidebar-toggle" tooltip="Sidebar" type="button" x-data="" x-on:click="$dispatch('flux-sidebar-toggle')">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible" data-flux-tooltip-content="" popover="manual">
+    Sidebar
+
+    </div>
+</ui-tooltip>
+<div class="flex items-center justify-between gap-2 min-h-10" data-flux-sidebar-header="">
+<a class="h-10 min-w-0 flex items-center px-2 in-data-flux-sidebar-collapsed-desktop:w-10 in-data-flux-sidebar-collapsed-desktop:px-0 in-data-flux-sidebar-collapsed-desktop:justify-center in-data-flux-sidebar-collapsed-desktop:in-data-flux-sidebar-active:absolute in-data-flux-sidebar-collapsed-desktop:in-data-flux-sidebar-active:opacity-0" data-flux-sidebar-brand="data-flux-sidebar-brand" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/dashboard">
+<div class="flex items-center justify-center [:where(&amp;)]:h-6 [:where(&amp;)]:min-w-6 [:where(&amp;)]:rounded-sm overflow-hidden shrink-0 h-auto w-auto min-w-0 rounded-none">
+<span class="brand-logo is-boxed text-[20px] text-white">
+<span class="sr-only">Fintable</span>
+<svg aria-hidden="true" aria-label="Fintable" class="h-6 w-6 brand-logo__mark" fill="currentColor" role="img" viewbox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"></svg>
+<svg aria-hidden="true" aria-label="Fintable" class="brand-wordmark brand-logo__word in-data-flux-sidebar-collapsed-desktop:hidden!" fill="currentColor" focusable="false" role="img" viewbox="4.8 -71.8 374.2 72.6" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+</div>
+</a>
+<ui-sidebar-toggle class="w-10 h-8 shrink-0 flex items-center justify-center in-data-flux-sidebar-collapsed-desktop:opacity-0 in-data-flux-sidebar-collapsed-desktop:absolute in-data-flux-sidebar-collapsed-desktop:in-data-flux-sidebar-active:opacity-100" data-flux-sidebar-collapse="">
+<ui-tooltip data-flux-tooltip="" position="right center">
+<button class='size-10 relative items-center font-medium justify-center gap-2 whitespace-nowrap disabled:opacity-75 dark:disabled:opacity-75 disabled:cursor-default disabled:pointer-events-none text-sm rounded-lg inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-white in-data-flux-sidebar-collapsed-desktop:cursor-e-resize rtl:in-data-flux-sidebar-collapsed-desktop:cursor-w-resize [&amp;[collapsible="mobile"]]:in-data-flux-sidebar-on-desktop:hidden rtl:rotate-180' type="button">
+<svg class="text-zinc-500 dark:text-zinc-400" fill="none" height="20" viewbox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible" data-flux-tooltip-content="" popover="manual">
+    Sidebar
+
+    </div>
+</ui-tooltip>
+</ui-sidebar-toggle>
+</div>
+<a class="mx-2 mb-2 block rounded-lg border border-yellow-400/60 bg-yellow-400/20 px-3 py-2 hover:bg-yellow-400/30 in-data-flux-sidebar-collapsed-desktop:hidden" href="https://fintable.io/dash/v2/security">
+<p class="flex items-center gap-1.5 text-sm font-semibold text-yellow-300">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-4" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"></svg>
+
+                            Secure your Fintable
+                </p>
+<p class="mt-1 text-xs text-white">Add two-factor authentication: an authenticator app or a passkey.</p>
+</a>
+<nav class="flex flex-col overflow-visible min-h-auto" data-flux-sidebar-nav="">
+<div class="in-data-flux-sidebar-collapsed-desktop:hidden" wire:effects="[]" wire:id="5mJG3ijD2VEpWZ3walnq" wire:key="lw-2706292050-0-0-0" wire:name="onboarding-checklist" wire:snapshot='{"data":[],"memo":{"id":"5mJG3ijD2VEpWZ3walnq","name":"onboarding-checklist","path":"w\/ws_FIXTUREWORKSPACE000000000\/accounts","method":"GET","release":"a-a-a","children":[],"scripts":[],"assets":[],"errors":[],"locale":"en","islands":[]},@00000000000000000000000000000000000000000000000000000000000000"}'>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></div>
+<ui-tooltip class="block min-w-0" data-flux-tooltip="" position="right center">
+<a class="h-8 in-data-flux-sidebar-on-mobile:h-10 relative flex items-center gap-3 rounded-lg in-data-flux-sidebar-collapsed-desktop:w-10 in-data-flux-sidebar-collapsed-desktop:justify-center py-0 text-start w-full px-3 has-data-flux-navlist-badge:not-in-data-flux-sidebar-collapsed-desktop:pe-1.5 my-px text-zinc-500 dark:text-white/80 data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5 border border-transparent in-data-flux-sidebar-group-dropdown:w-auto! in-data-flux-sidebar-group-dropdown:px-2! in-data-flux-sidebar-group-dropdown:focus:outline-hidden! in-data-flux-sidebar-group-dropdown:text-zinc-800! in-data-flux-sidebar-group-dropdown:bg-white! in-data-flux-sidebar-group-dropdown:hover:bg-zinc-50! in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-50! dark:in-data-flux-sidebar-group-dropdown:text-white! dark:in-data-flux-sidebar-group-dropdown:bg-transparent! dark:in-data-flux-sidebar-group-dropdown:hover:bg-zinc-600! dark:in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-600!" data-flux-sidebar-item="data-flux-sidebar-item" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/dashboard" id="dashboard" wire:current.ignore="">
+<div class="relative">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4 in-data-flux-sidebar-group-dropdown:text-zinc-400! dark:in-data-flux-sidebar-group-dropdown:text-white/80! [[data-flux-sidebar-item]:hover_&amp;]:text-current! [[data-flux-sidebar-item][data-active]_&amp;]:text-current!" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+<div class="in-data-flux-sidebar-collapsed-desktop:not-in-data-flux-sidebar-group-dropdown:hidden flex-1 text-sm font-medium truncate [[data-nav-footer]_&amp;]:hidden [[data-nav-sidebar]_[data-nav-footer]_&amp;]:block" data-content="">Home</div>
+</a>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible not-in-data-flux-sidebar-collapsed-desktop:hidden in-data-flux-sidebar-group-dropdown:hidden cursor-default" data-flux-tooltip-content="" popover="manual">
+    Home
+
+    </div>
+</ui-tooltip>
+<ui-tooltip class="flex-col" data-flux-tooltip="" position="right center">
+<ui-tooltip class="block min-w-0" data-flux-tooltip="" position="right center">
+<a class="h-8 in-data-flux-sidebar-on-mobile:h-10 relative flex items-center gap-3 rounded-lg in-data-flux-sidebar-collapsed-desktop:w-10 in-data-flux-sidebar-collapsed-desktop:justify-center py-0 text-start w-full px-3 has-data-flux-navlist-badge:not-in-data-flux-sidebar-collapsed-desktop:pe-1.5 my-px text-zinc-500 dark:text-white/80 data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5 border border-transparent in-data-flux-sidebar-group-dropdown:w-auto! in-data-flux-sidebar-group-dropdown:px-2! in-data-flux-sidebar-group-dropdown:focus:outline-hidden! in-data-flux-sidebar-group-dropdown:text-zinc-800! in-data-flux-sidebar-group-dropdown:bg-white! in-data-flux-sidebar-group-dropdown:hover:bg-zinc-50! in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-50! dark:in-data-flux-sidebar-group-dropdown:text-white! dark:in-data-flux-sidebar-group-dropdown:bg-transparent! dark:in-data-flux-sidebar-group-dropdown:hover:bg-zinc-600! dark:in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-600!" data-current="data-current" data-flux-sidebar-item="data-flux-sidebar-item" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts" id="connections" wire:current.ignore="">
+<div class="relative">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4 in-data-flux-sidebar-group-dropdown:text-zinc-400! dark:in-data-flux-sidebar-group-dropdown:text-white/80! [[data-flux-sidebar-item]:hover_&amp;]:text-current! [[data-flux-sidebar-item][data-active]_&amp;]:text-current!" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+<div class="in-data-flux-sidebar-collapsed-desktop:not-in-data-flux-sidebar-group-dropdown:hidden flex-1 text-sm font-medium truncate [[data-nav-footer]_&amp;]:hidden [[data-nav-sidebar]_[data-nav-footer]_&amp;]:block" data-content="">Accounts</div>
+</a>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible not-in-data-flux-sidebar-collapsed-desktop:hidden in-data-flux-sidebar-group-dropdown:hidden cursor-default" data-flux-tooltip-content="" popover="manual">
+    Accounts
+
+    </div>
+</ui-tooltip>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible" data-flux-tooltip-content="" popover="manual">
+    Your banks and other financial institutions
+
+    </div>
+</ui-tooltip>
+<ui-tooltip class="block min-w-0" data-flux-tooltip="" position="right center">
+<a class="h-8 in-data-flux-sidebar-on-mobile:h-10 relative flex items-center gap-3 rounded-lg in-data-flux-sidebar-collapsed-desktop:w-10 in-data-flux-sidebar-collapsed-desktop:justify-center py-0 text-start w-full px-3 has-data-flux-navlist-badge:not-in-data-flux-sidebar-collapsed-desktop:pe-1.5 my-px text-zinc-500 dark:text-white/80 data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5 border border-transparent in-data-flux-sidebar-group-dropdown:w-auto! in-data-flux-sidebar-group-dropdown:px-2! in-data-flux-sidebar-group-dropdown:focus:outline-hidden! in-data-flux-sidebar-group-dropdown:text-zinc-800! in-data-flux-sidebar-group-dropdown:bg-white! in-data-flux-sidebar-group-dropdown:hover:bg-zinc-50! in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-50! dark:in-data-flux-sidebar-group-dropdown:text-white! dark:in-data-flux-sidebar-group-dropdown:bg-transparent! dark:in-data-flux-sidebar-group-dropdown:hover:bg-zinc-600! dark:in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-600!" data-flux-sidebar-item="data-flux-sidebar-item" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/transactions" id="transactions" wire:current.ignore="">
+<div class="relative">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4 in-data-flux-sidebar-group-dropdown:text-zinc-400! dark:in-data-flux-sidebar-group-dropdown:text-white/80! [[data-flux-sidebar-item]:hover_&amp;]:text-current! [[data-flux-sidebar-item][data-active]_&amp;]:text-current!" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+<div class="in-data-flux-sidebar-collapsed-desktop:not-in-data-flux-sidebar-group-dropdown:hidden flex-1 text-sm font-medium truncate [[data-nav-footer]_&amp;]:hidden [[data-nav-sidebar]_[data-nav-footer]_&amp;]:block" data-content="">Transactions</div>
+</a>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible not-in-data-flux-sidebar-collapsed-desktop:hidden in-data-flux-sidebar-group-dropdown:hidden cursor-default" data-flux-tooltip-content="" popover="manual">
+    Transactions
+
+    </div>
+</ui-tooltip>
+<ui-tooltip class="block min-w-0" data-flux-tooltip="" position="right center">
+<a class="h-8 in-data-flux-sidebar-on-mobile:h-10 relative flex items-center gap-3 rounded-lg in-data-flux-sidebar-collapsed-desktop:w-10 in-data-flux-sidebar-collapsed-desktop:justify-center py-0 text-start w-full px-3 has-data-flux-navlist-badge:not-in-data-flux-sidebar-collapsed-desktop:pe-1.5 my-px text-zinc-500 dark:text-white/80 data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5 border border-transparent in-data-flux-sidebar-group-dropdown:w-auto! in-data-flux-sidebar-group-dropdown:px-2! in-data-flux-sidebar-group-dropdown:focus:outline-hidden! in-data-flux-sidebar-group-dropdown:text-zinc-800! in-data-flux-sidebar-group-dropdown:bg-white! in-data-flux-sidebar-group-dropdown:hover:bg-zinc-50! in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-50! dark:in-data-flux-sidebar-group-dropdown:text-white! dark:in-data-flux-sidebar-group-dropdown:bg-transparent! dark:in-data-flux-sidebar-group-dropdown:hover:bg-zinc-600! dark:in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-600!" data-flux-sidebar-item="data-flux-sidebar-item" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/categorizer" id="categorizer" wire:current.ignore="">
+<div class="relative">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4 in-data-flux-sidebar-group-dropdown:text-zinc-400! dark:in-data-flux-sidebar-group-dropdown:text-white/80! [[data-flux-sidebar-item]:hover_&amp;]:text-current! [[data-flux-sidebar-item][data-active]_&amp;]:text-current!" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+<div class="in-data-flux-sidebar-collapsed-desktop:not-in-data-flux-sidebar-group-dropdown:hidden flex-1 text-sm font-medium truncate [[data-nav-footer]_&amp;]:hidden [[data-nav-sidebar]_[data-nav-footer]_&amp;]:block" data-content="">Categorizer</div>
+</a>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible not-in-data-flux-sidebar-collapsed-desktop:hidden in-data-flux-sidebar-group-dropdown:hidden cursor-default" data-flux-tooltip-content="" popover="manual">
+    Categorizer
+
+    </div>
+</ui-tooltip>
+<ui-tooltip class="block min-w-0" data-flux-tooltip="" position="right center">
+<a badge:color="indigo" class="h-8 in-data-flux-sidebar-on-mobile:h-10 relative flex items-center gap-3 rounded-lg in-data-flux-sidebar-collapsed-desktop:w-10 in-data-flux-sidebar-collapsed-desktop:justify-center py-0 text-start w-full px-3 has-data-flux-navlist-badge:not-in-data-flux-sidebar-collapsed-desktop:pe-1.5 my-px text-zinc-500 dark:text-white/80 data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5 border border-transparent in-data-flux-sidebar-group-dropdown:w-auto! in-data-flux-sidebar-group-dropdown:px-2! in-data-flux-sidebar-group-dropdown:focus:outline-hidden! in-data-flux-sidebar-group-dropdown:text-zinc-800! in-data-flux-sidebar-group-dropdown:bg-white! in-data-flux-sidebar-group-dropdown:hover:bg-zinc-50! in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-50! dark:in-data-flux-sidebar-group-dropdown:text-white! dark:in-data-flux-sidebar-group-dropdown:bg-transparent! dark:in-data-flux-sidebar-group-dropdown:hover:bg-zinc-600! dark:in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-600!" data-flux-sidebar-item="data-flux-sidebar-item" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/reports" id="reports" wire:current.ignore="">
+<div class="relative">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4 in-data-flux-sidebar-group-dropdown:text-zinc-400! dark:in-data-flux-sidebar-group-dropdown:text-white/80! [[data-flux-sidebar-item]:hover_&amp;]:text-current! [[data-flux-sidebar-item][data-active]_&amp;]:text-current!" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+<div class="in-data-flux-sidebar-collapsed-desktop:not-in-data-flux-sidebar-group-dropdown:hidden flex-1 text-sm font-medium truncate [[data-nav-footer]_&amp;]:hidden [[data-nav-sidebar]_[data-nav-footer]_&amp;]:block" data-content="">Reports</div>
+<span class="text-xs font-medium rounded-sm px-1 py-0.5 min-w-5 text-center text-indigo-700 dark:text-indigo-200 bg-indigo-400/20 dark:bg-indigo-400/40 in-data-flux-sidebar-collapsed-desktop:not-in-data-flux-sidebar-group-dropdown:hidden" data-flux-navlist-badge="">Beta</span>
+</a>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible not-in-data-flux-sidebar-collapsed-desktop:hidden in-data-flux-sidebar-group-dropdown:hidden cursor-default" data-flux-tooltip-content="" popover="manual">
+    Reports
+
+    </div>
+</ui-tooltip>
+<ui-tooltip class="block min-w-0" data-flux-tooltip="" position="right center">
+<a class="h-8 in-data-flux-sidebar-on-mobile:h-10 relative flex items-center gap-3 rounded-lg in-data-flux-sidebar-collapsed-desktop:w-10 in-data-flux-sidebar-collapsed-desktop:justify-center py-0 text-start w-full px-3 has-data-flux-navlist-badge:not-in-data-flux-sidebar-collapsed-desktop:pe-1.5 my-px text-zinc-500 dark:text-white/80 data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5 border border-transparent in-data-flux-sidebar-group-dropdown:w-auto! in-data-flux-sidebar-group-dropdown:px-2! in-data-flux-sidebar-group-dropdown:focus:outline-hidden! in-data-flux-sidebar-group-dropdown:text-zinc-800! in-data-flux-sidebar-group-dropdown:bg-white! in-data-flux-sidebar-group-dropdown:hover:bg-zinc-50! in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-50! dark:in-data-flux-sidebar-group-dropdown:text-white! dark:in-data-flux-sidebar-group-dropdown:bg-transparent! dark:in-data-flux-sidebar-group-dropdown:hover:bg-zinc-600! dark:in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-600! mt-6" data-flux-sidebar-item="data-flux-sidebar-item" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/integrations/new" wire:current.ignore="">
+<div class="relative">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4 in-data-flux-sidebar-group-dropdown:text-zinc-400! dark:in-data-flux-sidebar-group-dropdown:text-white/80! [[data-flux-sidebar-item]:hover_&amp;]:text-current! [[data-flux-sidebar-item][data-active]_&amp;]:text-current!" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+<div class="in-data-flux-sidebar-collapsed-desktop:not-in-data-flux-sidebar-group-dropdown:hidden flex-1 text-sm font-medium truncate [[data-nav-footer]_&amp;]:hidden [[data-nav-sidebar]_[data-nav-footer]_&amp;]:block" data-content="">Add integration</div>
+</a>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible not-in-data-flux-sidebar-collapsed-desktop:hidden in-data-flux-sidebar-group-dropdown:hidden cursor-default" data-flux-tooltip-content="" popover="manual">
+    Add integration
+
+    </div>
+</ui-tooltip>
+<ui-disclosure class="group/disclosure in-data-flux-sidebar-collapsed-desktop:hidden mt-6" data-flux-sidebar-group="">
+<button class="border-1 border-transparent w-full min-w-0 h-8 in-data-flux-sidebar-on-mobile:h-10 flex items-center group/disclosure-button my-px rounded-lg hover:bg-zinc-800/5 dark:hover:bg-white/[7%] text-zinc-500 hover:text-zinc-800 dark:text-white/80 dark:hover:text-white" type="button">
+<div class="ps-3.5 pe-3.5">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-3! hidden group-data-open/disclosure-button:block" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-3! block group-data-open/disclosure-button:hidden rtl:rotate-180" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+<span class="text-sm font-medium truncate">Integrations</span>
+</button>
+<div class="relative min-w-0 hidden data-open:block ps-7">
+<div class="absolute inset-y-[3px] w-px bg-zinc-200 dark:bg-white/30 start-0 ms-5"></div>
+<div class="flex flex-col">
+<ui-tooltip class="block min-w-0" data-flux-tooltip="" position="right center">
+<a class="h-8 in-data-flux-sidebar-on-mobile:h-10 relative flex items-center gap-3 rounded-lg in-data-flux-sidebar-collapsed-desktop:w-10 in-data-flux-sidebar-collapsed-desktop:justify-center py-0 text-start w-full px-3 has-data-flux-navlist-badge:not-in-data-flux-sidebar-collapsed-desktop:pe-1.5 my-px text-zinc-500 dark:text-white/80 data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5 border border-transparent in-data-flux-sidebar-group-dropdown:w-auto! in-data-flux-sidebar-group-dropdown:px-2! in-data-flux-sidebar-group-dropdown:focus:outline-hidden! in-data-flux-sidebar-group-dropdown:text-zinc-800! in-data-flux-sidebar-group-dropdown:bg-white! in-data-flux-sidebar-group-dropdown:hover:bg-zinc-50! in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-50! dark:in-data-flux-sidebar-group-dropdown:text-white! dark:in-data-flux-sidebar-group-dropdown:bg-transparent! dark:in-data-flux-sidebar-group-dropdown:hover:bg-zinc-600! dark:in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-600!" data-flux-sidebar-item="data-flux-sidebar-item" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/integrations" wire:current.ignore="">
+<div class="relative">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4 in-data-flux-sidebar-group-dropdown:text-zinc-400! dark:in-data-flux-sidebar-group-dropdown:text-white/80! [[data-flux-sidebar-item]:hover_&amp;]:text-current! [[data-flux-sidebar-item][data-active]_&amp;]:text-current!" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+<div class="in-data-flux-sidebar-collapsed-desktop:not-in-data-flux-sidebar-group-dropdown:hidden flex-1 text-sm font-medium truncate [[data-nav-footer]_&amp;]:hidden [[data-nav-sidebar]_[data-nav-footer]_&amp;]:block" data-content="">Spreadsheets</div>
+</a>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible not-in-data-flux-sidebar-collapsed-desktop:hidden in-data-flux-sidebar-group-dropdown:hidden cursor-default" data-flux-tooltip-content="" popover="manual">
+    Spreadsheets
+
+    </div>
+</ui-tooltip>
+<ui-tooltip class="block min-w-0" data-flux-tooltip="" position="right center">
+<a class="h-8 in-data-flux-sidebar-on-mobile:h-10 relative flex items-center gap-3 rounded-lg in-data-flux-sidebar-collapsed-desktop:w-10 in-data-flux-sidebar-collapsed-desktop:justify-center py-0 text-start w-full px-3 has-data-flux-navlist-badge:not-in-data-flux-sidebar-collapsed-desktop:pe-1.5 my-px text-zinc-500 dark:text-white/80 data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5 border border-transparent in-data-flux-sidebar-group-dropdown:w-auto! in-data-flux-sidebar-group-dropdown:px-2! in-data-flux-sidebar-group-dropdown:focus:outline-hidden! in-data-flux-sidebar-group-dropdown:text-zinc-800! in-data-flux-sidebar-group-dropdown:bg-white! in-data-flux-sidebar-group-dropdown:hover:bg-zinc-50! in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-50! dark:in-data-flux-sidebar-group-dropdown:text-white! dark:in-data-flux-sidebar-group-dropdown:bg-transparent! dark:in-data-flux-sidebar-group-dropdown:hover:bg-zinc-600! dark:in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-600!" data-flux-sidebar-item="data-flux-sidebar-item" href="https://fintable.io/dash/v2/mcp" wire:current.ignore="">
+<div class="relative">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4 in-data-flux-sidebar-group-dropdown:text-zinc-400! dark:in-data-flux-sidebar-group-dropdown:text-white/80! [[data-flux-sidebar-item]:hover_&amp;]:text-current! [[data-flux-sidebar-item][data-active]_&amp;]:text-current!" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+<div class="in-data-flux-sidebar-collapsed-desktop:not-in-data-flux-sidebar-group-dropdown:hidden flex-1 text-sm font-medium truncate [[data-nav-footer]_&amp;]:hidden [[data-nav-sidebar]_[data-nav-footer]_&amp;]:block" data-content="">AI</div>
+</a>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible not-in-data-flux-sidebar-collapsed-desktop:hidden in-data-flux-sidebar-group-dropdown:hidden cursor-default" data-flux-tooltip-content="" popover="manual">
+    AI
+
+    </div>
+</ui-tooltip>
+<ui-tooltip class="block min-w-0" data-flux-tooltip="" position="right center">
+<a class="h-8 in-data-flux-sidebar-on-mobile:h-10 relative flex items-center gap-3 rounded-lg in-data-flux-sidebar-collapsed-desktop:w-10 in-data-flux-sidebar-collapsed-desktop:justify-center py-0 text-start w-full px-3 has-data-flux-navlist-badge:not-in-data-flux-sidebar-collapsed-desktop:pe-1.5 my-px text-zinc-500 dark:text-white/80 data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5 border border-transparent in-data-flux-sidebar-group-dropdown:w-auto! in-data-flux-sidebar-group-dropdown:px-2! in-data-flux-sidebar-group-dropdown:focus:outline-hidden! in-data-flux-sidebar-group-dropdown:text-zinc-800! in-data-flux-sidebar-group-dropdown:bg-white! in-data-flux-sidebar-group-dropdown:hover:bg-zinc-50! in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-50! dark:in-data-flux-sidebar-group-dropdown:text-white! dark:in-data-flux-sidebar-group-dropdown:bg-transparent! dark:in-data-flux-sidebar-group-dropdown:hover:bg-zinc-600! dark:in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-600!" data-flux-sidebar-item="data-flux-sidebar-item" href="https://fintable.io/dash/v2/api" wire:current.ignore="">
+<div class="relative">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4 in-data-flux-sidebar-group-dropdown:text-zinc-400! dark:in-data-flux-sidebar-group-dropdown:text-white/80! [[data-flux-sidebar-item]:hover_&amp;]:text-current! [[data-flux-sidebar-item][data-active]_&amp;]:text-current!" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+<div class="in-data-flux-sidebar-collapsed-desktop:not-in-data-flux-sidebar-group-dropdown:hidden flex-1 text-sm font-medium truncate [[data-nav-footer]_&amp;]:hidden [[data-nav-sidebar]_[data-nav-footer]_&amp;]:block" data-content="">API</div>
+</a>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible not-in-data-flux-sidebar-collapsed-desktop:hidden in-data-flux-sidebar-group-dropdown:hidden cursor-default" data-flux-tooltip-content="" popover="manual">
+    API
+
+    </div>
+</ui-tooltip>
+</div>
+</div>
+</ui-disclosure>
+<ui-disclosure class="group/disclosure in-data-flux-sidebar-collapsed-desktop:hidden mt-4" data-flux-sidebar-group="" open="">
+<button class="border-1 border-transparent w-full min-w-0 h-8 in-data-flux-sidebar-on-mobile:h-10 flex items-center group/disclosure-button my-px rounded-lg hover:bg-zinc-800/5 dark:hover:bg-white/[7%] text-zinc-500 hover:text-zinc-800 dark:text-white/80 dark:hover:text-white" type="button">
+<div class="ps-3.5 pe-3.5">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-3! hidden group-data-open/disclosure-button:block" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-3! block group-data-open/disclosure-button:hidden rtl:rotate-180" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+<span class="text-sm font-medium truncate">Spreadsheets</span>
+</button>
+<div class="relative min-w-0 hidden data-open:block ps-7" data-open="">
+<div class="absolute inset-y-[3px] w-px bg-zinc-200 dark:bg-white/30 start-0 ms-5"></div>
+<div class="flex flex-col">
+<ui-tooltip class="flex-col" data-flux-tooltip="" position="right center">
+<ui-tooltip class="block min-w-0" data-flux-tooltip="" position="right center">
+<a class="h-8 in-data-flux-sidebar-on-mobile:h-10 relative flex items-center gap-3 rounded-lg in-data-flux-sidebar-collapsed-desktop:w-10 in-data-flux-sidebar-collapsed-desktop:justify-center py-0 text-start w-full px-3 has-data-flux-navlist-badge:not-in-data-flux-sidebar-collapsed-desktop:pe-1.5 my-px text-zinc-500 dark:text-white/80 data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5 border border-transparent in-data-flux-sidebar-group-dropdown:w-auto! in-data-flux-sidebar-group-dropdown:px-2! in-data-flux-sidebar-group-dropdown:focus:outline-hidden! in-data-flux-sidebar-group-dropdown:text-zinc-800! in-data-flux-sidebar-group-dropdown:bg-white! in-data-flux-sidebar-group-dropdown:hover:bg-zinc-50! in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-50! dark:in-data-flux-sidebar-group-dropdown:text-white! dark:in-data-flux-sidebar-group-dropdown:bg-transparent! dark:in-data-flux-sidebar-group-dropdown:hover:bg-zinc-600! dark:in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-600!" data-flux-sidebar-item="data-flux-sidebar-item" href="https://airtable.com/appZUDjtjSy7LQcbH" target="_blank" wire:current.ignore="">
+<div class="in-data-flux-sidebar-collapsed-desktop:not-in-data-flux-sidebar-group-dropdown:hidden flex-1 text-sm font-medium truncate [[data-nav-footer]_&amp;]:hidden [[data-nav-sidebar]_[data-nav-footer]_&amp;]:block" data-content=""><div class="flex">
+<img class="relative h-4 w-4 shrink-0 mr-3" loading="lazy" src="https://fintable.io/images/airtable.svg"/>
+                                        Fintable Template
+                                    </div></div>
+</a>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible not-in-data-flux-sidebar-collapsed-desktop:hidden in-data-flux-sidebar-group-dropdown:hidden cursor-default" data-flux-tooltip-content="" popover="manual">
+    Fintable Template
+
+    </div>
+</ui-tooltip>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible" data-flux-tooltip-content="" popover="manual">
+    Open this Airtable base (Fintable Template) in a new tab
+
+    </div>
+</ui-tooltip>
+</div>
+</div>
+</ui-disclosure>
+<ui-tooltip class="block min-w-0" data-flux-tooltip="" position="right center">
+<a class="h-8 in-data-flux-sidebar-on-mobile:h-10 relative flex items-center gap-3 rounded-lg in-data-flux-sidebar-collapsed-desktop:w-10 in-data-flux-sidebar-collapsed-desktop:justify-center py-0 text-start w-full px-3 has-data-flux-navlist-badge:not-in-data-flux-sidebar-collapsed-desktop:pe-1.5 my-px text-zinc-500 dark:text-white/80 data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5 border border-transparent in-data-flux-sidebar-group-dropdown:w-auto! in-data-flux-sidebar-group-dropdown:px-2! in-data-flux-sidebar-group-dropdown:focus:outline-hidden! in-data-flux-sidebar-group-dropdown:text-zinc-800! in-data-flux-sidebar-group-dropdown:bg-white! in-data-flux-sidebar-group-dropdown:hover:bg-zinc-50! in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-50! dark:in-data-flux-sidebar-group-dropdown:text-white! dark:in-data-flux-sidebar-group-dropdown:bg-transparent! dark:in-data-flux-sidebar-group-dropdown:hover:bg-zinc-600! dark:in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-600! mt-6" data-flux-sidebar-item="data-flux-sidebar-item" dusk="workspace-team" href="https://fintable.io/dash/v2/workspaces" wire:current.ignore="">
+<div class="relative">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4 in-data-flux-sidebar-group-dropdown:text-zinc-400! dark:in-data-flux-sidebar-group-dropdown:text-white/80! [[data-flux-sidebar-item]:hover_&amp;]:text-current! [[data-flux-sidebar-item][data-active]_&amp;]:text-current!" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+<div class="in-data-flux-sidebar-collapsed-desktop:not-in-data-flux-sidebar-group-dropdown:hidden flex-1 text-sm font-medium truncate [[data-nav-footer]_&amp;]:hidden [[data-nav-sidebar]_[data-nav-footer]_&amp;]:block" data-content="">Workspaces / Users</div>
+</a>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible not-in-data-flux-sidebar-collapsed-desktop:hidden in-data-flux-sidebar-group-dropdown:hidden cursor-default" data-flux-tooltip-content="" popover="manual">
+    Workspaces / Users
+
+    </div>
+</ui-tooltip>
+<ui-tooltip class="block min-w-0" data-flux-tooltip="" position="right center">
+<a class="h-8 in-data-flux-sidebar-on-mobile:h-10 relative flex items-center gap-3 rounded-lg in-data-flux-sidebar-collapsed-desktop:w-10 in-data-flux-sidebar-collapsed-desktop:justify-center py-0 text-start w-full px-3 has-data-flux-navlist-badge:not-in-data-flux-sidebar-collapsed-desktop:pe-1.5 my-px text-zinc-500 dark:text-white/80 data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5 border border-transparent in-data-flux-sidebar-group-dropdown:w-auto! in-data-flux-sidebar-group-dropdown:px-2! in-data-flux-sidebar-group-dropdown:focus:outline-hidden! in-data-flux-sidebar-group-dropdown:text-zinc-800! in-data-flux-sidebar-group-dropdown:bg-white! in-data-flux-sidebar-group-dropdown:hover:bg-zinc-50! in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-50! dark:in-data-flux-sidebar-group-dropdown:text-white! dark:in-data-flux-sidebar-group-dropdown:bg-transparent! dark:in-data-flux-sidebar-group-dropdown:hover:bg-zinc-600! dark:in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-600! mt-6" data-flux-sidebar-item="data-flux-sidebar-item" href="https://fintable.io/dash/v2/profile/billing/plan" wire:current.ignore="">
+<div class="relative">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4 in-data-flux-sidebar-group-dropdown:text-zinc-400! dark:in-data-flux-sidebar-group-dropdown:text-white/80! [[data-flux-sidebar-item]:hover_&amp;]:text-current! [[data-flux-sidebar-item][data-active]_&amp;]:text-current!" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+<div class="in-data-flux-sidebar-collapsed-desktop:not-in-data-flux-sidebar-group-dropdown:hidden flex-1 text-sm font-medium truncate [[data-nav-footer]_&amp;]:hidden [[data-nav-sidebar]_[data-nav-footer]_&amp;]:block" data-content="">Profile and Billing</div>
+</a>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible not-in-data-flux-sidebar-collapsed-desktop:hidden in-data-flux-sidebar-group-dropdown:hidden cursor-default" data-flux-tooltip-content="" popover="manual">
+    Profile and Billing
+
+    </div>
+</ui-tooltip>
+<ui-tooltip class="block min-w-0" data-flux-tooltip="" position="right center">
+<a class="h-8 in-data-flux-sidebar-on-mobile:h-10 relative flex items-center gap-3 rounded-lg in-data-flux-sidebar-collapsed-desktop:w-10 in-data-flux-sidebar-collapsed-desktop:justify-center py-0 text-start w-full px-3 has-data-flux-navlist-badge:not-in-data-flux-sidebar-collapsed-desktop:pe-1.5 my-px text-zinc-500 dark:text-white/80 data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5 border border-transparent in-data-flux-sidebar-group-dropdown:w-auto! in-data-flux-sidebar-group-dropdown:px-2! in-data-flux-sidebar-group-dropdown:focus:outline-hidden! in-data-flux-sidebar-group-dropdown:text-zinc-800! in-data-flux-sidebar-group-dropdown:bg-white! in-data-flux-sidebar-group-dropdown:hover:bg-zinc-50! in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-50! dark:in-data-flux-sidebar-group-dropdown:text-white! dark:in-data-flux-sidebar-group-dropdown:bg-transparent! dark:in-data-flux-sidebar-group-dropdown:hover:bg-zinc-600! dark:in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-600!" data-flux-sidebar-item="data-flux-sidebar-item" href="https://fintable.io/dash/v2/security" wire:current.ignore="">
+<div class="relative">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4 in-data-flux-sidebar-group-dropdown:text-zinc-400! dark:in-data-flux-sidebar-group-dropdown:text-white/80! [[data-flux-sidebar-item]:hover_&amp;]:text-current! [[data-flux-sidebar-item][data-active]_&amp;]:text-current!" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+<div class="in-data-flux-sidebar-collapsed-desktop:not-in-data-flux-sidebar-group-dropdown:hidden flex-1 text-sm font-medium truncate [[data-nav-footer]_&amp;]:hidden [[data-nav-sidebar]_[data-nav-footer]_&amp;]:block" data-content="">Security</div>
+</a>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible not-in-data-flux-sidebar-collapsed-desktop:hidden in-data-flux-sidebar-group-dropdown:hidden cursor-default" data-flux-tooltip-content="" popover="manual">
+    Security
+
+    </div>
+</ui-tooltip>
+<ui-tooltip class="block min-w-0" data-flux-tooltip="" position="right center">
+<a class="h-8 in-data-flux-sidebar-on-mobile:h-10 relative flex items-center gap-3 rounded-lg in-data-flux-sidebar-collapsed-desktop:w-10 in-data-flux-sidebar-collapsed-desktop:justify-center py-0 text-start w-full px-3 has-data-flux-navlist-badge:not-in-data-flux-sidebar-collapsed-desktop:pe-1.5 my-px text-zinc-500 dark:text-white/80 data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5 border border-transparent in-data-flux-sidebar-group-dropdown:w-auto! in-data-flux-sidebar-group-dropdown:px-2! in-data-flux-sidebar-group-dropdown:focus:outline-hidden! in-data-flux-sidebar-group-dropdown:text-zinc-800! in-data-flux-sidebar-group-dropdown:bg-white! in-data-flux-sidebar-group-dropdown:hover:bg-zinc-50! in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-50! dark:in-data-flux-sidebar-group-dropdown:text-white! dark:in-data-flux-sidebar-group-dropdown:bg-transparent! dark:in-data-flux-sidebar-group-dropdown:hover:bg-zinc-600! dark:in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-600! mt-6" data-flux-sidebar-item="data-flux-sidebar-item" href="https://fintable.io/guide" wire:current.ignore="">
+<div class="relative">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4 in-data-flux-sidebar-group-dropdown:text-zinc-400! dark:in-data-flux-sidebar-group-dropdown:text-white/80! [[data-flux-sidebar-item]:hover_&amp;]:text-current! [[data-flux-sidebar-item][data-active]_&amp;]:text-current!" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+<div class="in-data-flux-sidebar-collapsed-desktop:not-in-data-flux-sidebar-group-dropdown:hidden flex-1 text-sm font-medium truncate [[data-nav-footer]_&amp;]:hidden [[data-nav-sidebar]_[data-nav-footer]_&amp;]:block" data-content="">Help / User Guide</div>
+</a>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible not-in-data-flux-sidebar-collapsed-desktop:hidden in-data-flux-sidebar-group-dropdown:hidden cursor-default" data-flux-tooltip-content="" popover="manual">
+    Help / User Guide
+
+    </div>
+</ui-tooltip>
+<ui-tooltip class="block min-w-0" data-flux-tooltip="" position="right center">
+<a class="h-8 in-data-flux-sidebar-on-mobile:h-10 relative flex items-center gap-3 rounded-lg in-data-flux-sidebar-collapsed-desktop:w-10 in-data-flux-sidebar-collapsed-desktop:justify-center py-0 text-start w-full px-3 has-data-flux-navlist-badge:not-in-data-flux-sidebar-collapsed-desktop:pe-1.5 my-px text-zinc-500 dark:text-white/80 data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) data-current:bg-white dark:data-current:bg-white/[7%] data-current:border data-current:border-zinc-200 dark:data-current:border-transparent hover:text-zinc-800 dark:hover:text-white dark:hover:bg-white/[7%] hover:bg-zinc-800/5 border border-transparent in-data-flux-sidebar-group-dropdown:w-auto! in-data-flux-sidebar-group-dropdown:px-2! in-data-flux-sidebar-group-dropdown:focus:outline-hidden! in-data-flux-sidebar-group-dropdown:text-zinc-800! in-data-flux-sidebar-group-dropdown:bg-white! in-data-flux-sidebar-group-dropdown:hover:bg-zinc-50! in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-50! dark:in-data-flux-sidebar-group-dropdown:text-white! dark:in-data-flux-sidebar-group-dropdown:bg-transparent! dark:in-data-flux-sidebar-group-dropdown:hover:bg-zinc-600! dark:in-data-flux-sidebar-group-dropdown:data-active:bg-zinc-600! mb-6" data-flux-sidebar-item="data-flux-sidebar-item" href="https://fintable.io/dash/logout?expires=1794321514&amp;signature=e0cab485b7f2e60e6d4f099b7e5de7a84c8fc7fff15a107ce3d5cf215ec4b80f" id="logout" wire:current.ignore="">
+<div class="relative">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4 in-data-flux-sidebar-group-dropdown:text-zinc-400! dark:in-data-flux-sidebar-group-dropdown:text-white/80! [[data-flux-sidebar-item]:hover_&amp;]:text-current! [[data-flux-sidebar-item][data-active]_&amp;]:text-current!" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+<div class="in-data-flux-sidebar-collapsed-desktop:not-in-data-flux-sidebar-group-dropdown:hidden flex-1 text-sm font-medium truncate [[data-nav-footer]_&amp;]:hidden [[data-nav-sidebar]_[data-nav-footer]_&amp;]:block" data-content="">Logout</div>
+</a>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible not-in-data-flux-sidebar-collapsed-desktop:hidden in-data-flux-sidebar-group-dropdown:hidden cursor-default" data-flux-tooltip-content="" popover="manual">
+    Logout
+
+    </div>
+</ui-tooltip>
+</nav>
+</ui-sidebar>
+<header class="[grid-area:header] z-10 min-h-14 flex items-center px-6 lg:px-8 bg-gray-900 border-b border-white/5" data-app-header="data-app-header" data-flux-header="" x-bind:style="{ position: 'sticky', top: $el.offsetTop + 'px', 'max-height': 'calc(100vh - ' + $el.offsetTop + 'px)' }" x-data="">
+<ui-tooltip class="inline-flex" data-flux-tooltip="" position="top center">
+<button aria-label="Toggle sidebar" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-10 text-sm rounded-lg gap-2 w-10 inline-flex -ms-2.5 bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-white shrink-0 lg:hidden" data-flux-button="data-flux-button" data-flux-sidebar-toggle="data-flux-sidebar-toggle" tooltip="Sidebar" type="button" x-data="" x-on:click="$dispatch('flux-sidebar-toggle')">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible" data-flux-tooltip-content="" popover="manual">
+    Sidebar
+
+    </div>
+</ui-tooltip>
+<h1 class="flex min-w-0 shrink items-center gap-2 text-sm font-semibold leading-7 text-white">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5 size-4 shrink-0 text-zinc-400" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+<span class="truncate">Accounts</span>
+</h1>
+<div class="flex-1" data-flux-spacer=""></div>
+<nav class="flex items-center gap-0.5 py-3 me-4 hidden lg:flex" data-flux-navbar="">
+<ui-tooltip data-flux-tooltip="" position="bottom center">
+<a class="px-3 h-8 flex items-center rounded-lg relative px-2.5! text-zinc-500 dark:text-white/80 data-current:after:absolute data-current:after:-bottom-3 data-current:after:inset-x-0 data-current:after:h-[2px] [--hover-fill:color-mix(in_oklab,_var(--color-accent-content),_transparent_90%)] hover:text-zinc-800 dark:hover:text-white data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) hover:bg-zinc-800/5 dark:hover:bg-white/10 hover:data-current:bg-(--hover-fill) data-current:after:bg-(--color-accent-content)" data-flux-navbar-items="data-flux-navbar-items" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/transactions" label="Search transactions">
+<div class="relative">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-5" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+</a>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible" data-flux-tooltip-content="" popover="manual">
+    Search and filter every transaction
+
+    </div>
+</ui-tooltip>
+<ui-tooltip data-flux-tooltip="" position="bottom center">
+<div class="contents" data-flux-modal-trigger="" x-data="" x-on:click="$el.querySelector('button[disabled]') || $dispatch('modal-show', { name: 'display-preferences' })">
+<button class="px-3 h-8 flex items-center rounded-lg relative px-2.5! text-zinc-500 dark:text-white/80 data-current:after:absolute data-current:after:-bottom-3 data-current:after:inset-x-0 data-current:after:h-[2px] [--hover-fill:color-mix(in_oklab,_var(--color-accent-content),_transparent_90%)] hover:text-zinc-800 dark:hover:text-white data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) hover:bg-zinc-800/5 dark:hover:bg-white/10 hover:data-current:bg-(--hover-fill) data-current:after:bg-(--color-accent-content) max-lg:hidden cursor-pointer" data-flux-navbar-items="data-flux-navbar-items" label="Display preferences" type="button" x-on:click="window.fintableShowLocaleModal()">
+<div class="relative">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-5" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+</button>
+</div>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible" data-flux-tooltip-content="" popover="manual">
+    Language, currency and number format
+
+    </div>
+</ui-tooltip>
+<ui-tooltip data-flux-tooltip="" position="bottom center">
+<a class="px-3 h-8 flex items-center rounded-lg relative px-2.5! text-zinc-500 dark:text-white/80 data-current:after:absolute data-current:after:-bottom-3 data-current:after:inset-x-0 data-current:after:h-[2px] [--hover-fill:color-mix(in_oklab,_var(--color-accent-content),_transparent_90%)] hover:text-zinc-800 dark:hover:text-white data-current:text-(--color-accent-content) hover:data-current:text-(--color-accent-content) hover:bg-zinc-800/5 dark:hover:bg-white/10 hover:data-current:bg-(--hover-fill) data-current:after:bg-(--color-accent-content) max-lg:hidden" data-flux-navbar-items="data-flux-navbar-items" href="https://fintable.io/guide" label="Help and user guide">
+<div class="relative">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-5" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+</a>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible" data-flux-tooltip-content="" popover="manual">
+    Guides, walkthroughs and answers to common questions
+
+    </div>
+</ui-tooltip>
+</nav>
+<ui-dropdown data-flux-dropdown="" position="bottom end">
+<button aria-label="Profile and Workspaces" class="group flex items-center rounded-lg has-data-[circle=true]:rounded-full [ui-dropdown&gt;&amp;]:w-full p-1 hover:bg-zinc-800/5 dark:hover:bg-white/15 [&amp;&gt;span]:max-sm:hidden sm:[&amp;&gt;span]:max-w-40 sm:[&amp;&gt;span]:truncate" data-flux-profile="" dusk="profile-switcher" type="button">
+<div class="shrink-0">
+<div class="[:where(&amp;)]:size-8 [:where(&amp;)]:text-sm [--avatar-radius:calc(infinity*1px)] relative flex-none isolate flex items-center justify-center [:where(&amp;)]:font-medium rounded-[var(--avatar-radius)] [:where(&amp;)]:bg-zinc-200 [:where(&amp;)]:dark:bg-zinc-600 [:where(&amp;)]:text-zinc-800 [:where(&amp;)]:dark:text-white bg-purple-200 text-purple-800 after:absolute after:inset-0 after:inset-ring-[1px] after:inset-ring-black/7 dark:after:inset-ring-white/10 after:rounded-full bg-purple-600! text-white!" data-circle="true" data-flux-avatar="data-flux-avatar" data-size="sm" data-slot="avatar">
+<span class="select-none">JC</span>
+</div>
+</div>
+<span class="mx-2 text-sm text-zinc-500 dark:text-white/80 group-hover:text-zinc-800 dark:group-hover:text-white font-medium truncate">
+            Fixture User
+        </span>
+<div class="shrink-0 ms-auto size-8 flex justify-center items-center">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-4 text-zinc-400 dark:text-white/80 group-hover:text-zinc-800 dark:group-hover:text-white" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+</button>
+<ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden [&amp;_ui-tooltip]:block" data-flux-menu="" popover="manual">
+<a class="block rounded-md px-2 py-1.5 hover:bg-zinc-100 dark:hover:bg-zinc-600" href="https://fintable.io/dash/v2/profile" title="Open your profile">
+<p class="truncate text-sm font-medium text-zinc-800 dark:text-white">Fixture User</p>
+<p class="truncate text-xs text-zinc-500 dark:text-zinc-400"></p>
+</a>
+<div class="mt-1 block max-w-64 rounded-md px-2 py-1.5">
+<p class="text-[11px] font-medium uppercase tracking-wide text-zinc-400 dark:text-zinc-500">Workspace</p>
+<p class="truncate font-mono text-sm font-medium text-zinc-800 dark:text-white">Fixture User's Primary Workspace</p>
+<p class="truncate text-xs text-zinc-500 dark:text-zinc-400">Owner</p>
+</div>
+<div class="contents" data-flux-modal-trigger="" x-data="" x-on:click="$el.querySelector('button[disabled]') || $dispatch('modal-show', { name: 'display-preferences' })">
+<button class="flex items-center px-2 py-1.5 w-full focus:outline-hidden select-none rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" type="button" x-on:click="window.fintableShowLocaleModal()">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-icon="" data-flux-menu-item-icon="data-flux-menu-item-icon" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+
+            
+    Language: English
+    </button>
+</div>
+<div class="-mx-[.3125rem] my-[.3125rem] h-px" data-flux-menu-separator="">
+<div class="border-0 [print-color-adjust:exact] bg-zinc-800/15 dark:bg-white/20 h-px w-full dark:bg-zinc-600!" data-flux-separator="" data-orientation="horizontal" role="none"></div>
+</div>
+<div class="p-2 pb-1 w-full flex items-center text-start text-xs font-medium text-zinc-500 font-medium dark:text-zinc-300" data-flux-menu-heading="">
+<div class="w-7 hidden [[data-flux-menu]:has(&gt;[data-flux-menu-item-has-icon])_&amp;]:block"></div>
+<div>Switch Workspace</div>
+</div>
+<ui-menu-radio-group data-flux-menu-radio-group="">
+<ui-tooltip class="block w-full" data-flux-tooltip="" position="left center">
+<ui-menu-radio checked="checked" class="group/menu-radio flex items-center px-2 py-1.5 w-full focus:outline-hidden rounded-md text-start text-sm font-medium [[disabled]_&amp;]:opacity-50 [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-flux-menu-item-has-icon="" data-flux-menu-radio="" dusk="workspace-ws_FIXTUREWORKSPACE000000000" onclick="window.location.href='https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts'">
+<div class="w-7">
+<div class="hidden group-data-checked/menu-radio:block">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-flux-menu-item-icon="data-flux-menu-item-icon" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+</div>
+<span class="inline-flex min-w-0 items-center gap-2">
+<span aria-hidden="true" class="inline-flex shrink-0 select-none items-center justify-center font-semibold leading-none text-white bg-purple-600 size-5 rounded text-[0.625rem]">J</span>
+<span class="min-w-0 truncate font-mono" title="Fixture User's Primary Workspace">Fixture User's Primary Workspace</span>
+</span>
+</ui-menu-radio>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible" data-flux-tooltip-content="" popover="manual">
+    You are in the Fixture User&amp;#039;s Primary Workspace Workspace
+
+    </div>
+</ui-tooltip>
+<ui-tooltip class="block w-full" data-flux-tooltip="" position="left center">
+<ui-menu-radio class="group/menu-radio flex items-center px-2 py-1.5 w-full focus:outline-hidden rounded-md text-start text-sm font-medium [[disabled]_&amp;]:opacity-50 [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-flux-menu-item-has-icon="" data-flux-menu-radio="" dusk="workspace-ws_FIXTUREWORKSPACE000000000" onclick="window.location.href='https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/dashboard'">
+<div class="w-7">
+<div class="hidden group-data-checked/menu-radio:block">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-flux-menu-item-icon="data-flux-menu-item-icon" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+</div>
+<span class="inline-flex min-w-0 items-center gap-2">
+<span aria-hidden="true" class="inline-flex shrink-0 select-none items-center justify-center font-semibold leading-none text-white bg-yellow-600 size-5 rounded text-[0.625rem]">S</span>
+<span class="min-w-0 truncate font-mono" title="Stephcategory-18 Fixture User">Stephcategory-18 Fixture User</span>
+</span>
+</ui-menu-radio>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible" data-flux-tooltip-content="" popover="manual">
+    Switch to the Stephcategory-18 Fixture User Workspace
+
+    </div>
+</ui-tooltip>
+</ui-menu-radio-group>
+<div class="-mx-[.3125rem] my-[.3125rem] h-px" data-flux-menu-separator="">
+<div class="border-0 [print-color-adjust:exact] bg-zinc-800/15 dark:bg-white/20 h-px w-full dark:bg-zinc-600!" data-flux-separator="" data-orientation="horizontal" role="none"></div>
+</div>
+<ui-tooltip data-flux-tooltip="" position="left center">
+<a class="flex items-center px-2 py-1.5 w-full focus:outline-hidden select-none rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" dusk="manage-team" href="https://fintable.io/dash/v2/workspaces">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-icon="" data-flux-menu-item-icon="data-flux-menu-item-icon" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+
+            
+    Manage Workspaces / Users
+    </a>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible" data-flux-tooltip-content="" popover="manual">
+    Your Workspaces and who is on each team
+
+    </div>
+</ui-tooltip>
+<ui-tooltip data-flux-tooltip="" position="left center">
+<a class="flex items-center px-2 py-1.5 w-full focus:outline-hidden select-none rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" href="https://fintable.io/dash/logout?expires=1794321514&amp;signature=e0cab485b7f2e60e6d4f099b7e5de7a84c8fc7fff15a107ce3d5cf215ec4b80f">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-icon="" data-flux-menu-item-icon="data-flux-menu-item-icon" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+
+            
+    Logout
+    </a>
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible" data-flux-tooltip-content="" popover="manual">
+    Sign out of your account completely
+
+    </div>
+</ui-tooltip>
+</ui-menu>
+</ui-dropdown>
+</header>
+<div class="[grid-area:main] p-6 lg:p-8 [[data-flux-container]_&amp;]:px-0 min-w-0" data-flux-main="" style="padding: 0 !important;">
+<div class="min-w-0 pb-[calc(var(--mobile-nav-height,0px)+5.5rem)]">
+<div class="min-w-0">
+<div class="min-w-0" wire:effects='{"url":{"provider":{"as":"provider","use":"replace","alwaysShow":false,"except":""},"connection":{"as":"connection","use":"push","alwaysShow":false,"except":""},"account":{"as":"account","use":"push","alwaysShow":false,"except":""},"detailTab":{"as":"tab","use":"push","alwaysShow":false,"except":"transactions"},"period":{"as":"period","use":"push","alwaysShow":false,"except":"30d"}},"listeners":["refresh","daily-sync-schedule-saved","sync-all"]}' wire:id="EIbJDIxfPczMS9kROJXD" wire:name="livepage-accounts" wire:poll.60s.visible="" wire:snapshot='{"data":{"title":"Accounts","description":"","dashboard":false,"provider":"","connection":"","account":"","detailTab":"transactions","period":"30d","customRange":null,"viewCurrency":null,"accountSearch":"","dashboardAccountIds":[[],{"s":"arr"}],"syncDateAccountId":null,"dashboardSettingsVersion":0,"renaming":"","renameTo":"","showRename":false,"renamingAccount":""},"memo":{"id":"EIbJDIxfPczMS9kROJXD","name":"livepage-accounts","path":"w\/ws_FIXTUREWORKSPACE000000000\/accounts","method":"GET","release":"a-a-a","children":{"lw-1115358944-0":["div","mdi7a7VVuVKUS51RKlVR"],"accounts-custom-sync-schedule":["div","GIJdmTPHzWI15SpVSu0h"],"accounts-daily-sync-schedule":["div","vf7OZMmNEFaMnKMleSjM"]},"scripts":[],"assets":[],"errors":[],"locale":"en","islands":[]},@00000000000000000000000000000000000000000000000000000000000000"}'>
+<div wire:effects="[]" wire:id="mdi7a7VVuVKUS51RKlVR" wire:key="lw-1115358944-0" wire:name="modal-set-all-sync-start-date" wire:snapshot='{"data":{"date":"","showModal":false,"bank":null,"name":"setAllSyncStartDateModal"},"memo":{"id":"mdi7a7VVuVKUS51RKlVR","name":"modal-set-all-sync-start-date","path":"w\/ws_FIXTUREWORKSPACE000000000\/accounts","method":"GET","release":"a-a-a","children":[],"scripts":[],"assets":[],"errors":[],"locale":"en","islands":[]},@00000000000000000000000000000000000000000000000000000000000000"}'>
+<ui-modal data-flux-modal="" wire:model.deep.self="showModal">
+<dialog class="p-6 [:where(&amp;)]:max-w-xl [:where(&amp;)]:min-w-xs shadow-lg rounded-xl bg-white dark:bg-zinc-800 ring ring-black/5 dark:ring-zinc-700 shadow-lg rounded-xl" data-modal="setAllSyncStartDateModal" wire:ignore.self="" x-data="fluxModal('setAllSyncStartDateModal', 'mdi7a7VVuVKUS51RKlVR')" x-on:modal-close.document="handleClose($event)" x-on:modal-show.document="handleShow($event)">
+<div class="space-y-6">
+<div>
+<div class="font-medium [:where(&amp;)]:text-zinc-800 [:where(&amp;)]:dark:text-white text-base [&amp;:has(+[data-flux-subheading])]:mb-2 [[data-flux-subheading]+&amp;]:mt-2" data-flux-heading="">Set Sync Start Date For All Accounts</div>
+<p class="[:where(&amp;)]:font-normal [:where(&amp;)]:text-sm [:where(&amp;)]:text-zinc-500 [:where(&amp;)]:dark:text-white/70 text-gray-500" data-flux-text=""><!--[if BLOCK]><![endif]-->                        This will set the same Sync Start Date for all accounts across all of your bank connections.
+                    <!--[if ENDBLOCK]><![endif]--></p> </div>
+<div>
+<ui-field class="min-w-0 [&amp;:not(:has([data-flux-field])):has([data-flux-control][disabled])&gt;[data-flux-label]]:opacity-50 [&amp;:has(&gt;[data-flux-radio-group][disabled])&gt;[data-flux-label]]:opacity-50 [&amp;:has(&gt;[data-flux-checkbox-group][disabled])&gt;[data-flux-label]]:opacity-50 block *:data-flux-label:mb-3 [&amp;&gt;[data-flux-label]:has(+[data-flux-description])]:mb-2 [&amp;&gt;[data-flux-label]+[data-flux-description]]:mt-0 [&amp;&gt;[data-flux-label]+[data-flux-description]]:mb-3 [&amp;&gt;[data-flux-description]:first-child:has(+*)]:mb-3 [&amp;&gt;*:not([data-flux-label])+[data-flux-description]]:mt-3" data-flux-field="">
+<ui-label class="inline-flex items-center text-sm font-medium [:where(&amp;)]:text-zinc-800 [:where(&amp;)]:dark:text-white [&amp;:has([data-flux-label-trailing])]:flex" data-flux-label="">
+    Sync Start Date
+
+    
+    
+    </ui-label>
+<ui-date-picker class="block min-w-0 border-0 p-0 bg-transparent" data-flux-control="" data-flux-date-picker="" label="Sync Start Date" locale="en" months="1" wire:model.deep.self="date">
+<button aria-label="Select a date" class="group/select-button cursor-default py-2 overflow-hidden flex items-center shadow-xs bg-white dark:bg-white/10 dark:disabled:bg-white/[7%] disabled:shadow-none h-10 text-base sm:text-sm rounded-lg px-3 block w-full border border-zinc-200 border-b-zinc-300/80 dark:border-white/10" data-flux-date-picker-button="" data-flux-group-target="" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5 me-2 text-zinc-400/75 [[disabled]_&amp;]:text-zinc-200! dark:text-white/60 dark:[[disabled]_&amp;]:text-white/40!" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+<ui-selected-date class="truncate flex gap-2 text-start flex-1 text-zinc-700 [[disabled]_&amp;]:text-zinc-500 dark:text-zinc-300 dark:[[disabled]_&amp;]:text-zinc-400" wire:ignore="" x-ignore="">
+<template name="placeholder">
+<span class="text-zinc-400 [[disabled]_&amp;]:text-zinc-400/70 dark:text-zinc-400 dark:[[disabled]_&amp;]:text-zinc-500" data-flux-date-picker-placeholder="">
+            Select a date
+        </span>
+</template>
+<template name="date">
+<div dir="auto"><slot></slot></div>
+</template>
+</ui-selected-date>
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5 ms-2 -me-1 text-zinc-400/75 [[data-flux-date-picker-button]:hover_&amp;]:text-zinc-800 [[disabled]_&amp;]:text-zinc-200! dark:text-white/60 dark:[[data-flux-date-picker-button]:hover_&amp;]:text-white dark:[[disabled]_&amp;]:text-white/40!" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<dialog class="max-sm:max-h-full! rounded-xl shadow-xl sm:shadow-2xs max-sm:fixed! max-sm:inset-0! sm:backdrop:bg-transparent bg-white dark:bg-zinc-700 sm:border border-zinc-200 dark:border-white/10" wire:ignore="">
+<ui-calendar class="isolate relative grid sm:grid-cols-[auto_1fr] grid-rows-[auto_auto_auto_auto_auto]" wire:ignore="">
+<div class="row-span-full"></div>
+<div class="relative">
+<div class="z-10 absolute top-0 inset-x-0 p-2">
+<header class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+</div>
+<div class="flex items-center">
+<ui-calendar-previous aria-label="Previous month" class="size-10 sm:size-8 rounded-lg flex items-center justify-center text-zinc-400 hover:bg-zinc-100 hover:text-zinc-800 dark:hover:bg-white/5 dark:hover:text-white [&amp;[disabled]]:opacity-50 [&amp;[disabled]]:pointer-events-none">
+<svg class="size-5 rtl:hidden" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+<svg class="size-5 hidden rtl:block" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</ui-calendar-previous>
+<ui-calendar-next aria-label="Next month" class="size-10 sm:size-8 rounded-lg flex items-center justify-center text-zinc-400 hover:bg-zinc-100 hover:text-zinc-800 dark:hover:bg-white/5 dark:hover:text-white [&amp;[disabled]]:opacity-50 [&amp;[disabled]]:pointer-events-none [&amp;[disabled]_&amp;]:text-zinc-400">
+<svg class="size-5 rtl:hidden" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+<svg class="size-5 hidden rtl:block" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</ui-calendar-next>
+</div>
+</header>
+</div>
+</div>
+<ui-calendar-months class="relative flex justify-center p-2 gap-4">
+<template name="month">
+<div>
+<template name="heading">
+<div class="mb-2 px-2 h-10 sm:h-8 flex items-center">
+<div class="font-medium text-sm text-zinc-800 dark:text-white"><slot></slot></div>
+</div>
+</template>
+<table>
+<thead>
+<tr class="flex w-full">
+<template name="weekday">
+<th class="size-11 sm:size-10 text-sm font-medium text-zinc-500 dark:text-zinc-300 flex items-center" scope="col"><div class="w-full"><slot></slot></div></th>
+</template>
+</tr>
+</thead>
+<tbody>
+<template name="week">
+<tr class="flex w-full not-first-of-type:mt-1 [&amp;:first-of-type_td[data-in-range]:not([data-selected]):first-child]:rounded-s-none [&amp;:last-of-type_td[data-in-range]:not([data-selected]):last-child]:rounded-e-none">
+<template name="day">
+<td class="_max-sm:data-outside:opacity-0 p-0 data-unavailable:line-through data-in-range:bg-zinc-100 dark:data-in-range:bg-white/10 data-start:rounded-s-lg data-end:rounded-e-lg data-end-preview:rounded-e-lg first-of-type:rounded-s-lg last-of-type:rounded-e-lg [&amp;[data-selected]+[data-selected]]:rounded-s-none [[data-in-range]:not([data-selected]):not([data-end-preview])+&amp;[data-outside]]:bg-linear-to-r [&amp;[data-outside]:has(+[data-in-range])]:bg-linear-to-l data-outside:opacity-50 from-zinc-100 dark:from-white/10 from-1% [&amp;[data-outside]:has(+[data-in-range][data-selected])]:bg-none!">
+<ui-tooltip position="top">
+<button class="size-11 sm:size-10 text-sm font-medium text-zinc-800 dark:text-white flex flex-col items-center justify-center rounded-lg hover:bg-zinc-800/5 dark:hover:bg-white/5 [td[data-selected]:has(+td[data-selected])_&amp;]:rounded-e-none [td[data-selected]+td[data-selected]_&amp;]:rounded-s-none [td[data-selected]_&amp;]:bg-[var(--color-accent)] [td[data-selected]_&amp;]:text-[var(--color-accent-foreground)] [td[data-selected]_&amp;[disabled]]:opacity-50 disabled:text-zinc-400 disabled:pointer-events-none disabled:cursor-default [[readonly]_&amp;]:pointer-events-none [[readonly]_&amp;]:cursor-default [[readonly]_&amp;]:bg-transparent" type="button">
+<div class="relative">
+<div class="absolute inset-x-0 bottom-[-3px] hidden [td[data-today]_&amp;]:flex justify-center items-end"><div class="size-1 rounded-full bg-zinc-800 dark:bg-white [td[data-selected]_&amp;]:bg-white dark:[td[data-selected]_&amp;]:bg-zinc-800"></div></div>
+<div><slot></slot></div>
+<template name="subtext">
+<div class="absolute inset-x-0 bottom-[-1rem] flex justify-center font-medium text-xs text-zinc-400 dark:text-zinc-500 [[data-date-variant='success']_&amp;]:text-lime-600 dark:[[data-date-variant='success']_&amp;]:text-lime-400 [[data-date-variant='warning']_&amp;]:text-yellow-600 dark:[[data-date-variant='warning']_&amp;]:text-yellow-400 [[data-date-variant='danger']_&amp;]:text-rose-500 dark:[[data-date-variant='danger']_&amp;]:text-rose-400">
+<slot></slot>
+</div>
+</template>
+</div>
+</button>
+<template name="details">
+<div class="relative py-2 px-2.5 rounded-md text-xs text-white font-medium bg-zinc-800 dark:bg-zinc-700 dark:border dark:border-white/10 p-0 overflow-visible" popover="manual">
+<slot></slot>
+</div>
+</template>
+</ui-tooltip>
+</td>
+</template>
+</tr>
+</template>
+</tbody>
+</table>
+</div>
+</template>
+</ui-calendar-months>
+<div class="sm:hidden p-4 sm:p-2 flex justify-end gap-2">
+<ui-close>
+<button class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-10 text-sm rounded-lg gap-2 ps-4 pe-4 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" type="button">
+        Cancel
+    </button>
+</ui-close>
+<ui-date-picker-select>
+<button class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-10 text-sm rounded-lg gap-2 ps-4 pe-4 inline-flex bg-[var(--color-accent)] hover:bg-[color-mix(in_oklab,_var(--color-accent),_transparent_10%)] text-[var(--color-accent-foreground)] border border-black/10 dark:border-0 shadow-[inset_0px_1px_--theme(--color-white/.2)] [[data-flux-button-group]_&amp;]:border-e-0 [:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-e-[1px] dark:[:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-e-0 [:is([data-flux-button-group]&gt;&amp;:not(:first-child),_[data-flux-button-group]_:not(:first-child)&gt;&amp;)]:border-s-[1px]! [:is([data-flux-button-group]&gt;&amp;:not(:first-child),_[data-flux-button-group]_:not(:first-child)&gt;&amp;)]:border-s-[color-mix(in_srgb,var(--color-accent-foreground),transparent_85%)]" data-flux-button="data-flux-button" data-flux-group-target="data-flux-group-target" type="button">
+        Select date
+    </button>
+</ui-date-picker-select>
+</div>
+</ui-calendar>
+</dialog>
+</ui-date-picker>
+<div aria-atomic="true" aria-live="polite" class="mt-3 text-sm font-medium text-red-500 dark:text-red-400 hidden" data-flux-error="" role="alert">
+</div>
+</ui-field>
+<div aria-atomic="true" aria-live="polite" class="mt-3 text-sm font-medium text-red-500 dark:text-red-400 hidden mt-1" data-flux-error="" for="date" role="alert">
+</div>
+</div>
+<div class="flex">
+<div class="flex-1" data-flux-spacer=""></div>
+<ui-close data-flux-modal-close="">
+<button class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-10 text-sm rounded-lg gap-2 ps-4 pe-4 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" dusk="cancel-sync-start-date" type="button">
+        Cancel
+    </button>
+</ui-close>
+<button class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-10 text-sm rounded-lg gap-2 ps-4 pe-4 inline-flex bg-[var(--color-accent)] hover:bg-[color-mix(in_oklab,_var(--color-accent),_transparent_10%)] text-[var(--color-accent-foreground)] border border-black/10 dark:border-0 shadow-[inset_0px_1px_--theme(--color-white/.2)] [[data-flux-button-group]_&amp;]:border-e-0 [:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-e-[1px] dark:[:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-e-0 [:is([data-flux-button-group]&gt;&amp;:not(:first-child),_[data-flux-button-group]_:not(:first-child)&gt;&amp;)]:border-s-[1px]! [:is([data-flux-button-group]&gt;&amp;:not(:first-child),_[data-flux-button-group]_:not(:first-child)&gt;&amp;)]:border-s-[color-mix(in_srgb,var(--color-accent-foreground),transparent_85%)] *:transition-opacity [&amp;[data-loading]&gt;:not([data-flux-loading-indicator])]:opacity-0 [&amp;[data-flux-loading]&gt;:not([data-flux-loading-indicator])]:opacity-0 [&amp;[data-loading]&gt;[data-flux-loading-indicator]]:opacity-100 [&amp;[data-flux-loading]&gt;[data-flux-loading-indicator]]:opacity-100 data-loading:pointer-events-none data-flux-loading:pointer-events-none" data-flux-button="data-flux-button" data-flux-group-target="data-flux-group-target" type="button" wire:click="save" wire:loading.attr="data-flux-loading" wire:target="save">
+<div class="absolute inset-0 flex items-center justify-center opacity-0" data-flux-loading-indicator="">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-4 animate-spin" data-flux-icon="" data-slot="icon" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+<span>Save</span>
+</button>
+</div>
+</div>
+<div class="absolute top-0 end-0 mt-4 me-4">
+<ui-close data-flux-modal-close="">
+<button aria-label="Close modal" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white text-zinc-400! hover:text-zinc-800! dark:text-zinc-500! dark:hover:text-white!" data-flux-button="data-flux-button" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+</ui-close>
+</div>
+</dialog>
+</ui-modal>
+</div>
+<div class="light">
+<ui-modal data-flux-modal="">
+<dialog class="p-6 [:where(&amp;)]:max-w-xl [:where(&amp;)]:min-w-xs shadow-lg rounded-xl bg-white dark:bg-zinc-800 ring ring-black/5 dark:ring-zinc-700 shadow-lg rounded-xl w-[calc(100vw-2rem)] max-w-xl" data-modal="syncScheduleRequestModal" wire:ignore.self="" x-data="fluxModal('syncScheduleRequestModal', 'EIbJDIxfPczMS9kROJXD')" x-on:modal-close.document="handleClose($event)" x-on:modal-show.document="handleShow($event)">
+<div class="h-40 w-full bg-inherit" wire:effects="[]" wire:id="GIJdmTPHzWI15SpVSu0h" wire:key="accounts-custom-sync-schedule" wire:name="modal-sync-schedule-request" wire:snapshot='{"data":{"scheduleType":"","scheduleTimezone":"","scheduleNotes":"","allAccountsSelected":true,"selectedAccounts":[[],{"s":"arr"}],"everyHourStart":"","everyHourEnd":"","twiceDailyFirst":"","twiceDailySecond":"","dailyTime":""},"memo":{"id":"GIJdmTPHzWI15SpVSu0h","name":"modal-sync-schedule-request","path":"w\/ws_FIXTUREWORKSPACE000000000\/accounts","method":"GET","release":"a-a-a","children":[],"scripts":[],"assets":[],"lazyLoaded":false,"lazyIsolated":true,"errors":[],"locale":"en","islands":[]},@00000000000000000000000000000000000000000000000000000000000000"}' x-intersect="$wire.__lazyLoad('eyJkYXRhIjp7ImZvck1vdW50IjpbW10seyJzIjoiYXJyIn1dLCJmb3JDb21wb25lbnQiOiJtb2RhbC1zeW5jLXNjaGVkdWxlLXJlcXVlc3QifSwibWVtbyI6eyJpZCI6Im5RWFJLMGxnMkRMWU5NWjR2Q3hOIiwibmFtZSI6Il9fbW91bnRQYXJhbXNDb250YWluZXIiLCJwYXRoIjoid1wvd3NfMDFLWlJSTkdQSk0xWVdTNzYyMVo4NjlFNDZcL2FjY291bnRzIiwibWV0aG9kIjoiR0VUIiwicmVsZWFzZSI6ImEtYS1hIn0sImNoZWNrc3VtIjoiMGEyMzQ0YmVjZWQxN2MzOTg3MzFmZjg2OWJjOTllNThkMTAxYTY2OGFjMzIwNjEyOGI4NjQ0ODk5ZTczYTAxMyJ9')">
+<svg class="animate-spin shrink-0 opacity-50 mx-auto text-primary-500 w-10 h-10" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg></div>
+<div class="absolute top-0 end-0 mt-4 me-4">
+<ui-close data-flux-modal-close="">
+<button aria-label="Close modal" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white text-zinc-400! hover:text-zinc-800! dark:text-zinc-500! dark:hover:text-white!" data-flux-button="data-flux-button" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+</ui-close>
+</div>
+</dialog>
+</ui-modal>
+</div>
+<ui-modal data-flux-modal="">
+<dialog class="p-6 [:where(&amp;)]:max-w-xl [:where(&amp;)]:min-w-xs shadow-lg rounded-xl bg-white dark:bg-zinc-800 ring ring-black/5 dark:ring-zinc-700 shadow-lg rounded-xl w-[calc(100vw-2rem)] max-w-lg" data-modal="dailySyncScheduleModal" wire:ignore.self="" x-data="fluxModal('dailySyncScheduleModal', 'EIbJDIxfPczMS9kROJXD')" x-on:modal-close.document="handleClose($event)" x-on:modal-show.document="handleShow($event)">
+<div class="h-40 w-full bg-inherit" wire:effects="[]" wire:id="vf7OZMmNEFaMnKMleSjM" wire:key="accounts-daily-sync-schedule" wire:name="modal-daily-sync-schedule" wire:snapshot='{"data":{"inline":false,"dailyTime":"","timezone":"UTC"},"memo":{"id":"vf7OZMmNEFaMnKMleSjM","name":"modal-daily-sync-schedule","path":"w\/ws_FIXTUREWORKSPACE000000000\/accounts","method":"GET","release":"a-a-a","children":[],"scripts":[],"assets":[],"lazyLoaded":false,"lazyIsolated":true,"errors":[],"locale":"en","islands":[]},@00000000000000000000000000000000000000000000000000000000000000"}' x-intersect="$wire.__lazyLoad('eyJkYXRhIjp7ImZvck1vdW50IjpbW10seyJzIjoiYXJyIn1dLCJmb3JDb21wb25lbnQiOiJtb2RhbC1kYWlseS1zeW5jLXNjaGVkdWxlIn0sIm1lbW8iOnsiaWQiOiJxd1BJQXNxUFM2WjRqajZMSUt0QiIsIm5hbWUiOiJfX21vdW50UGFyYW1zQ29udGFpbmVyIiwicGF0aCI6IndcL3dzXzAxS1pSUk5HUEpNMVlXUzc2MjFaODY5RTQ2XC9hY2NvdW50cyIsIm1ldGhvZCI6IkdFVCIsInJlbGVhc2UiOiJhLWEtYSJ9LCJjaGVja3N1bSI6ImZhMWJmNWIyOWVkMDY5MjdiYTE5ZmNjZTVmZjc0ZWIwYjNjYmVlMjhhNjU2NDQ4NDU1YmIxYWZiYjc4ZTRiOTYifQ==')">
+<svg class="animate-spin shrink-0 opacity-50 mx-auto text-primary-500 w-10 h-10" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg></div>
+<div class="absolute top-0 end-0 mt-4 me-4">
+<ui-close data-flux-modal-close="">
+<button aria-label="Close modal" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white text-zinc-400! hover:text-zinc-800! dark:text-zinc-500! dark:hover:text-white!" data-flux-button="data-flux-button" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+</ui-close>
+</div>
+</dialog>
+</ui-modal>
+<ui-modal data-flux-modal="" wire:model.self="showRename">
+<dialog class="p-6 [:where(&amp;)]:max-w-xl [:where(&amp;)]:min-w-xs shadow-lg rounded-xl bg-white dark:bg-zinc-800 ring ring-black/5 dark:ring-zinc-700 shadow-lg rounded-xl md:w-96" data-modal="rename-connection" wire:ignore.self="" x-data="fluxModal('rename-connection', 'EIbJDIxfPczMS9kROJXD')" x-on:modal-close.document="handleClose($event)" x-on:modal-show.document="handleShow($event)">
+<form class="space-y-6" wire:submit="saveRename">
+<div class="font-medium [:where(&amp;)]:text-zinc-800 [:where(&amp;)]:dark:text-white text-base [&amp;:has(+[data-flux-subheading])]:mb-2 [[data-flux-subheading]+&amp;]:mt-2" data-flux-heading="">Rename financial connection</div>
+<ui-field class="min-w-0 [&amp;:not(:has([data-flux-field])):has([data-flux-control][disabled])&gt;[data-flux-label]]:opacity-50 [&amp;:has(&gt;[data-flux-radio-group][disabled])&gt;[data-flux-label]]:opacity-50 [&amp;:has(&gt;[data-flux-checkbox-group][disabled])&gt;[data-flux-label]]:opacity-50 block *:data-flux-label:mb-3 [&amp;&gt;[data-flux-label]:has(+[data-flux-description])]:mb-2 [&amp;&gt;[data-flux-label]+[data-flux-description]]:mt-0 [&amp;&gt;[data-flux-label]+[data-flux-description]]:mb-3 [&amp;&gt;[data-flux-description]:first-child:has(+*)]:mb-3 [&amp;&gt;*:not([data-flux-label])+[data-flux-description]]:mt-3" data-flux-field="">
+<ui-label class="inline-flex items-center text-sm font-medium [:where(&amp;)]:text-zinc-800 [:where(&amp;)]:dark:text-white [&amp;:has([data-flux-label-trailing])]:flex" data-flux-label="">
+    Connection name
+
+    
+    
+    </ui-label>
+<div class="w-full relative block group/input" data-flux-input="">
+<input autocomplete="off" class="w-full border block disabled:shadow-none dark:shadow-none appearance-none text-base sm:text-sm rounded-lg py-2 h-10 leading-[1.375rem] ps-3 pe-3 bg-white dark:bg-white/10 dark:disabled:bg-white/[7%] text-zinc-700 disabled:text-zinc-500 placeholder-zinc-400 disabled:placeholder-zinc-400/70 dark:text-zinc-300 dark:disabled:text-zinc-400 dark:placeholder-zinc-400 dark:disabled:placeholder-zinc-500 shadow-xs border-zinc-200 border-b-zinc-300/80 disabled:border-b-zinc-200 dark:border-white/10 dark:disabled:border-white/5 data-invalid:shadow-none data-invalid:border-red-500 dark:data-invalid:border-red-500 disabled:data-invalid:border-red-500 dark:disabled:data-invalid:border-red-500" data-flux-control="" data-flux-group-target="" dusk="rename-input" label="Connection name" maxlength="64" name="renameTo" required="required" type="text" wire:model="renameTo"/>
+</div>
+<div aria-atomic="true" aria-live="polite" class="mt-3 text-sm font-medium text-red-500 dark:text-red-400 hidden" data-flux-error="" role="alert">
+</div>
+</ui-field>
+<div class="flex gap-2">
+<div class="flex-1" data-flux-spacer=""></div>
+<button class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-10 text-sm rounded-lg gap-2 ps-4 pe-4 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white *:transition-opacity [&amp;[data-loading]&gt;:not([data-flux-loading-indicator])]:opacity-0 [&amp;[data-flux-loading]&gt;:not([data-flux-loading-indicator])]:opacity-0 [&amp;[data-loading]&gt;[data-flux-loading-indicator]]:opacity-100 [&amp;[data-flux-loading]&gt;[data-flux-loading-indicator]]:opacity-100 data-loading:pointer-events-none data-flux-loading:pointer-events-none" data-flux-button="data-flux-button" type="button" wire:click="cancelRename" wire:loading.attr="data-flux-loading" wire:target="cancelRename">
+<div class="absolute inset-0 flex items-center justify-center opacity-0" data-flux-loading-indicator="">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-4 animate-spin" data-flux-icon="" data-slot="icon" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+<span>Cancel</span>
+</button>
+<button class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-10 text-sm rounded-lg gap-2 ps-4 pe-4 inline-flex bg-[var(--color-accent)] hover:bg-[color-mix(in_oklab,_var(--color-accent),_transparent_10%)] text-[var(--color-accent-foreground)] border border-black/10 dark:border-0 shadow-[inset_0px_1px_--theme(--color-white/.2)] [[data-flux-button-group]_&amp;]:border-e-0 [:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-e-[1px] dark:[:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-e-0 [:is([data-flux-button-group]&gt;&amp;:not(:first-child),_[data-flux-button-group]_:not(:first-child)&gt;&amp;)]:border-s-[1px]! [:is([data-flux-button-group]&gt;&amp;:not(:first-child),_[data-flux-button-group]_:not(:first-child)&gt;&amp;)]:border-s-[color-mix(in_srgb,var(--color-accent-foreground),transparent_85%)] *:transition-opacity [&amp;[disabled]&gt;:not([data-flux-loading-indicator])]:opacity-0 [&amp;[disabled]&gt;[data-flux-loading-indicator]]:opacity-100 [&amp;[disabled]]:pointer-events-none" data-flux-button="data-flux-button" data-flux-group-target="data-flux-group-target" dusk="rename-save" type="submit">
+<div class="absolute inset-0 flex items-center justify-center opacity-0" data-flux-loading-indicator="">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-4 animate-spin" data-flux-icon="" data-slot="icon" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+<span>Save</span>
+</button>
+</div>
+</form>
+<div class="absolute top-0 end-0 mt-4 me-4">
+<ui-close data-flux-modal-close="">
+<button aria-label="Close modal" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white text-zinc-400! hover:text-zinc-800! dark:text-zinc-500! dark:hover:text-white!" data-flux-button="data-flux-button" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+</ui-close>
+</div>
+</dialog>
+</ui-modal>
+<ui-modal data-flux-modal="" x-on:account-start-date-saved.window="$flux.modal('accountSyncStartDateModal').close()">
+<dialog class="p-6 [:where(&amp;)]:max-w-xl [:where(&amp;)]:min-w-xs shadow-lg rounded-xl bg-white dark:bg-zinc-800 ring ring-black/5 dark:ring-zinc-700 shadow-lg rounded-xl w-[calc(100vw-2rem)] max-w-md" data-modal="accountSyncStartDateModal" wire:ignore.self="" x-data="fluxModal('accountSyncStartDateModal', 'EIbJDIxfPczMS9kROJXD')" x-on:modal-close.document="handleClose($event)" x-on:modal-show.document="handleShow($event)">
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]-->
+<div class="absolute top-0 end-0 mt-4 me-4">
+<ui-close data-flux-modal-close="">
+<button aria-label="Close modal" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white text-zinc-400! hover:text-zinc-800! dark:text-zinc-500! dark:hover:text-white!" data-flux-button="data-flux-button" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+</ui-close>
+</div>
+</dialog>
+</ui-modal>
+<!--[if BLOCK]><![endif]--> <div class="mx-4 mt-6 flex flex-col gap-2 sm:mx-6 sm:mt-7 sm:flex-row">
+<a class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 ps-2 pe-3 inline-flex bg-[var(--color-accent)] hover:bg-[color-mix(in_oklab,_var(--color-accent),_transparent_10%)] text-[var(--color-accent-foreground)] border border-black/10 dark:border-0 shadow-[inset_0px_1px_--theme(--color-white/.2)] [[data-flux-button-group]_&amp;]:border-e-0 [:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-e-[1px] dark:[:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-e-0 [:is([data-flux-button-group]&gt;&amp;:not(:first-child),_[data-flux-button-group]_:not(:first-child)&gt;&amp;)]:border-s-[1px]! [:is([data-flux-button-group]&gt;&amp;:not(:first-child),_[data-flux-button-group]_:not(:first-child)&gt;&amp;)]:border-s-[color-mix(in_srgb,var(--color-accent-foreground),transparent_85%)] w-full shrink-0 sm:w-auto" data-flux-button="data-flux-button" data-flux-group-target="data-flux-group-target" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/link/create">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-4" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"></svg>
+<span>Connect an Account</span>
+</a>
+<ui-dropdown class="w-full shrink-0 sm:w-auto" data-flux-dropdown="" position="bottom start">
+<button class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 ps-2 pe-2 inline-flex bg-[var(--color-accent)] hover:bg-[color-mix(in_oklab,_var(--color-accent),_transparent_10%)] text-[var(--color-accent-foreground)] border border-black/10 dark:border-0 shadow-[inset_0px_1px_--theme(--color-white/.2)] [[data-flux-button-group]_&amp;]:border-e-0 [:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-e-[1px] dark:[:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-e-0 [:is([data-flux-button-group]&gt;&amp;:not(:first-child),_[data-flux-button-group]_:not(:first-child)&gt;&amp;)]:border-s-[1px]! [:is([data-flux-button-group]&gt;&amp;:not(:first-child),_[data-flux-button-group]_:not(:first-child)&gt;&amp;)]:border-s-[color-mix(in_srgb,var(--color-accent-foreground),transparent_85%)] [--color-accent:var(--color-purple-500)] [--color-accent-content:var(--color-purple-600)] [--color-accent-foreground:var(--color-white)] dark:[--color-accent:var(--color-purple-500)] dark:[--color-accent-content:var(--color-purple-300)] dark:[--color-accent-foreground:var(--color-white)] w-full" data-flux-button="data-flux-button" data-flux-group-target="data-flux-group-target" dusk="sync-menu" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-4" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"></svg>
+<span>Sync</span>
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-4" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden" data-flux-menu="" popover="manual">
+<button class="flex items-center px-2 py-1.5 w-full focus:outline-hidden select-none rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" dusk="sync-all" type="button" wire:click="syncAll">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-icon="" data-flux-menu-item-icon="data-flux-menu-item-icon" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+
+            
+    Sync all accounts
+    </button>
+<button class="flex items-center px-2 py-1.5 w-full focus:outline-hidden select-none rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" type="button" x-on:click="$dispatch('modal-show', { name: 'setAllSyncStartDateModal' })">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-icon="" data-flux-menu-item-icon="data-flux-menu-item-icon" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+
+            
+    Sync Start Date
+    </button>
+<button class="flex items-center px-2 py-1.5 w-full focus:outline-hidden select-none rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" dusk="daily-sync-menu" type="button" x-on:click="$dispatch('modal-show', { name: 'dailySyncScheduleModal' })">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-icon="" data-flux-menu-item-icon="data-flux-menu-item-icon" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+
+            
+    Daily sync time
+    </button>
+<button class="flex items-center px-2 py-1.5 w-full focus:outline-hidden select-none rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" type="button" x-on:click="$dispatch('modal-show', { name: 'syncScheduleRequestModal' })">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-icon="" data-flux-menu-item-icon="data-flux-menu-item-icon" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+
+            
+    Request Custom Sync Schedule
+    </button>
+</ui-menu>
+</ui-dropdown>
+</div>
+<!--[if ENDBLOCK]><![endif]-->
+<!--[if BLOCK]><![endif]--> <section class="mx-4 mt-6 flex items-start gap-2 rounded-xl border border-white/10 bg-white/[0.03] p-3 text-white sm:mx-6 sm:mt-7" dusk="accounts-daily-sync">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-5 shrink-0" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+<p class="text-sm text-white min-w-0" dusk="accounts-summary">
+        Your daily sync is scheduled for 
+    <span class="inline-flex max-w-full">
+<button aria-label="Change daily sync time" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-6 text-xs rounded-md gap-1 ps-2 pe-2 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white !h-auto max-w-full !whitespace-normal !p-0 !text-left !text-white underline underline-offset-2" data-flux-button="data-flux-button" dusk="accounts-change-daily-sync" type="button" x-on:click="$dispatch('modal-show', { name: 'dailySyncScheduleModal' })">
+        18:26 (UTC)
+    </button>
+</span> and last finished 19 hours ago.
+    <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--></p>
+</section>
+<!--[if ENDBLOCK]><![endif]-->
+<!--[if BLOCK]><![endif]--> <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]--> <section class="space-y-5 px-4 py-6 sm:space-y-6 sm:px-6 sm:py-7" dusk="connections-rail">
+<section class="min-w-0 rounded-xl border border-white/10 bg-white/[0.03]" data-accounts-list="" x-data="{
+             fillAccountMenu(menu) {
+                 const dropdown = menu.closest('[data-account-menu]')
+                 const id = dropdown.dataset.accountMenu
+                 if (! /^[\w-]+$/.test(id)) throw new Error(`Unexpected account id: ${id}`)
+                 menu.innerHTML = this.$root.querySelector('template[data-account-menu-items]').innerHTML.replaceAll('__ACCOUNT__', id)
+                 menu.querySelectorAll('[data-account-state]').forEach(item =&gt; item.dataset.accountState === dropdown.dataset.accountState || item.remove())
+             },
+         }">
+<div class="px-3 py-3 sm:px-4">
+<!--[if BLOCK]><![endif]--> <div class="flex min-w-0 items-center gap-2">
+<div class="w-full relative block group/input min-w-0 flex-1" data-flux-input="">
+<div class="pointer-events-none absolute top-0 bottom-0 border-s border-transparent flex items-center justify-center text-xs text-zinc-400/75 dark:text-white/60 ps-3 start-0">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+<input aria-label="Search accounts" class="w-full border block disabled:shadow-none dark:shadow-none appearance-none text-base sm:text-sm rounded-lg py-2 h-10 leading-[1.375rem] ps-10 pe-10 bg-white dark:bg-white/10 dark:disabled:bg-white/[7%] text-zinc-700 disabled:text-zinc-500 placeholder-zinc-400 disabled:placeholder-zinc-400/70 dark:text-zinc-300 dark:disabled:text-zinc-400 dark:placeholder-zinc-400 dark:disabled:placeholder-zinc-500 shadow-xs border-zinc-200 border-b-zinc-300/80 disabled:border-b-zinc-200 dark:border-white/10 dark:disabled:border-white/5 data-invalid:shadow-none data-invalid:border-red-500 dark:data-invalid:border-red-500 disabled:data-invalid:border-red-500 dark:disabled:data-invalid:border-red-500" data-flux-control="" data-flux-group-target="" maxlength="200" name="accountSearch" placeholder="Search accounts" type="text" wire:loading.class="pe-16" wire:model.deep.live.debounce.300ms="accountSearch" wire:target="accountSearch"/>
+<div class="absolute top-0 bottom-0 flex items-center gap-x-1.5 pe-2 border-e border-transparent end-0 text-xs text-zinc-400">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5 animate-spin" data-flux-icon="" data-slot="icon" fill="none" viewbox="0 0 24 24" wire:loading="" wire:target="accountSearch" xmlns="http://www.w3.org/2000/svg"></svg>
+<button aria-label="Clear input" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex -ms-1.5 -me-1.5 bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-white -me-1 [[data-flux-input]:has(input:placeholder-shown)_&amp;]:hidden [[data-flux-input]:has(input[disabled])_&amp;]:hidden" data-flux-button="data-flux-button" data-flux-clear-button="data-flux-clear-button" tabindex="-1" type="button" x-data="fluxInputClearable" x-on:click="clear()">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+</div>
+</div>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> <!--[if ENDBLOCK]><![endif]--> </div>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> <div class="divide-y divide-white/10">
+<!--[if BLOCK]><![endif]--> <section aria-label="Institution 1" dusk="home-connection-group-PLAID~FIXTURE0001" wire:key="home-connection-group-PLAID~FIXTURE0001">
+<div class="flex items-center gap-3 px-3 py-4 transition hover:bg-white/[0.03] sm:gap-4 sm:px-4" dusk="home-institution-PLAID~FIXTURE0001">
+<a class="flex min-w-0 flex-1 items-center gap-3 focus-visible:outline-2 focus-visible:outline-indigo-400 sm:gap-4" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?provider=PLAID&amp;connection=3081846031720541263">
+<span class="flex shrink-0 items-center justify-center overflow-hidden rounded-[22%] shadow-sm bg-white ring-1 ring-black/5 size-10 max-[360px]:size-8! sm:size-12">
+<!--[if BLOCK]><![endif]--> <img alt="Institution 1" class="shrink-0 object-contain size-[78%]" decoding="async" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false" src="https://fintable.io/institution-icons/1436365-02e3fc0cdc95413a.svg?v=07efbb8426e9">
+<span class="contents" hidden="">
+<!--[if BLOCK]><![endif]--><svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-3/4 text-slate-400" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg><!--[if ENDBLOCK]><![endif]--> </span>
+<!--[if ENDBLOCK]><![endif]--></img></span>
+<div class="min-w-0">
+<h3 class="text-sm font-semibold break-words text-white" title="Institution 1">Institution 1</h3>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> <div class="mt-0.5 flex items-center">
+<span class="inline-flex items-center gap-1.5 text-[11px] sm:text-xs text-emerald-400">
+<span aria-hidden="true" class="size-1.5 shrink-0 rounded-full bg-current"></span>
+    Data refreshed 2 hours ago
+</span>
+</div>
+</div>
+</a>
+<div class="shrink-0">
+<ui-dropdown data-flux-dropdown="" position="bottom end">
+<button aria-label="Bank actions" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden" data-flux-menu="" popover="manual">
+<!--[if BLOCK]><![endif]--> <button class="flex items-center px-2 py-1.5 w-full focus:outline-hidden select-none rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" type="button" wire:click="syncOne('PLAID~FIXTURE0001')">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-icon="" data-flux-menu-item-icon="data-flux-menu-item-icon" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+
+            
+    Sync now
+    </button>
+<!--[if ENDBLOCK]><![endif]--> <button class="flex items-center px-2 py-1.5 w-full focus:outline-hidden select-none rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" type="button" wire:click="startRename('PLAID~FIXTURE0001')">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-icon="" data-flux-menu-item-icon="data-flux-menu-item-icon" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+
+            
+    Rename
+    </button>
+<a class="flex items-center px-2 py-1.5 w-full focus:outline-hidden select-none rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?provider=PLAID&amp;connection=3081846031720541263&amp;tab=settings">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-icon="" data-flux-menu-item-icon="data-flux-menu-item-icon" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+
+            
+    Connection settings
+    </a>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]--> <a class="flex items-center px-2 py-1.5 w-full focus:outline-hidden select-none rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/link/plaid/reconnect/3081846031720541263">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-icon="" data-flux-menu-item-icon="data-flux-menu-item-icon" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+
+            
+    Reconnect
+    </a>
+<!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]-->
+<button class="flex items-center px-2 py-1.5 w-full focus:outline-hidden select-none rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" type="button" wire:click="realtimeSync('PLAID~FIXTURE0001')" wire:confirm="Call the bank right now for the latest data? This is billed at \$1.00 and realtime data is not guaranteed.">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-icon="" data-flux-menu-item-icon="data-flux-menu-item-icon" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+
+            
+    Realtime sync ($1.00)
+    </button>
+<!--[if ENDBLOCK]><![endif]--> <div class="-mx-[.3125rem] my-[.3125rem] h-px" data-flux-menu-separator="">
+<div class="border-0 [print-color-adjust:exact] bg-zinc-800/15 dark:bg-white/20 h-px w-full dark:bg-zinc-600!" data-flux-separator="" data-orientation="horizontal" role="none"></div>
+</div>
+<a class="flex items-center px-2 py-1.5 w-full focus:outline-hidden select-none rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:text-red-600 data-active:bg-red-50 dark:text-white dark:data-active:bg-red-400/20 dark:data-active:text-red-400 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/link/delete/PLAID/3081846031720541263">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-icon="" data-flux-menu-item-icon="data-flux-menu-item-icon" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+
+            
+    Disconnect institution
+    </a>
+</ui-menu>
+</ui-dropdown>
+</div>
+</div>
+<!--[if BLOCK]><![endif]--> <ul class="mb-4 divide-y divide-white/5">
+<!--[if BLOCK]><![endif]--> <li wire:key="home-account-acc_FIXTURE00000000000000001">
+<div class="flex min-w-0 items-center" data-account-row="">
+<a class="flex min-w-0 flex-1 items-center gap-3 px-3 py-3 transition focus-visible:outline-2 focus-visible:outline-indigo-400 sm:gap-4 sm:px-4 hover:bg-white/[0.03]" dusk="home-account-acc_FIXTURE00000000000000001" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?account=acc_FIXTURE00000000000000001">
+<span class="flex w-11 shrink-0 justify-center max-[360px]:w-8! sm:w-12">
+<span class="flex size-6 items-center justify-center rounded-md bg-white/5 text-white/70">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+</span>
+<div class="flex min-w-0 flex-1 flex-col items-start gap-0.5">
+<h4 class="min-w-0 w-full whitespace-normal break-words order-1 text-[11px] font-normal text-white/60 sm:text-xs" title="Account 01 (1001)">Account 01 (1001)</h4>
+<span class="shrink-0 tabular-nums text-sm font-semibold text-white" dusk="home-account-balance">
+                $1.00
+            </span>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</a>
+<div class="flex shrink-0 flex-col items-end gap-1.5 py-3 pe-3 text-right sm:pe-4" dusk="account-sync-details-acc_FIXTURE00000000000000001">
+<!--[if BLOCK]><![endif]-->
+<ui-dropdown class="shrink-0" data-account-menu="acc_FIXTURE00000000000000001" data-account-state="enabled" data-flux-dropdown="" position="bottom end">
+<button aria-label="Account actions" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" dusk="account-menu-acc_FIXTURE00000000000000001" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden" data-flux-menu="" popover="manual" wire:ignore="" x-on:beforetoggle="$event.newState === 'open' &amp;&amp; fillAccountMenu($el)">
+</ui-menu>
+</ui-dropdown>
+<!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</div>
+</li>
+<li wire:key="home-account-acc_FIXTURE00000000000000002">
+<div class="flex min-w-0 items-center" data-account-row="">
+<a class="flex min-w-0 flex-1 items-center gap-3 px-3 py-3 transition focus-visible:outline-2 focus-visible:outline-indigo-400 sm:gap-4 sm:px-4 hover:bg-white/[0.03]" dusk="home-account-acc_FIXTURE00000000000000002" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?account=acc_FIXTURE00000000000000002">
+<span class="flex w-11 shrink-0 justify-center max-[360px]:w-8! sm:w-12">
+<span class="flex size-6 items-center justify-center rounded-md bg-white/5 text-white/70">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+</span>
+<div class="flex min-w-0 flex-1 flex-col items-start gap-0.5">
+<h4 class="min-w-0 w-full whitespace-normal break-words order-1 text-[11px] font-normal text-white/60 sm:text-xs" title="Account 02 (1002)">Account 02 (1002)</h4>
+<span class="shrink-0 tabular-nums text-sm font-semibold text-white" dusk="home-account-balance">
+                $1.00
+            </span>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</a>
+<div class="flex shrink-0 flex-col items-end gap-1.5 py-3 pe-3 text-right sm:pe-4" dusk="account-sync-details-acc_FIXTURE00000000000000002">
+<!--[if BLOCK]><![endif]-->
+<ui-dropdown class="shrink-0" data-account-menu="acc_FIXTURE00000000000000002" data-account-state="enabled" data-flux-dropdown="" position="bottom end">
+<button aria-label="Account actions" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" dusk="account-menu-acc_FIXTURE00000000000000002" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden" data-flux-menu="" popover="manual" wire:ignore="" x-on:beforetoggle="$event.newState === 'open' &amp;&amp; fillAccountMenu($el)">
+</ui-menu>
+</ui-dropdown>
+<!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</div>
+</li>
+<li wire:key="home-account-acc_FIXTURE00000000000000003">
+<div class="flex min-w-0 items-center" data-account-row="">
+<a class="flex min-w-0 flex-1 items-center gap-3 px-3 py-3 transition focus-visible:outline-2 focus-visible:outline-indigo-400 sm:gap-4 sm:px-4 hover:bg-white/[0.03]" dusk="home-account-acc_FIXTURE00000000000000003" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?account=acc_FIXTURE00000000000000003">
+<span class="flex w-11 shrink-0 justify-center max-[360px]:w-8! sm:w-12">
+<span class="flex size-6 items-center justify-center rounded-md bg-white/5 text-white/70">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+</span>
+<div class="flex min-w-0 flex-1 flex-col items-start gap-0.5">
+<h4 class="min-w-0 w-full whitespace-normal break-words order-1 text-[11px] font-normal text-white/60 sm:text-xs" title="Account 03 (1003)">Account 03 (1003)</h4>
+<span class="shrink-0 tabular-nums text-sm font-semibold text-white" dusk="home-account-balance">
+                $1.00
+            </span>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</a>
+<div class="flex shrink-0 flex-col items-end gap-1.5 py-3 pe-3 text-right sm:pe-4" dusk="account-sync-details-acc_FIXTURE00000000000000003">
+<!--[if BLOCK]><![endif]-->
+<ui-dropdown class="shrink-0" data-account-menu="acc_FIXTURE00000000000000003" data-account-state="enabled" data-flux-dropdown="" position="bottom end">
+<button aria-label="Account actions" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" dusk="account-menu-acc_FIXTURE00000000000000003" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden" data-flux-menu="" popover="manual" wire:ignore="" x-on:beforetoggle="$event.newState === 'open' &amp;&amp; fillAccountMenu($el)">
+</ui-menu>
+</ui-dropdown>
+<!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</div>
+</li>
+<li wire:key="home-account-acc_FIXTURE00000000000000004">
+<div class="flex min-w-0 items-center" data-account-row="">
+<a class="flex min-w-0 flex-1 items-center gap-3 px-3 py-3 transition focus-visible:outline-2 focus-visible:outline-indigo-400 sm:gap-4 sm:px-4 hover:bg-white/[0.03]" dusk="home-account-acc_FIXTURE00000000000000004" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?account=acc_FIXTURE00000000000000004">
+<span class="flex w-11 shrink-0 justify-center max-[360px]:w-8! sm:w-12">
+<span class="flex size-6 items-center justify-center rounded-md bg-white/5 text-white/70">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+</span>
+<div class="flex min-w-0 flex-1 flex-col items-start gap-0.5">
+<h4 class="min-w-0 w-full whitespace-normal break-words order-1 text-[11px] font-normal text-white/60 sm:text-xs" title="Account 04 (1004)">Account 04 (1004)</h4>
+<span class="shrink-0 tabular-nums text-sm font-semibold text-white" dusk="home-account-balance">
+                $1.00
+            </span>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</a>
+<div class="flex shrink-0 flex-col items-end gap-1.5 py-3 pe-3 text-right sm:pe-4" dusk="account-sync-details-acc_FIXTURE00000000000000004">
+<!--[if BLOCK]><![endif]-->
+<ui-dropdown class="shrink-0" data-account-menu="acc_FIXTURE00000000000000004" data-account-state="enabled" data-flux-dropdown="" position="bottom end">
+<button aria-label="Account actions" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" dusk="account-menu-acc_FIXTURE00000000000000004" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden" data-flux-menu="" popover="manual" wire:ignore="" x-on:beforetoggle="$event.newState === 'open' &amp;&amp; fillAccountMenu($el)">
+</ui-menu>
+</ui-dropdown>
+<!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</div>
+</li>
+<li wire:key="home-account-acc_FIXTURE00000000000000005">
+<div class="flex min-w-0 items-center" data-account-row="">
+<a class="flex min-w-0 flex-1 items-center gap-3 px-3 py-3 transition focus-visible:outline-2 focus-visible:outline-indigo-400 sm:gap-4 sm:px-4 hover:bg-white/[0.03]" dusk="home-account-acc_FIXTURE00000000000000005" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?account=acc_FIXTURE00000000000000005">
+<span class="flex w-11 shrink-0 justify-center max-[360px]:w-8! sm:w-12">
+<span class="flex size-6 items-center justify-center rounded-md bg-white/5 text-white/70">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+</span>
+<div class="flex min-w-0 flex-1 flex-col items-start gap-0.5">
+<h4 class="min-w-0 w-full whitespace-normal break-words order-1 text-[11px] font-normal text-white/60 sm:text-xs" title="Account 05 (1005)">Account 05 (1005)</h4>
+<span class="shrink-0 tabular-nums text-sm font-semibold text-white" dusk="home-account-balance">
+                $1.00
+            </span>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</a>
+<div class="flex shrink-0 flex-col items-end gap-1.5 py-3 pe-3 text-right sm:pe-4" dusk="account-sync-details-acc_FIXTURE00000000000000005">
+<!--[if BLOCK]><![endif]-->
+<ui-dropdown class="shrink-0" data-account-menu="acc_FIXTURE00000000000000005" data-account-state="enabled" data-flux-dropdown="" position="bottom end">
+<button aria-label="Account actions" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" dusk="account-menu-acc_FIXTURE00000000000000005" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden" data-flux-menu="" popover="manual" wire:ignore="" x-on:beforetoggle="$event.newState === 'open' &amp;&amp; fillAccountMenu($el)">
+</ui-menu>
+</ui-dropdown>
+<!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</div>
+</li>
+<li wire:key="home-account-acc_FIXTURE00000000000000006">
+<div class="flex min-w-0 items-center" data-account-row="">
+<a class="flex min-w-0 flex-1 items-center gap-3 px-3 py-3 transition focus-visible:outline-2 focus-visible:outline-indigo-400 sm:gap-4 sm:px-4 hover:bg-white/[0.03]" dusk="home-account-acc_FIXTURE00000000000000006" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?account=acc_FIXTURE00000000000000006">
+<span class="flex w-11 shrink-0 justify-center max-[360px]:w-8! sm:w-12">
+<span class="flex size-6 items-center justify-center rounded-md bg-white/5 text-white/70">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+</span>
+<div class="flex min-w-0 flex-1 flex-col items-start gap-0.5">
+<h4 class="min-w-0 w-full whitespace-normal break-words order-1 text-[11px] font-normal text-white/60 sm:text-xs" title="Account 06 (1006)">Account 06 (1006)</h4>
+<span class="shrink-0 tabular-nums text-sm font-semibold text-white" dusk="home-account-balance">
+                $1.00
+            </span>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</a>
+<div class="flex shrink-0 flex-col items-end gap-1.5 py-3 pe-3 text-right sm:pe-4" dusk="account-sync-details-acc_FIXTURE00000000000000006">
+<!--[if BLOCK]><![endif]-->
+<ui-dropdown class="shrink-0" data-account-menu="acc_FIXTURE00000000000000006" data-account-state="enabled" data-flux-dropdown="" position="bottom end">
+<button aria-label="Account actions" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" dusk="account-menu-acc_FIXTURE00000000000000006" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden" data-flux-menu="" popover="manual" wire:ignore="" x-on:beforetoggle="$event.newState === 'open' &amp;&amp; fillAccountMenu($el)">
+</ui-menu>
+</ui-dropdown>
+<!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</div>
+</li>
+<li wire:key="home-account-acc_FIXTURE00000000000000007">
+<div class="flex min-w-0 items-center" data-account-row="">
+<a class="flex min-w-0 flex-1 items-center gap-3 px-3 py-3 transition focus-visible:outline-2 focus-visible:outline-indigo-400 sm:gap-4 sm:px-4 hover:bg-white/[0.03]" dusk="home-account-acc_FIXTURE00000000000000007" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?account=acc_FIXTURE00000000000000007">
+<span class="flex w-11 shrink-0 justify-center max-[360px]:w-8! sm:w-12">
+<span class="flex size-6 items-center justify-center rounded-md bg-white/5 text-white/70">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+</span>
+<div class="flex min-w-0 flex-1 flex-col items-start gap-0.5">
+<h4 class="min-w-0 w-full whitespace-normal break-words order-1 text-[11px] font-normal text-white/60 sm:text-xs" title="Account 07 (1007)">Account 07 (1007)</h4>
+<span class="shrink-0 tabular-nums text-sm font-semibold text-white" dusk="home-account-balance">
+                $1.00
+            </span>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</a>
+<div class="flex shrink-0 flex-col items-end gap-1.5 py-3 pe-3 text-right sm:pe-4" dusk="account-sync-details-acc_FIXTURE00000000000000007">
+<!--[if BLOCK]><![endif]-->
+<ui-dropdown class="shrink-0" data-account-menu="acc_FIXTURE00000000000000007" data-account-state="enabled" data-flux-dropdown="" position="bottom end">
+<button aria-label="Account actions" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" dusk="account-menu-acc_FIXTURE00000000000000007" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden" data-flux-menu="" popover="manual" wire:ignore="" x-on:beforetoggle="$event.newState === 'open' &amp;&amp; fillAccountMenu($el)">
+</ui-menu>
+</ui-dropdown>
+<!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</div>
+</li>
+<li wire:key="home-account-acc_FIXTURE00000000000000008">
+<div class="flex min-w-0 items-center" data-account-row="">
+<a class="flex min-w-0 flex-1 items-center gap-3 px-3 py-3 transition focus-visible:outline-2 focus-visible:outline-indigo-400 sm:gap-4 sm:px-4 hover:bg-white/[0.03]" dusk="home-account-acc_FIXTURE00000000000000008" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?account=acc_FIXTURE00000000000000008">
+<span class="flex w-11 shrink-0 justify-center max-[360px]:w-8! sm:w-12">
+<span class="flex size-6 items-center justify-center rounded-md bg-white/5 text-white/70">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+</span>
+<div class="flex min-w-0 flex-1 flex-col items-start gap-0.5">
+<h4 class="min-w-0 w-full whitespace-normal break-words order-1 text-[11px] font-normal text-white/60 sm:text-xs" title="Account 08 (1008)">Account 08 (1008)</h4>
+<span class="shrink-0 tabular-nums text-sm font-semibold text-white" dusk="home-account-balance">
+                $1.00
+            </span>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</a>
+<div class="flex shrink-0 flex-col items-end gap-1.5 py-3 pe-3 text-right sm:pe-4" dusk="account-sync-details-acc_FIXTURE00000000000000008">
+<!--[if BLOCK]><![endif]-->
+<ui-dropdown class="shrink-0" data-account-menu="acc_FIXTURE00000000000000008" data-account-state="enabled" data-flux-dropdown="" position="bottom end">
+<button aria-label="Account actions" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" dusk="account-menu-acc_FIXTURE00000000000000008" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden" data-flux-menu="" popover="manual" wire:ignore="" x-on:beforetoggle="$event.newState === 'open' &amp;&amp; fillAccountMenu($el)">
+</ui-menu>
+</ui-dropdown>
+<!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</div>
+</li>
+<li wire:key="home-account-acc_FIXTURE00000000000000009">
+<div class="flex min-w-0 items-center" data-account-row="">
+<a class="flex min-w-0 flex-1 items-center gap-3 px-3 py-3 transition focus-visible:outline-2 focus-visible:outline-indigo-400 sm:gap-4 sm:px-4 hover:bg-white/[0.03]" dusk="home-account-acc_FIXTURE00000000000000009" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?account=acc_FIXTURE00000000000000009">
+<span class="flex w-11 shrink-0 justify-center max-[360px]:w-8! sm:w-12">
+<span class="flex size-6 items-center justify-center rounded-md bg-white/5 text-white/70">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+</span>
+<div class="flex min-w-0 flex-1 flex-col items-start gap-0.5">
+<h4 class="min-w-0 w-full whitespace-normal break-words order-1 text-[11px] font-normal text-white/60 sm:text-xs" title="Account 09 (1009)">Account 09 (1009)</h4>
+<span class="shrink-0 tabular-nums text-sm font-semibold text-white" dusk="home-account-balance">
+                $1.00
+            </span>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</a>
+<div class="flex shrink-0 flex-col items-end gap-1.5 py-3 pe-3 text-right sm:pe-4" dusk="account-sync-details-acc_FIXTURE00000000000000009">
+<!--[if BLOCK]><![endif]-->
+<ui-dropdown class="shrink-0" data-account-menu="acc_FIXTURE00000000000000009" data-account-state="enabled" data-flux-dropdown="" position="bottom end">
+<button aria-label="Account actions" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" dusk="account-menu-acc_FIXTURE00000000000000009" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden" data-flux-menu="" popover="manual" wire:ignore="" x-on:beforetoggle="$event.newState === 'open' &amp;&amp; fillAccountMenu($el)">
+</ui-menu>
+</ui-dropdown>
+<!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</div>
+</li>
+<li wire:key="home-account-acc_FIXTURE00000000000000010">
+<div class="flex min-w-0 items-center" data-account-row="">
+<a class="flex min-w-0 flex-1 items-center gap-3 px-3 py-3 transition focus-visible:outline-2 focus-visible:outline-indigo-400 sm:gap-4 sm:px-4 hover:bg-white/[0.03]" dusk="home-account-acc_FIXTURE00000000000000010" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?account=acc_FIXTURE00000000000000010">
+<span class="flex w-11 shrink-0 justify-center max-[360px]:w-8! sm:w-12">
+<span class="flex size-6 items-center justify-center rounded-md bg-white/5 text-white/70">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+</span>
+<div class="flex min-w-0 flex-1 flex-col items-start gap-0.5">
+<h4 class="min-w-0 w-full whitespace-normal break-words order-1 text-[11px] font-normal text-white/60 sm:text-xs" title="Account 10 (1010)">Account 10 (1010)</h4>
+<span class="shrink-0 tabular-nums text-sm font-semibold text-white" dusk="home-account-balance">
+                $1.00
+            </span>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</a>
+<div class="flex shrink-0 flex-col items-end gap-1.5 py-3 pe-3 text-right sm:pe-4" dusk="account-sync-details-acc_FIXTURE00000000000000010">
+<!--[if BLOCK]><![endif]-->
+<ui-dropdown class="shrink-0" data-account-menu="acc_FIXTURE00000000000000010" data-account-state="enabled" data-flux-dropdown="" position="bottom end">
+<button aria-label="Account actions" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" dusk="account-menu-acc_FIXTURE00000000000000010" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden" data-flux-menu="" popover="manual" wire:ignore="" x-on:beforetoggle="$event.newState === 'open' &amp;&amp; fillAccountMenu($el)">
+</ui-menu>
+</ui-dropdown>
+<!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</div>
+</li>
+<li wire:key="home-account-acc_FIXTURE00000000000000011">
+<div class="flex min-w-0 items-center" data-account-row="">
+<a class="flex min-w-0 flex-1 items-center gap-3 px-3 py-3 transition focus-visible:outline-2 focus-visible:outline-indigo-400 sm:gap-4 sm:px-4 hover:bg-white/[0.03]" dusk="home-account-acc_FIXTURE00000000000000011" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?account=acc_FIXTURE00000000000000011">
+<span class="flex w-11 shrink-0 justify-center max-[360px]:w-8! sm:w-12">
+<span class="flex size-6 items-center justify-center rounded-md bg-white/5 text-white/70">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+</span>
+<div class="flex min-w-0 flex-1 flex-col items-start gap-0.5">
+<h4 class="min-w-0 w-full whitespace-normal break-words order-1 text-[11px] font-normal text-white/60 sm:text-xs" title="Account 11 (1011)">Account 11 (1011)</h4>
+<span class="shrink-0 tabular-nums text-sm font-semibold text-white" dusk="home-account-balance">
+                $1.00
+            </span>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</a>
+<div class="flex shrink-0 flex-col items-end gap-1.5 py-3 pe-3 text-right sm:pe-4" dusk="account-sync-details-acc_FIXTURE00000000000000011">
+<!--[if BLOCK]><![endif]-->
+<ui-dropdown class="shrink-0" data-account-menu="acc_FIXTURE00000000000000011" data-account-state="enabled" data-flux-dropdown="" position="bottom end">
+<button aria-label="Account actions" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" dusk="account-menu-acc_FIXTURE00000000000000011" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden" data-flux-menu="" popover="manual" wire:ignore="" x-on:beforetoggle="$event.newState === 'open' &amp;&amp; fillAccountMenu($el)">
+</ui-menu>
+</ui-dropdown>
+<!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</div>
+</li>
+<li wire:key="home-account-acc_FIXTURE00000000000000012">
+<div class="flex min-w-0 items-center" data-account-row="">
+<a class="flex min-w-0 flex-1 items-center gap-3 px-3 py-3 transition focus-visible:outline-2 focus-visible:outline-indigo-400 sm:gap-4 sm:px-4 hover:bg-white/[0.03]" dusk="home-account-acc_FIXTURE00000000000000012" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?account=acc_FIXTURE00000000000000012">
+<span class="flex w-11 shrink-0 justify-center max-[360px]:w-8! sm:w-12">
+<span class="flex size-6 items-center justify-center rounded-md bg-white/5 text-white/70">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+</span>
+<div class="flex min-w-0 flex-1 flex-col items-start gap-0.5">
+<h4 class="min-w-0 w-full whitespace-normal break-words order-1 text-[11px] font-normal text-white/60 sm:text-xs" title="Account 12 (1012)">Account 12 (1012)</h4>
+<span class="shrink-0 tabular-nums text-sm font-semibold text-white" dusk="home-account-balance">
+                $1.00
+            </span>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</a>
+<div class="flex shrink-0 flex-col items-end gap-1.5 py-3 pe-3 text-right sm:pe-4" dusk="account-sync-details-acc_FIXTURE00000000000000012">
+<!--[if BLOCK]><![endif]-->
+<ui-dropdown class="shrink-0" data-account-menu="acc_FIXTURE00000000000000012" data-account-state="enabled" data-flux-dropdown="" position="bottom end">
+<button aria-label="Account actions" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" dusk="account-menu-acc_FIXTURE00000000000000012" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden" data-flux-menu="" popover="manual" wire:ignore="" x-on:beforetoggle="$event.newState === 'open' &amp;&amp; fillAccountMenu($el)">
+</ui-menu>
+</ui-dropdown>
+<!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</div>
+</li>
+<li wire:key="home-account-acc_FIXTURE00000000000000013">
+<div class="flex min-w-0 items-center" data-account-row="">
+<a class="flex min-w-0 flex-1 items-center gap-3 px-3 py-3 transition focus-visible:outline-2 focus-visible:outline-indigo-400 sm:gap-4 sm:px-4 hover:bg-white/[0.03]" dusk="home-account-acc_FIXTURE00000000000000013" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?account=acc_FIXTURE00000000000000013">
+<span class="flex w-11 shrink-0 justify-center max-[360px]:w-8! sm:w-12">
+<span class="flex size-6 items-center justify-center rounded-md bg-white/5 text-white/70">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+</span>
+<div class="flex min-w-0 flex-1 flex-col items-start gap-0.5">
+<h4 class="min-w-0 w-full whitespace-normal break-words order-1 text-[11px] font-normal text-white/60 sm:text-xs" title="Account 13 (1013)">Account 13 (1013)</h4>
+<span class="shrink-0 tabular-nums text-sm font-semibold text-white" dusk="home-account-balance">
+                $1.00
+            </span>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</a>
+<div class="flex shrink-0 flex-col items-end gap-1.5 py-3 pe-3 text-right sm:pe-4" dusk="account-sync-details-acc_FIXTURE00000000000000013">
+<!--[if BLOCK]><![endif]-->
+<ui-dropdown class="shrink-0" data-account-menu="acc_FIXTURE00000000000000013" data-account-state="enabled" data-flux-dropdown="" position="bottom end">
+<button aria-label="Account actions" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" dusk="account-menu-acc_FIXTURE00000000000000013" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden" data-flux-menu="" popover="manual" wire:ignore="" x-on:beforetoggle="$event.newState === 'open' &amp;&amp; fillAccountMenu($el)">
+</ui-menu>
+</ui-dropdown>
+<!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</div>
+</li>
+<li wire:key="home-account-acc_FIXTURE00000000000000014">
+<div class="flex min-w-0 items-center" data-account-row="">
+<a class="flex min-w-0 flex-1 items-center gap-3 px-3 py-3 transition focus-visible:outline-2 focus-visible:outline-indigo-400 sm:gap-4 sm:px-4 hover:bg-white/[0.03]" dusk="home-account-acc_FIXTURE00000000000000014" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?account=acc_FIXTURE00000000000000014">
+<span class="flex w-11 shrink-0 justify-center max-[360px]:w-8! sm:w-12">
+<span class="flex size-6 items-center justify-center rounded-md bg-white/5 text-white/70">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+</span>
+<div class="flex min-w-0 flex-1 flex-col items-start gap-0.5">
+<h4 class="min-w-0 w-full whitespace-normal break-words order-1 text-[11px] font-normal text-white/60 sm:text-xs" title="Account 14 (1014)">Account 14 (1014)</h4>
+<span class="shrink-0 tabular-nums text-sm font-semibold text-white" dusk="home-account-balance">
+                $1.00
+            </span>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</a>
+<div class="flex shrink-0 flex-col items-end gap-1.5 py-3 pe-3 text-right sm:pe-4" dusk="account-sync-details-acc_FIXTURE00000000000000014">
+<!--[if BLOCK]><![endif]-->
+<ui-dropdown class="shrink-0" data-account-menu="acc_FIXTURE00000000000000014" data-account-state="enabled" data-flux-dropdown="" position="bottom end">
+<button aria-label="Account actions" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" dusk="account-menu-acc_FIXTURE00000000000000014" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden" data-flux-menu="" popover="manual" wire:ignore="" x-on:beforetoggle="$event.newState === 'open' &amp;&amp; fillAccountMenu($el)">
+</ui-menu>
+</ui-dropdown>
+<!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</div>
+</li>
+<li wire:key="home-account-acc_FIXTURE00000000000000015">
+<div class="flex min-w-0 items-center" data-account-row="">
+<a class="flex min-w-0 flex-1 items-center gap-3 px-3 py-3 transition focus-visible:outline-2 focus-visible:outline-indigo-400 sm:gap-4 sm:px-4 hover:bg-white/[0.03]" dusk="home-account-acc_FIXTURE00000000000000015" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?account=acc_FIXTURE00000000000000015">
+<span class="flex w-11 shrink-0 justify-center max-[360px]:w-8! sm:w-12">
+<span class="flex size-6 items-center justify-center rounded-md bg-white/5 text-white/70">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+</span>
+<div class="flex min-w-0 flex-1 flex-col items-start gap-0.5">
+<h4 class="min-w-0 w-full whitespace-normal break-words order-1 text-[11px] font-normal text-white/60 sm:text-xs" title="Account 15 (1015)">Account 15 (1015)</h4>
+<span class="shrink-0 tabular-nums text-sm font-semibold text-white" dusk="home-account-balance">
+                $1.00
+            </span>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</a>
+<div class="flex shrink-0 flex-col items-end gap-1.5 py-3 pe-3 text-right sm:pe-4" dusk="account-sync-details-acc_FIXTURE00000000000000015">
+<!--[if BLOCK]><![endif]-->
+<ui-dropdown class="shrink-0" data-account-menu="acc_FIXTURE00000000000000015" data-account-state="enabled" data-flux-dropdown="" position="bottom end">
+<button aria-label="Account actions" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" dusk="account-menu-acc_FIXTURE00000000000000015" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden" data-flux-menu="" popover="manual" wire:ignore="" x-on:beforetoggle="$event.newState === 'open' &amp;&amp; fillAccountMenu($el)">
+</ui-menu>
+</ui-dropdown>
+<!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</div>
+</li>
+<li wire:key="home-account-acc_FIXTURE00000000000000016">
+<div class="flex min-w-0 items-center" data-account-row="">
+<a class="flex min-w-0 flex-1 items-center gap-3 px-3 py-3 transition focus-visible:outline-2 focus-visible:outline-indigo-400 sm:gap-4 sm:px-4 hover:bg-white/[0.03]" dusk="home-account-acc_FIXTURE00000000000000016" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?account=acc_FIXTURE00000000000000016">
+<span class="flex w-11 shrink-0 justify-center max-[360px]:w-8! sm:w-12">
+<span class="flex size-6 items-center justify-center rounded-md bg-white/5 text-white/70">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+</span>
+<div class="flex min-w-0 flex-1 flex-col items-start gap-0.5">
+<h4 class="min-w-0 w-full whitespace-normal break-words order-1 text-[11px] font-normal text-white/60 sm:text-xs" title="Account 16 (1016)">Account 16 (1016)</h4>
+<span class="shrink-0 tabular-nums text-sm font-semibold text-white" dusk="home-account-balance">
+                $1.00
+            </span>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</a>
+<div class="flex shrink-0 flex-col items-end gap-1.5 py-3 pe-3 text-right sm:pe-4" dusk="account-sync-details-acc_FIXTURE00000000000000016">
+<!--[if BLOCK]><![endif]-->
+<ui-dropdown class="shrink-0" data-account-menu="acc_FIXTURE00000000000000016" data-account-state="enabled" data-flux-dropdown="" position="bottom end">
+<button aria-label="Account actions" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" dusk="account-menu-acc_FIXTURE00000000000000016" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden" data-flux-menu="" popover="manual" wire:ignore="" x-on:beforetoggle="$event.newState === 'open' &amp;&amp; fillAccountMenu($el)">
+</ui-menu>
+</ui-dropdown>
+<!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</div>
+</li>
+<li wire:key="home-account-acc_FIXTURE00000000000000017">
+<div class="flex min-w-0 items-center" data-account-row="">
+<a class="flex min-w-0 flex-1 items-center gap-3 px-3 py-3 transition focus-visible:outline-2 focus-visible:outline-indigo-400 sm:gap-4 sm:px-4 hover:bg-white/[0.03]" dusk="home-account-acc_FIXTURE00000000000000017" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?account=acc_FIXTURE00000000000000017">
+<span class="flex w-11 shrink-0 justify-center max-[360px]:w-8! sm:w-12">
+<span class="flex size-6 items-center justify-center rounded-md bg-white/5 text-white/70">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+</span>
+<div class="flex min-w-0 flex-1 flex-col items-start gap-0.5">
+<h4 class="min-w-0 w-full whitespace-normal break-words order-1 text-[11px] font-normal text-white/60 sm:text-xs" title="Account 17 (1017)">Account 17 (1017)</h4>
+<span class="shrink-0 tabular-nums text-sm font-semibold text-white" dusk="home-account-balance">
+                $1.00
+            </span>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</a>
+<div class="flex shrink-0 flex-col items-end gap-1.5 py-3 pe-3 text-right sm:pe-4" dusk="account-sync-details-acc_FIXTURE00000000000000017">
+<!--[if BLOCK]><![endif]-->
+<ui-dropdown class="shrink-0" data-account-menu="acc_FIXTURE00000000000000017" data-account-state="enabled" data-flux-dropdown="" position="bottom end">
+<button aria-label="Account actions" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" dusk="account-menu-acc_FIXTURE00000000000000017" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden" data-flux-menu="" popover="manual" wire:ignore="" x-on:beforetoggle="$event.newState === 'open' &amp;&amp; fillAccountMenu($el)">
+</ui-menu>
+</ui-dropdown>
+<!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</div>
+</li>
+<li wire:key="home-account-acc_FIXTURE00000000000000018">
+<div class="flex min-w-0 items-center" data-account-row="">
+<a class="flex min-w-0 flex-1 items-center gap-3 px-3 py-3 transition focus-visible:outline-2 focus-visible:outline-indigo-400 sm:gap-4 sm:px-4 hover:bg-white/[0.03]" dusk="home-account-acc_FIXTURE00000000000000018" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?account=acc_FIXTURE00000000000000018">
+<span class="flex w-11 shrink-0 justify-center max-[360px]:w-8! sm:w-12">
+<span class="flex size-6 items-center justify-center rounded-md bg-white/5 text-white/70">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+</span>
+<div class="flex min-w-0 flex-1 flex-col items-start gap-0.5">
+<h4 class="min-w-0 w-full whitespace-normal break-words order-1 text-[11px] font-normal text-white/60 sm:text-xs" title="Account 18 (1018)">Account 18 (1018)</h4>
+<span class="shrink-0 tabular-nums text-sm font-semibold text-white" dusk="home-account-balance">
+                $1.00
+            </span>
+<!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</a>
+<div class="flex shrink-0 flex-col items-end gap-1.5 py-3 pe-3 text-right sm:pe-4" dusk="account-sync-details-acc_FIXTURE00000000000000018">
+<!--[if BLOCK]><![endif]-->
+<ui-dropdown class="shrink-0" data-account-menu="acc_FIXTURE00000000000000018" data-account-state="enabled" data-flux-dropdown="" position="bottom end">
+<button aria-label="Account actions" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white" data-flux-button="data-flux-button" dusk="account-menu-acc_FIXTURE00000000000000018" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+<ui-menu class="[:where(&amp;)]:min-w-48 p-[.3125rem] rounded-lg shadow-xs border border-zinc-200 dark:border-zinc-600 bg-white dark:bg-zinc-700 focus:outline-hidden" data-flux-menu="" popover="manual" wire:ignore="" x-on:beforetoggle="$event.newState === 'open' &amp;&amp; fillAccountMenu($el)">
+</ui-menu>
+</ui-dropdown>
+<!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]--><!--[if ENDBLOCK]><![endif]--> </div>
+</div>
+</li>
+<!--[if ENDBLOCK]><![endif]--> </ul>
+<!--[if ENDBLOCK]><![endif]--> </section>
+<!--[if ENDBLOCK]><![endif]--> <!--[if BLOCK]><![endif]--> <a class="flex items-center gap-2 rounded-b-xl px-3 py-3 text-xs text-indigo-400 transition hover:bg-white/[0.03] hover:text-indigo-300 focus-visible:outline-2 focus-visible:outline-indigo-400 sm:px-4" dusk="home-connect-account" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/link/create">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-4" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+
+                    Add Connection
+        </a>
+<!--[if ENDBLOCK]><![endif]--> </div>
+<!--[if BLOCK]><![endif]-->
+<template data-account-menu-items="">
+<!--[if BLOCK]><![endif]--> <a class="flex items-center px-2 py-1.5 w-full focus:outline-hidden select-none rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?account=__ACCOUNT__">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-icon="" data-flux-menu-item-icon="data-flux-menu-item-icon" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+
+            
+    Open transactions
+    </a>
+<!--[if ENDBLOCK]><![endif]--><button class="flex items-center px-2 py-1.5 w-full focus:outline-hidden select-none rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" dusk="rename-account-__ACCOUNT__" type="button" wire:click="startAccountRename('__ACCOUNT__')">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-icon="" data-flux-menu-item-icon="data-flux-menu-item-icon" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+
+            
+    Rename account
+    </button>
+<a class="flex items-center px-2 py-1.5 w-full focus:outline-hidden select-none rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?account=__ACCOUNT__&amp;tab=settings">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-icon="" data-flux-menu-item-icon="data-flux-menu-item-icon" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+
+            
+    Account settings
+    </a>
+<div class="-mx-[.3125rem] my-[.3125rem] h-px" data-flux-menu-separator="">
+<div class="border-0 [print-color-adjust:exact] bg-zinc-800/15 dark:bg-white/20 h-px w-full dark:bg-zinc-600!" data-flux-separator="" data-orientation="horizontal" role="none"></div>
+</div>
+<!--[if BLOCK]><![endif]--> <button class="flex items-center px-2 py-1.5 w-full focus:outline-hidden select-none rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:text-red-600 data-active:bg-red-50 dark:text-white dark:data-active:bg-red-400/20 dark:data-active:text-red-400 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-account-state="enabled" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" dusk="disable-__ACCOUNT__" type="button" wire:click="setAccountEnabled('__ACCOUNT__', false)" wire:confirm="Disable this account? Its transactions are hidden and stop counting toward your volume. Nothing is deleted — enable it any time.">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-icon="" data-flux-menu-item-icon="data-flux-menu-item-icon" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+
+            
+    Disable account
+    </button>
+<!--[if ENDBLOCK]><![endif]--><!--[if BLOCK]><![endif]--> <button class="flex items-center px-2 py-1.5 w-full focus:outline-hidden select-none rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current" data-account-state="disabled" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon" dusk="enable-__ACCOUNT__" type="button" wire:click="setAccountEnabled('__ACCOUNT__', true)">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-icon="" data-flux-menu-item-icon="data-flux-menu-item-icon" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+
+            
+    Enable account
+    </button>
+<!--[if ENDBLOCK]><![endif]--> </template>
+<!--[if ENDBLOCK]><![endif]--></section>
+</section>
+<!--[if ENDBLOCK]><![endif]--> <!--[if ENDBLOCK]><![endif]--></div>
+</div>
+</div>
+</div>
+<nav aria-label="Main navigation" class="fixed inset-x-0 bottom-0 z-10 grid h-[var(--mobile-nav-height)] grid-cols-5 gap-0 border-t border-white/10 bg-gray-900/95 p-1 pb-[calc(0.25rem+env(safe-area-inset-bottom))] backdrop-blur lg:hidden" dusk="mobile-navigation">
+<a class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-10 text-sm rounded-lg gap-2 ps-4 pe-4 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white h-full! min-w-0 px-1! text-white/60!" data-flux-button="data-flux-button" dusk="mobile-nav-dashboard" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/dashboard">
+<span class="flex flex-col items-center gap-1">
+<span class="relative">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-5" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+<span class="text-[10px] leading-4 min-[360px]:text-[11px]">Home</span>
+</span>
+</a>
+<a aria-current="page" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-10 text-sm rounded-lg gap-2 ps-4 pe-4 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white h-full! min-w-0 px-1! bg-indigo-500/10 text-indigo-300!" data-flux-button="data-flux-button" dusk="mobile-nav-accounts" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts">
+<span class="flex flex-col items-center gap-1">
+<span class="relative">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+<span class="text-[10px] leading-4 min-[360px]:text-[11px]">Accounts</span>
+</span>
+</a>
+<a class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-10 text-sm rounded-lg gap-2 ps-4 pe-4 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white h-full! min-w-0 px-1! text-white/60!" data-flux-button="data-flux-button" dusk="mobile-nav-transactions" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/transactions">
+<span class="flex flex-col items-center gap-1">
+<span class="relative">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-5" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+<span class="text-[10px] leading-4 min-[360px]:text-[11px]">Transactions</span>
+</span>
+</a>
+<a class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-10 text-sm rounded-lg gap-2 ps-4 pe-4 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white h-full! min-w-0 px-1! text-white/60!" data-flux-button="data-flux-button" dusk="mobile-nav-categorizer" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/categorizer">
+<span class="flex flex-col items-center gap-1">
+<span class="relative">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-5" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+<span class="text-[10px] leading-4 min-[360px]:text-[11px]">Categories</span>
+</span>
+</a>
+<a class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-10 text-sm rounded-lg gap-2 ps-4 pe-4 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white h-full! min-w-0 px-1! text-white/60!" data-flux-button="data-flux-button" dusk="mobile-nav-reports" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/reports">
+<span class="flex flex-col items-center gap-1">
+<span class="relative">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-6 size-5" data-flux-icon="" data-slot="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+<span class="text-[10px] leading-4 min-[360px]:text-[11px]">Reports</span>
+</span>
+</a>
+</nav>
+</div>
+</div>
+
+<div class="spatie-support-bubble | pointer-events-none fixed bottom-[var(--mobile-nav-height,0px)] right-0 text-black text-base items-end z-30 flex-col m-4 gap-3 w-[calc(100vw-2rem)] sm:w-[340px] max-w-[calc(100vw-2rem)]" style="display: none;">
+<div class="spatie-support-bubble__container | pointer-events-auto bg-white shadow-xl border border-gray-300 rounded p-4 sm:p-6 transition transform translate-x-full opacity-0 max-h-[calc(100dvh-6.5rem-var(--mobile-nav-height,0px))] overflow-y-auto overscroll-contain">
+<div class="spatie-support-bubble__form">
+<form action="https://fintable.io/api/support-bubble" class="flex flex-col gap-6 text-base" method="post">
+<h3 class="text-md font-bold">Questions?</h3><div class="bg-lime-50 border border-lime-200 rounded p-3 mb-4"><p class="text-sm font-semibold text-gray-900 mb-2">Docs</p><p class="text-sm text-gray-600 mb-3">Our User Guide may have the answer you're looking for.</p><a class="inline-flex items-center px-3 py-2 border border-transparent text-xs font-medium rounded text-white bg-lime-600 hover:bg-lime-700" href="https://fintable.io/guide" target="_blank">📖 User Guide</a></div><p>Send us an email and we will usually respond within 1 business day.</p>
+<p class="spatie-support-bubble__error | text-red-600" style="display: none"></p>
+<div aria-hidden="true" id="my_name_cHC7PMcbFdrjAyMq_wrap" style="display: none">
+<input autocomplete="nope" id="my_name_cHC7PMcbFdrjAyMq" name="my_name_cHC7PMcbFdrjAyMq" tabindex="-1" type="text" value=""/>
+<input autocomplete="off" name="valid_from" tabindex="-1" type="text" value="eyJpdiI6IkxrejRoR0g5QTd4N09TWmR2bTBucHc9PSIsInZhbHVlIjoiSG1UdjlaK1hSMTFNM1RxVUoxcTA1Zz09IiwibWFjIjoiMjQ1Y2RlODg3NGJkYmMxZDliY2ViNWFjMjY5OWI0MjIzZWEyYmQ0MDkyYWFmNDZkOWY5NjdjYWMzZjQ2NmMzOSIsInRhZyI6IiJ9"/>
+</div>
+<input name="url" type="hidden" value="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts"/>
+<label class="font-medium text-sm hidden" for="support-bubble-name">
+    Name
+
+            <input autocomplete="name" class="bg-gray-100 border border-gray-200 w-full max-w-full p-2 rounded-sm shadow-input text-gray-800 text-base" id="support-bubble-name" name="name" required="" type="text" value="Fixture User"/>
+</label>
+<label class="font-medium text-sm hidden" for="support-bubble-email">
+    E-mail
+
+            <input autocomplete="email" class="bg-gray-100 border border-gray-200 w-full max-w-full p-2 rounded-sm shadow-input text-gray-800 text-base" id="support-bubble-email" name="email" required="" type="email" value="user@example.com"/>
+</label>
+<label class="font-medium text-sm" for="support-bubble-subject">
+    Subject
+
+            <input autocomplete="off" class="bg-gray-100 border border-gray-200 w-full max-w-full p-2 rounded-sm shadow-input text-gray-800 text-base" id="support-bubble-subject" name="subject" required="" type="text" value=""/>
+</label>
+<label class="font-medium text-sm" for="support-bubble-message">
+    How can we help?
+
+            <textarea autocomplete="off" class="bg-gray-100 border border-gray-200 w-full max-w-full p-2 rounded-sm shadow-input text-gray-800 text-base" id="support-bubble-message" name="message" required="" rows="4"></textarea>
+</label>
+<button class="inline-flex place-center px-4 py-3 h-10 border-0 bg-purple-500 hover:bg-purple-600 active:bg-purple-600 overflow-hidden rounded-sm text-white leading-none no-underline" type="submit">Submit</button>
+</form>
+</div>
+<div class="spatie-support-bubble__response" style="display: none">
+</div>
+</div>
+<div class="spatie-support-bubble__button | pointer-events-auto">
+<button aria-label="Support" class="relative bg-purple-400 rounded-full shadow-lg w-14 h-14 text-black p-4" type="button">
+<svg class="absolute inset-0 m-auto opacity-100 transition-opacity duration-300 ease-in-out size-7" fill="none" id="support-bubble-chat-icon" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+<svg class="absolute inset-0 m-auto opacity-0 transition-opacity duration-300 ease-in-out size-7" fill="none" id="support-bubble-close-icon" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+</div>
+</div>
+
+
+<ui-modal data-flux-modal="">
+<dialog class="" data-flux-modal-overflow="" data-modal="display-preferences" wire:ignore.self="" x-data="fluxModal('display-preferences', null)" x-on:close="window.fintableCloseDisplayPrefs &amp;&amp; window.fintableCloseDisplayPrefs()" x-on:modal-close.document="handleClose($event)" x-on:modal-show.document="handleShow($event)">
+<div class="flex min-h-full items-center justify-center p-4 sm:p-6">
+<div class="relative p-6 [:where(&amp;)]:max-w-xl [:where(&amp;)]:min-w-xs shadow-lg rounded-xl bg-white dark:bg-zinc-800 ring ring-black/5 dark:ring-zinc-700 shadow-lg rounded-xl space-y-4 md:space-y-6" data-flux-modal-content="" style="width: calc(100vw - 2rem); min-width: 0; max-width: 24rem; max-height: calc(100dvh - 2rem); overflow-y: auto;">
+<div>
+<div class="font-medium [:where(&amp;)]:text-zinc-800 [:where(&amp;)]:dark:text-white text-base [&amp;:has(+[data-flux-subheading])]:mb-2 [[data-flux-subheading]+&amp;]:mt-2" data-flux-heading="">Language</div>
+</div>
+<div x-data="">
+<div class="flex flex-wrap gap-2">
+<a :class="$store.displayPrefs.language === 'en'
+                            ? 'bg-indigo-500 text-white'
+                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-white/10 dark:text-gray-300 dark:hover:bg-white/20'" class="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition" data-lang="en" href="https://fintable.io/w/ws_FIXTUREWORKSPACE000000000/accounts?show_locale_modal=true" x-bind:href="window.fintableLocalePreviewUrl('en')" x-on:click="window.fintablePrepareLocalePreview()">
+                    English
+                </a>
+<a :class="$store.displayPrefs.language === 'uk'
+                            ? 'bg-indigo-500 text-white'
+                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-white/10 dark:text-gray-300 dark:hover:bg-white/20'" class="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition" data-lang="uk" href="https://fintable.io/uk-UA/w/ws_FIXTUREWORKSPACE000000000/accounts?show_locale_modal=true" x-bind:href="window.fintableLocalePreviewUrl('uk')" x-on:click="window.fintablePrepareLocalePreview()">
+                    🇺🇦 Українська
+                </a>
+<a :class="$store.displayPrefs.language === 'es'
+                            ? 'bg-indigo-500 text-white'
+                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-white/10 dark:text-gray-300 dark:hover:bg-white/20'" class="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition" data-lang="es" href="https://fintable.io/es-ES/w/ws_FIXTUREWORKSPACE000000000/accounts?show_locale_modal=true" x-bind:href="window.fintableLocalePreviewUrl('es')" x-on:click="window.fintablePrepareLocalePreview()">
+                    🇪🇸 Español
+                </a>
+</div>
+</div>
+<div x-data="">
+<div class="font-medium [:where(&amp;)]:text-zinc-800 [:where(&amp;)]:dark:text-white text-sm [&amp;:has(+[data-flux-subheading])]:mb-2 [[data-flux-subheading]+&amp;]:mt-2 mb-2" data-flux-heading="">Currency</div>
+<div class="grid grid-cols-3 gap-x-1 rounded-full bg-gray-100 dark:bg-white/10 p-1 text-center text-xs/5 font-semibold text-gray-700 dark:text-gray-300">
+<label :class="$store.displayPrefs.currency === 'USD' ? 'bg-indigo-500 text-white' : ''" class="cursor-pointer rounded-full px-2.5 py-1 transition">
+<input :checked="$store.displayPrefs.currency === 'USD'" class="sr-only" type="radio" x-on:click="$store.displayPrefs.currency = 'USD'">
+<span>$ USD</span>
+</input></label>
+<label :class="$store.displayPrefs.currency === 'EUR' ? 'bg-indigo-500 text-white' : ''" class="cursor-pointer rounded-full px-2.5 py-1 transition">
+<input :checked="$store.displayPrefs.currency === 'EUR'" class="sr-only" type="radio" x-on:click="$store.displayPrefs.currency = 'EUR'">
+<span>€ EUR</span>
+</input></label>
+<label :class="$store.displayPrefs.currency === 'UAH' ? 'bg-indigo-500 text-white' : ''" class="cursor-pointer rounded-full px-2.5 py-1 transition">
+<input :checked="$store.displayPrefs.currency === 'UAH'" class="sr-only" type="radio" x-on:click="$store.displayPrefs.currency = 'UAH'">
+<span>₴ UAH</span>
+</input></label>
+</div>
+</div>
+<div x-data="">
+<div class="font-medium [:where(&amp;)]:text-zinc-800 [:where(&amp;)]:dark:text-white text-sm [&amp;:has(+[data-flux-subheading])]:mb-2 [[data-flux-subheading]+&amp;]:mt-2 mb-2" data-flux-heading="">Number Format</div>
+<div class="space-y-2">
+<label :class="$store.displayPrefs.numberFormat === 'comma-dot'
+                           ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-500/10'
+                           : 'border-gray-200 hover:border-gray-300 dark:border-white/10 dark:hover:border-white/20'" class="flex items-center justify-between rounded-lg border px-4 py-3 cursor-pointer transition">
+<div class="flex items-center gap-3">
+<input :checked="$store.displayPrefs.numberFormat === 'comma-dot'" class="text-indigo-500 focus:ring-indigo-500" name="numberFormat" type="radio" value="comma-dot" x-on:click="$store.displayPrefs.numberFormat = 'comma-dot'">
+<div class="text-sm font-medium text-gray-900 dark:text-white">1,000.00</div>
+</input></div>
+<span class="text-sm text-gray-500 dark:text-gray-400" x-text="'comma-dot' === 'space-comma'
+                              ? '1,000.00 ' + $store.displayPrefs.currencySymbol
+                              : $store.displayPrefs.currencySymbol + '1,000.00'"></span>
+</label>
+<label :class="$store.displayPrefs.numberFormat === 'space-comma'
+                           ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-500/10'
+                           : 'border-gray-200 hover:border-gray-300 dark:border-white/10 dark:hover:border-white/20'" class="flex items-center justify-between rounded-lg border px-4 py-3 cursor-pointer transition">
+<div class="flex items-center gap-3">
+<input :checked="$store.displayPrefs.numberFormat === 'space-comma'" class="text-indigo-500 focus:ring-indigo-500" name="numberFormat" type="radio" value="space-comma" x-on:click="$store.displayPrefs.numberFormat = 'space-comma'">
+<div class="text-sm font-medium text-gray-900 dark:text-white">1 000,00</div>
+</input></div>
+<span class="text-sm text-gray-500 dark:text-gray-400" x-text="'space-comma' === 'space-comma'
+                              ? '1 000,00 ' + $store.displayPrefs.currencySymbol
+                              : $store.displayPrefs.currencySymbol + '1 000,00'"></span>
+</label>
+</div>
+</div>
+<div class="flex">
+<div class="flex-1" data-flux-spacer=""></div>
+<ui-close data-flux-modal-close="">
+<button aria-label="Save" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-10 text-sm rounded-lg gap-2 ps-3 pe-4 inline-flex bg-[var(--color-accent)] hover:bg-[color-mix(in_oklab,_var(--color-accent),_transparent_10%)] text-[var(--color-accent-foreground)] border border-black/10 dark:border-0 shadow-[inset_0px_1px_--theme(--color-white/.2)] [[data-flux-button-group]_&amp;]:border-e-0 [:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-e-[1px] dark:[:is([data-flux-button-group]&gt;&amp;:last-child,_[data-flux-button-group]_:last-child&gt;&amp;)]:border-e-0 [:is([data-flux-button-group]&gt;&amp;:not(:first-child),_[data-flux-button-group]_:not(:first-child)&gt;&amp;)]:border-s-[1px]! [:is([data-flux-button-group]&gt;&amp;:not(:first-child),_[data-flux-button-group]_:not(:first-child)&gt;&amp;)]:border-s-[color-mix(in_srgb,var(--color-accent-foreground),transparent_85%)]" data-flux-button="data-flux-button" data-flux-group-target="data-flux-group-target" dusk="display-prefs-save" type="button" x-on:click="window.fintableSaveDisplayPrefs()">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-4" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"></svg>
+<span>Save</span>
+</button>
+</ui-close>
+</div>
+<div class="absolute top-0 end-0 mt-4 me-4">
+<ui-close data-flux-modal-close="">
+<button aria-label="Close modal" class="relative items-center font-medium justify-center whitespace-nowrap disabled:opacity-50 dark:disabled:opacity-50 disabled:cursor-default disabled:pointer-events-none disabled:shadow-none justify-center h-8 text-sm rounded-md gap-2 w-8 inline-flex bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-800 dark:text-white text-zinc-400! hover:text-zinc-800! dark:text-zinc-500! dark:hover:text-white!" data-flux-button="data-flux-button" type="button">
+<svg aria-hidden="true" class="shrink-0 [:where(&amp;)]:size-5" data-flux-icon="" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</button>
+</ui-close>
+</div>
+</div>
+</div>
+</dialog>
+</ui-modal>
+
+
+
+<div class="light">
+<ui-toast popover="manual" position="top right" wire:ignore="" x-data="" x-on:toast-show.document="! $el.closest('ui-toast-group') &amp;&amp; $el.showToast($event.detail)">
+<template>
+<div class="group/toast max-w-sm in-[ui-toast-group]:max-w-auto in-[ui-toast-group]:w-xs sm:in-[ui-toast-group]:w-sm" data-flux-toast-dialog="" data-variant="">
+<div class="p-2 flex rounded-xl shadow-lg bg-white border border-zinc-200 border-b-zinc-300/80 dark:bg-zinc-700 dark:border-zinc-600 group-data-invert/toast:bg-zinc-800 group-data-invert/toast:border-zinc-700 dark:group-data-invert/toast:bg-white dark:group-data-invert/toast:border-zinc-200 dark:group-data-invert/toast:border-b-zinc-300/80">
+<div class="flex-1 flex items-start gap-4 has-data-flux-toast-action:gap-2 overflow-hidden">
+<div class="flex-1 py-1.5 ps-2.5 flex gap-2">
+<svg class="hidden [[data-flux-toast-dialog][data-variant=success]_&amp;]:block shrink-0 mt-0.5 size-4 text-lime-600 dark:text-lime-400" fill="currentColor" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"></svg>
+<svg class="hidden [[data-flux-toast-dialog][data-variant=warning]_&amp;]:block shrink-0 mt-0.5 size-4 text-amber-500 dark:text-amber-400" fill="currentColor" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"></svg>
+<svg class="hidden [[data-flux-toast-dialog][data-variant=info]_&amp;]:block shrink-0 mt-0.5 size-4 text-cyan-500 dark:text-cyan-400" fill="currentColor" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"></svg>
+<svg class="hidden [[data-flux-toast-dialog][data-variant=danger]_&amp;]:block shrink-0 mt-0.5 size-4 text-rose-500 dark:text-rose-400" fill="currentColor" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"></svg>
+<div>
+<div class="font-medium text-sm text-zinc-800 dark:text-white group-data-invert/toast:text-white dark:group-data-invert/toast:text-zinc-800 [&amp;:not(:empty)+div]:font-normal [&amp;:not(:empty)+div]:text-zinc-500 [&amp;:not(:empty)+div]:dark:text-zinc-300 group-data-invert/toast:[&amp;:not(:empty)+div]:text-zinc-300 dark:group-data-invert/toast:[&amp;:not(:empty)+div]:text-zinc-500 [&amp;:not(:empty)]:pb-2"><slot name="heading"></slot></div>
+<div class="font-medium text-sm text-zinc-800 dark:text-white group-data-invert/toast:text-white dark:group-data-invert/toast:text-zinc-800"><slot name="text"></slot></div>
+<template name="link">
+<a class="block mt-2 font-medium text-sm text-[var(--color-accent-content)] decoration-[color-mix(in_oklab,var(--color-accent-content),transparent_80%)] underline underline-offset-[6px] hover:decoration-current group-data-invert/toast:text-white group-data-invert/toast:decoration-white/20 dark:group-data-invert/toast:text-zinc-800 dark:group-data-invert/toast:decoration-zinc-800/20"><slot name="text"></slot></a>
+</template>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<template name="action">
+<div class="flex items-center" data-flux-toast-action="">
+<button class="relative inline-flex h-8 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-zinc-800/5 px-3 text-sm font-medium text-zinc-800 hover:bg-zinc-800/10 data-loading:pointer-events-none dark:bg-white/10 dark:text-white dark:hover:bg-white/20 group-data-invert/toast:bg-white/10 group-data-invert/toast:text-white group-data-invert/toast:hover:bg-white/20 dark:group-data-invert/toast:bg-zinc-800/5 dark:group-data-invert/toast:text-zinc-800 dark:group-data-invert/toast:hover:bg-zinc-800/10 [&amp;[data-loading]_[data-flux-toast-action-label]]:opacity-0 [&amp;[data-loading]_[data-flux-loading-indicator]]:opacity-100" data-flux-toast-action-button="" type="button">
+<span class="transition-opacity" data-flux-toast-action-label=""></span>
+<span class="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity" data-flux-loading-indicator="">
+<svg aria-hidden="true" class="size-4 animate-spin" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"></svg>
+</span>
+</button>
+<a class="inline-flex h-8 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-zinc-800/5 px-3 text-sm font-medium text-zinc-800 hover:bg-zinc-800/10 dark:bg-white/10 dark:text-white dark:hover:bg-white/20 group-data-invert/toast:bg-white/10 group-data-invert/toast:text-white group-data-invert/toast:hover:bg-white/20 dark:group-data-invert/toast:bg-zinc-800/5 dark:group-data-invert/toast:text-zinc-800 dark:group-data-invert/toast:hover:bg-zinc-800/10" data-flux-toast-action-link="">
+<span data-flux-toast-action-label=""></span>
+</a>
+</div>
+</template>
+<ui-close class="flex items-center">
+<button as="button" class="inline-flex items-center font-medium justify-center gap-2 truncate disabled:opacity-50 dark:disabled:opacity-75 disabled:cursor-default h-8 text-sm rounded-md w-8 bg-transparent hover:bg-zinc-800/5 dark:hover:bg-white/15 text-zinc-400 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-white group-data-invert/toast:hover:bg-white/15 group-data-invert/toast:hover:text-white dark:group-data-invert/toast:hover:bg-zinc-800/5 dark:group-data-invert/toast:hover:text-zinc-800" type="button">
+<div>
+<svg aria-hidden="true" class="[:where(&amp;)]:size-5" data-slot="icon" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+</div>
+</button>
+</ui-close>
+</div>
+</div>
+</div>
+</div>
+</template>
+</ui-toast>
+<div wire:effects='{"listeners":["toast"]}' wire:id="XWw0gQSPKuyGfxaowbfI" wire:key="lw-3094885095-4-0-0" wire:name="toaster" wire:snapshot='{"data":{"heading":null,"text":null,"variant":null},"memo":{"id":"XWw0gQSPKuyGfxaowbfI","name":"toaster","path":"w\/ws_FIXTUREWORKSPACE000000000\/accounts","method":"GET","release":"a-a-a","children":[],"scripts":[],"assets":[],"errors":[],"locale":"en","islands":[]},@00000000000000000000000000000000000000000000000000000000000000"}'></div></div>
+
+
+</body>
+</html>
