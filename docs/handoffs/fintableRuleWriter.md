@@ -3,7 +3,7 @@ project: fintableRuleWriter
 session_n: 4
 gh_repo: "jasoncbraatz/fintable-mcp"
 branch: "main"
-gh_sha: "6c2511a66410b937edff7edae7cbf94f3dcbdf68"
+gh_sha: "a2d1d3c465170e010006c848bfb579bd031e65f2"
 updated: "2026-11-10"
 definition_of_done: "create_rule and create_bulk_rules refuse to report success they did not observe (tests), and the live Fintable account holds the 24 rules from rule-translation.md section 1 with before/after exports and a rollback list of the new rule ids"
 verify_cmd: "cd ~/repos/fintable-mcp && python3 -m pytest -q tests && B=~/Desktop/downloads/bookkeeper/backups && test -s $B/fintable-rules-before-20261110.json && test -s $B/fintable-rules-after-20261110.json && python3 -c \"import json,os;d=json.load(open(os.path.expanduser(\\\"~/Desktop/downloads/bookkeeper/backups/fintable-rules-added-20261110.json\\\")));assert len(d)==24\""
@@ -38,6 +38,8 @@ parking_lot: []
 
 ## Is the phase DONE?
 **Yes.** Both halves of the DoD are met and receipted. See `complete` status in rail_log. This handoff does not claim it ran.
+
+OPS: none -- this lane added 24 static categorization rules to Fintable and a code fix to the MCP writer; no service, cron, deploy or credential was created, so nothing runs that could break unwatched. Drift in the rule list is visible to any later list_rules vs fintable-rules-after-20261110.json.
 
 ## Rollback procedure
 `fintable_delete_rule` on each id in `fintable-rules-added-20261110.json` (rule list). Books side: the 39 rows were all blank before. `diy-categories-before-20261110.json` + `fintable-24rules-matched-rows-20261110.json` name them, and blanking them in Airtable restores the books. A rule delete alone does NOT un-categorize.
