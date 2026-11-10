@@ -975,6 +975,7 @@ async def fintable_create_bulk_categories(params: CreateBulkCategoriesInput) -> 
             "total_requested": len(params.names),
             "created_count": len(results["created"]),
             "failed_count": len(results["failed"]),
+            "not_attempted": len(params.rules) - len(results["created"]) - len(results["failed"]),
             "created": results["created"],
             "failed": results["failed"],
         }, indent=2)
@@ -1006,6 +1007,69 @@ class CreateRuleInput(BaseModel):
         return v.strip()
 
 
+# fintableRuleWriter (2026-11-10): the old writer guessed a component ("create-rule") and a
+# method ("createSimpleRule") against a DOM Fintable has since redesigned, then returned
+# {"success": true} without looking. The 2026-11-10 rules page carries ONE rule editor, the
+# `modal-rule` Livewire component, whose snapshot data is
+#   {rid, step, showModal, viewOnly, text, advancedPrompt, exampleTransactionJson,
+#    generatedJsonLogic, isLoading, generationError, cid, ruleType}
+# with a `selectRuleType` action at step 0. A simple rule is (text, cid). The save action's
+# name was NOT observable in the static page (the form renders only after step 0) -- it is
+# _RULE_SAVE_METHOD below, and the POST-VERIFY is what makes a wrong guess harmless: nothing
+# is reported created unless a re-list shows it.
+_RULE_COMPONENT = "modal-rule"
+_RULE_SAVE_METHOD = "save"
+
+
+def _norm(s: str) -> str:
+    return re.sub(r"\s+", " ", (s or "").strip()).casefold()
+
+
+def _resolve_category_id(categories: List[Dict[str, Any]], name: str) -> str:
+    """Category NAME -> cid. Refuses a missing name (this tool never creates categories) and
+    an ambiguous one (the same name under two groups -- clicking 'whichever renders first'
+    once filed rules under the wrong supercategory)."""
+    hits = [c for c in categories if _norm(c["name"]) == _norm(name)]
+    if not hits:
+        raise ValueError(f"Category '{name}' does not exist on Fintable; refusing (this tool does not create categories).")
+    if len(hits) > 1:
+        groups = ", ".join(c["group"] for c in hits)
+        raise ValueError(f"Category '{name}' is ambiguous (exists under: {groups}); refusing.")
+    return hits[0]["id"]
+
+
+def _existing_rule_for(rules: List[Dict[str, Any]], pattern: str) -> Optional[Dict[str, Any]]:
+    for r in rules:
+        if r["kind"] == "simple" and _norm(r["pattern"]) == _norm(pattern):
+            return r
+    return None
+
+
+def _verify_rule_created(before: List[Dict[str, Any]], after: List[Dict[str, Any]],
+                         pattern: str, category: str) -> Dict[str, Any]:
+    """POST-VERIFY. Success means: exactly one rule id appeared, none vanished, and the new
+    one is a simple rule with this pattern and this category. Anything else raises with what
+    was OBSERVED, so the caller reports UNVERIFIED instead of a success nobody saw."""
+    before_ids = {r["id"] for r in before}
+    after_ids = {r["id"] for r in after}
+    new = [r for r in after if r["id"] not in before_ids]
+    gone = sorted(before_ids - after_ids)
+    observed = {"before_total": len(before), "after_total": len(after),
+                "new_rules": new[:5], "vanished_ids": gone[:5]}
+    ok = (len(new) == 1 and not gone and new[0]["kind"] == "simple"
+          and _norm(new[0]["pattern"]) == _norm(pattern)
+          and _norm(new[0]["category"]) == _norm(category))
+    if not ok:
+        raise _Unverified(observed)
+    return new[0]
+
+
+class _Unverified(Exception):
+    def __init__(self, observed: Dict[str, Any]):
+        super().__init__("UNVERIFIED")
+        self.observed = observed
+
+
 @mcp.tool(
     name="fintable_create_rule",
     annotations={
@@ -1017,47 +1081,56 @@ class CreateRuleInput(BaseModel):
     },
 )
 async def fintable_create_rule(params: CreateRuleInput) -> str:
-    """Create a new simple categorization rule.
+    """Create a new simple categorization rule ('description contains PATTERN' -> CATEGORY).
 
-    A simple rule matches transaction descriptions containing the pattern text
-    and assigns them to the specified category. After creating rules, use
-    fintable_run_all_rules to apply them.
+    Refuses BEFORE writing if a simple rule with this pattern already exists or the category
+    is missing/ambiguous. After writing, re-lists the rules and reports success ONLY if exactly
+    one new rule with this pattern and category appeared; otherwise returns success=false with
+    error "UNVERIFIED" and what was observed. The result carries the new rule's id.
     """
     try:
         async with _get_client() as client:
             html, csrf, snapshots = await _fetch_page(client, "rules")
+            before = _parse_rules_from_html(html)
+            _silent_zero_guard("rules", html, len(before), "rule rows (pre-create listing)")
 
-            snap = snapshots.get("livepage-rules")
+            dup = _existing_rule_for(before, params.pattern)
+            if dup:
+                return json.dumps({
+                    "success": False, "error": "DUPLICATE",
+                    "message": f"A simple rule for '{params.pattern}' already exists (-> {dup['category']}); nothing written.",
+                    "existing": dup,
+                })
+
+            cat_html, _, _ = await _fetch_page(client, "categorizer")
+            cid = _resolve_category_id(_parse_categories_from_html(cat_html), params.category)
+
+            snap = snapshots.get(_RULE_COMPONENT)
             if not snap:
-                return "Error: Could not find the rules page component."
+                return json.dumps({"success": False, "error": "NO_EDITOR",
+                                   "message": f"The rules page has no '{_RULE_COMPONENT}' component; nothing written.",
+                                   "components": sorted(snapshots)})
 
-            # Try to find a create-rule modal component
-            create_snap = None
-            for name, data in snapshots.items():
-                if "create-rule" in name or "modal-rule" in name:
-                    create_snap = data
-                    break
+            await _livewire_call(
+                client, csrf, snap["snapshot_raw"], _RULE_SAVE_METHOD, [],
+                updates={"ruleType": "simple", "text": params.pattern, "cid": cid},
+            )
 
-            if create_snap:
-                result = await _livewire_call(
-                    client, csrf, create_snap["snapshot_raw"],
-                    "save", [],
-                    updates={
-                        "ruleType": "simple",
-                        "descriptionContains": params.pattern,
-                        "category": params.category,
-                    },
-                )
-            else:
-                result = await _livewire_call(
-                    client, csrf, snap["snapshot_raw"],
-                    "createSimpleRule", [params.pattern, params.category],
-                )
-
+            after_html, _, _ = await _fetch_page(client, "rules")
+            after = _parse_rules_from_html(after_html)
+            try:
+                rule = _verify_rule_created(before, after, params.pattern, params.category)
+            except _Unverified as u:
+                return json.dumps({
+                    "success": False, "error": "UNVERIFIED",
+                    "message": (f"Sent '{params.pattern}' -> {params.category} but a re-list did not show "
+                                "exactly one new matching rule. Do NOT assume it was created."),
+                    "observed": u.observed,
+                })
             return json.dumps({
-                "success": True,
-                "message": f"Rule created: '{params.pattern}' → {params.category}",
-                "note": "Use fintable_run_all_rules to apply this rule to existing transactions.",
+                "success": True, "verified": True,
+                "message": f"Rule created and observed: '{params.pattern}' -> {params.category}",
+                "rule": rule, "total_rules": len(after),
             })
     except Exception as e:
         return _handle_error(e)
@@ -1074,6 +1147,10 @@ class CreateBulkRulesInput(BaseModel):
         ),
         min_length=1,
         max_length=50,
+    )
+    stop_on_failure: bool = Field(
+        default=True,
+        description="Stop at the first rule that is refused or UNVERIFIED (default) instead of writing the rest.",
     )
     run_after_create: bool = Field(
         default=False,
@@ -1092,9 +1169,12 @@ class CreateBulkRulesInput(BaseModel):
     },
 )
 async def fintable_create_bulk_rules(params: CreateBulkRulesInput) -> str:
-    """Create multiple categorization rules at once — batch rule creation!
+    """Create multiple categorization rules, one verified create at a time.
 
-    Each rule maps a transaction description pattern to a category.
+    Each rule maps a transaction description pattern to a category and goes through
+    fintable_create_rule, so it counts as created only if a re-list observed it (the
+    "created" list carries each new rule's id: that list is the rollback list). Stops at the
+    first refusal/UNVERIFIED unless stop_on_failure=false.
     Optionally runs all rules after creation to categorize existing transactions.
     """
     results = {"created": [], "failed": []}
@@ -1111,13 +1191,18 @@ async def fintable_create_bulk_rules(params: CreateBulkRulesInput) -> str:
             try:
                 input_model = CreateRuleInput(pattern=pattern, category=category)
                 result_str = await fintable_create_rule(input_model)
-                result_data = json.loads(result_str)
-                if result_data.get("success"):
-                    results["created"].append(f"'{pattern}' → {category}")
-                else:
-                    results["failed"].append({"rule": f"'{pattern}' → {category}", "error": result_str})
+                try:
+                    result_data = json.loads(result_str)
+                except json.JSONDecodeError:
+                    result_data = {"success": False, "error": result_str[:200]}
             except Exception as e:
-                results["failed"].append({"rule": f"'{pattern}' → {category}", "error": str(e)[:200]})
+                result_data = {"success": False, "error": str(e)[:200]}
+            if result_data.get("success") and result_data.get("verified"):
+                results["created"].append(result_data["rule"])
+                continue
+            results["failed"].append({"rule": f"'{pattern}' → {category}", "result": result_data})
+            if params.stop_on_failure:
+                break
 
         # Optionally run all rules
         ran_rules = False
@@ -1133,6 +1218,7 @@ async def fintable_create_bulk_rules(params: CreateBulkRulesInput) -> str:
             "total_requested": len(params.rules),
             "created_count": len(results["created"]),
             "failed_count": len(results["failed"]),
+            "not_attempted": len(params.rules) - len(results["created"]) - len(results["failed"]),
             "created": results["created"],
             "failed": results["failed"],
             "rules_executed": ran_rules,
