@@ -1293,22 +1293,46 @@ async def fintable_delete_rule(params: DeleteRuleInput) -> str:
     """Delete a categorization rule by its ID.
 
     Use fintable_list_rules to find rule IDs. This is irreversible.
+    Refuses BEFORE writing if the id is not on the rules page. After writing, re-lists and
+    reports success ONLY if that id is gone and no other rule vanished; otherwise
+    success=false, error "UNVERIFIED", with what was observed. The result carries the
+    deleted rule (pattern/category) as the receipt.
     """
     try:
         async with _get_client() as client:
             html, csrf, snapshots = await _fetch_page(client, "rules")
+            before = _parse_rules_from_html(html)
+            _silent_zero_guard("rules", html, len(before), "rule rows (pre-delete listing)")
+            target = next((r for r in before if r["id"] == params.rule_id), None)
+            if not target:
+                return json.dumps({"success": False, "error": "NOT_FOUND",
+                                   "message": f"No rule '{params.rule_id}' on the rules page; nothing written."})
+
             snap = snapshots.get("livepage-rules")
             if not snap:
-                return "Error: Could not find the rules page component."
+                return json.dumps({"success": False, "error": "NO_EDITOR",
+                                   "message": "The rules page has no 'livepage-rules' component; nothing written."})
 
-            result = await _livewire_call(
+            await _livewire_call(
                 client, csrf, snap["snapshot_raw"],
                 "deleteRule", [params.rule_id],
             )
 
+            after_html, _, _ = await _fetch_page(client, "rules")
+            after = _parse_rules_from_html(after_html)
+            after_ids = {r["id"] for r in after}
+            gone = sorted({r["id"] for r in before} - after_ids)
+            if gone != [params.rule_id] or len(after) != len(before) - 1:
+                return json.dumps({
+                    "success": False, "error": "UNVERIFIED",
+                    "message": f"Sent deleteRule('{params.rule_id}') but a re-list did not show exactly that rule gone. Do NOT assume it was deleted.",
+                    "observed": {"before_total": len(before), "after_total": len(after),
+                                 "vanished_ids": gone[:5], "still_present": params.rule_id in after_ids},
+                })
             return json.dumps({
-                "success": True,
-                "message": f"Rule '{params.rule_id}' deleted.",
+                "success": True, "verified": True,
+                "message": f"Rule '{params.rule_id}' deleted and observed gone.",
+                "deleted": target, "total_rules": len(after),
             })
     except Exception as e:
         return _handle_error(e)

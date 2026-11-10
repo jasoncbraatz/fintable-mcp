@@ -134,3 +134,36 @@ def test_bulk_stops_at_first_unverified_and_lists_only_observed(monkeypatch):
     assert out["failed_count"] == 1 and out["failed"][0]["result"]["error"] == "UNVERIFIED"
     assert out["not_attempted"] == 1
     assert len(srv.calls) == 2
+
+
+def _delete(rid):
+    return json.loads(asyncio.run(F.fintable_delete_rule(F.DeleteRuleInput(rule_id=rid))))
+
+
+def _without_rule(html, rid):
+    i = html.find(f'wire:key="rule-{rid}"')
+    start = html.rfind("<div", 0, i)
+    nxt = html.find('wire:key="rule-', i + 10)
+    return html[:start] + html[html.rfind("<div", 0, nxt):]
+
+
+def test_verified_delete_reports_the_deleted_rule(monkeypatch):
+    srv = _Server(monkeypatch, lambda html, u: _without_rule(html, FIRST_ID))
+    out = _delete(FIRST_ID)
+    assert out["success"] is True and out["verified"] is True
+    assert out["deleted"]["id"] == FIRST_ID and out["deleted"]["pattern"] == "Home Depot"
+    assert [m for m, _ in srv.calls] == ["deleteRule"]
+
+
+def test_ignored_delete_is_unverified(monkeypatch):
+    _Server(monkeypatch, lambda html, u: html)
+    out = _delete(FIRST_ID)
+    assert out["success"] is False and out["error"] == "UNVERIFIED"
+    assert out["observed"]["still_present"] is True
+
+
+def test_delete_of_unknown_id_refused_before_any_write(monkeypatch):
+    srv = _Server(monkeypatch, lambda html, u: html)
+    out = _delete(NEW_ID)
+    assert out["success"] is False and out["error"] == "NOT_FOUND"
+    assert srv.calls == []
