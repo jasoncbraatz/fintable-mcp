@@ -1,6 +1,6 @@
 ---
 project: fintableRuleWriter
-session_n: 2
+session_n: 3
 gh_repo: "jasoncbraatz/fintable-mcp"
 branch: "main"
 gh_sha: "b01fd7ce207cd89b8f5ee5d2a6d2282d78dde9e3"
@@ -11,23 +11,30 @@ verify_seat: ""     # (ruling #670) set to a roster box name ONLY if verify_cmd 
                     # specific seat (e.g. it calls `claude -p`, which needs a logged-in
                     # keychain, not the board's bare ssh). Empty = run wherever `complete` runs.
 lessons_consulted: ["2026-11-10-fintable-dom-2026-11-10-fintable", "2026-09-01-fintable-rules-engine-measured-doing-create", "2026-10-10-fintable-mcp-live-verify-from-box", "2026-09-30-ledgerprimitive3-i30-fintable-s-rules-page"]
-live_theme: "inning 1: writer made honest (post-verify + 6 tests, 28/28 green); live leg blocked: no logged-in fintable session on darwin + ruling #1314 (Save applies retroactively)"
-phase: "CODE HALF DONE, LIVE HALF BLOCKED. create_rule/create_bulk_rules now refuse unobserved success (tests). Zero writes to Fintable so far. Waiting on ruling #1314 and on Jason logging into fintable.io in Chrome."
+live_theme: "inning 2: #1314 RULED A (go); delete_rule made honest (31/31); live leg still blocked on a fintable.io login only Jason holds (card 1220385489416137, pager #326)"
+phase: "CODE HALF DONE (create/bulk/delete all post-verified, 31 tests). LIVE HALF AUTHORIZED (#1314=A) but BLOCKED on auth: no unexpired fintable_session anywhere on darwin. Zero writes to Fintable so far."
 gate_passed: false
-next_at_bat: "1. Read ruling #1314. If B (recommended): no save until Jason has seen per-rule Matched-N. If A: proceed. If the ruling says park, park.
-2. Auth: no browser on darwin had a fintable session on 2026-11-10 (rookiepy Chrome + CDP :9222/:9366/:63160 all lacked the session cookie; only ads/cf cookies). Jason must log into fintable.io in Chrome first -- that is needs-jason, do not try to log in yourself.
-3. With a session: python3 scripts/probe_rule_modal.py (READ-ONLY: one selectRuleType round-trip, never saves). It prints the step-1 form's wire:model fields and wire:click actions. Confirm _RULE_SAVE_METHOD ('save', UNPROBED) and the update keys (ruleType/text/cid) in fintable_mcp.py; there may be an intermediate test/preview step that must be called first (lesson: wizard ends in a 'Matched N transactions' dry-run). Fix the constants + the test expectation, cp fintable_mcp.py src/fintable_mcp/server.py.
-4. Then the live steps 1-5 from the original brief (before-export 258 -> ONE create -> verify 259 -> 23 more via create_bulk_rules (stops at first UNVERIFIED; its created[] list carries ids = rollback list) -> after-export + added json -> sync ~/Scripts/fintable-mcp). Check each of the 24 categories in rule-translation.md section 1 against list_categories first; the writer itself refuses missing/ambiguous categories.
-FENCE unchanged: never run_all_rules / resync_spreadsheets / sync_accounts; delete_rule only on a rule this lane created wrongly."
+next_at_bat: "0. Check the login: sqlite3 \"file:$HOME/Library/Application Support/Google/Chrome/Default/Cookies?immutable=1\" \"select name,datetime(expires_utc/1000000-11644473600,'unixepoch') from cookies where host_key like '%fintable%' and name='fintable_session'\" (also try rookiepy). No unexpired fintable_session means you are still waiting. Do not log in yourself.
+1. With a session: python3 scripts/probe_rule_modal.py (READ-ONLY). Confirm _RULE_SAVE_METHOD ('save', UNPROBED) and the update keys (ruleType/text/cid). There may be a 'Matched N' preview step that has to come first. Fix the constants and the test expectation, then cp fintable_mcp.py src/fintable_mcp/server.py.
+2. Ruling #1314 = A, with conditions IN ORDER: export ALL rules -> ~/Desktop/downloads/bookkeeper/backups/fintable-rules-before-20261110.json (expect 258), create ONE, verify +1 AND that only that rule's matched rows changed (the 39-row backup is ~/Desktop/downloads/bookkeeper/backups/fintable-24rules-matched-rows-20261110.json, all blank before), then the other 23 via create_bulk_rules (stops at the first UNVERIFIED; created[] ids = rollback list -> fintable-rules-added-20261110.json, exactly 24), then the after-export, then sync ~/Scripts/fintable-mcp. Check the 24 categories against list_categories first.
+3. After the creates land: abridge.py decision performed --id 1314 --by <you> --ref <sha>.
+FENCE unchanged: never run_all_rules / resync_spreadsheets / sync_accounts; delete_rule (now post-verified) only on a rule this lane created wrongly."
 deploys_to: []
-blockers: ["ruling #1314 (Save applies retroactively; needs-ceo)", "needs-jason: no logged-in fintable.io session in any Chrome on darwin"]
+blockers: ["needs-jason: no unexpired fintable_session cookie in any Chrome profile on darwin (card 1220385489416137, pager #326 bundled to digest)"]
 drift_flags: []
 parking_lot: []
 ---
 
-# fintableRuleWriter — LIVING HANDOFF (session 2 next)
+# fintableRuleWriter — LIVING HANDOFF (session 3 next)
 
-WAITING_ON: kind=ruling key=1314
+## Inning 2 (2026-11-10, local-mbp2024-10504-d): what moved
+- **Ruling #1314 RULED A** by the architect: creating the 24 rules, including the retroactive apply, is authorized. It was measured: the 24 patterns match 39 DIY rows, all blank, so the save fills blanks and overwrites nothing. The conditions are ordered (see next_at_bat 2). PERFORMED is not stamped yet. Stamp it once the creates land.
+- **Auth is still the gate.** Inning 2 checked every Cookies DB on darwin (regular Chrome Default, ~/.pw-lanes/{fintable,braatzledger,...}, cogs-mover .cdp-profile). Every `fintable_session` has expired; the latest was 2026-10-01. No CDP Chrome is listening for fintable. It was filed through the door: card **1220385489416137** (NOW), with pager #326 (bundled to the digest because --by is 6.6 days out). The lane waits on that card.
+- **`fintable_delete_rule` made honest** (found in passing in i1; it is the rollback path). It refuses NOT_FOUND before any write. After `deleteRule` it re-lists, and reports success only if exactly that id is gone and nothing else vanished. Otherwise it returns UNVERIFIED with what it observed. On success it returns the deleted rule as the receipt. 3 new tests; `pytest -q tests` = **31 passed**; server.py re-synced.
+- Still unfixed from i1's found-in-passing: `run_all_rules` and `create_category` report unverified success, and `create_bulk_rules(run_after_create=True)` swallows exceptions. All of these are outside the DoD. run_all_rules is fenced off anyway.
+
+
+WAITING_ON: kind=card key=1220385489416137
 
 ## Inning 1 (2026-11-10, local-mbp2024-10504-d): what moved
 
@@ -65,4 +72,4 @@ Delete exactly the ids in `~/Desktop/downloads/bookkeeper/backups/fintable-rules
 - The `verify_cmd` hard-codes `20261110` export filenames. If the live leg happens on a later date, write the files under those exact names (they are receipts named for the project day) or open a ruler amend. Do not rename them silently.
 
 ## Is the phase DONE?
-**No.** The code half is met (tests). The live half (24 rules on Fintable, exports, rollback list) has not started and is gated on #1314 and a login.
+**No.** The code half is met (tests). The live half (24 rules on Fintable, exports, rollback list) has not started. #1314 is cleared, so the only gate left is Jason logging into fintable.io (card 1220385489416137).
