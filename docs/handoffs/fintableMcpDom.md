@@ -3,7 +3,7 @@ project: fintableMcpDom
 session_n: 2
 gh_repo: "jasoncbraatz/fintable-mcp"
 branch: "main"
-gh_sha: "7f5233d1c808225ff81c591dce49a351c4adf1fa"
+gh_sha: "e52747c1e08d61d3c8c8ba32cd802f8f99eed89b"
 updated: "2026-11-10"
 definition_of_done: "list_rules, list_accounts and list_categories each return real items from saved 2026-11-10 fixtures and from the live account, each refuses on a zero-item parse, and the copy in ~/Scripts/fintable-mcp is identical to the repo"
 verify_cmd: "cd ~/repos/fintable-mcp && python3 -m pytest -q tests && python3 scripts/smoke_readers.py && cmp -s fintable_mcp.py ~/Scripts/fintable-mcp/fintable_mcp.py"
