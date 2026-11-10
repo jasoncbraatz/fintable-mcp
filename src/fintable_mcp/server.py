@@ -357,89 +357,66 @@ async def _livewire_call(
 # HTML Parsing Helpers
 # ---------------------------------------------------------------------------
 def _parse_accounts_from_html(html: str) -> List[Dict[str, Any]]:
-    """Parse bank accounts and balances from the accounts page HTML."""
+    """Parse bank accounts and balances from the accounts page HTML.
+
+    fintableMcpDom (2026-11-10): /dash/v2/accounts now 302s to /w/<ws>/accounts, and an
+    account is an <li wire:key="home-account-acc_..."> inside a
+    <section wire:key="home-connection-group-<provider>~<id>" aria-label="<institution>">.
+    The old /dash/v2/link/overview/account/ links are gone, so the old parser answered
+    "No accounts found" against 18 real rows. Only the CURRENT workspace's accounts are on
+    the page; other workspaces need a workspace switch, which this reader never does.
+    """
     soup = BeautifulSoup(html, "html.parser")
     accounts = []
-
-    # Find bank connection sections — each has account links
-    for link in soup.find_all("a", href=re.compile(r"/dash/v2/link/overview/account/")):
-        text = link.get_text(strip=True, separator=" ")
-        href = link.get("href", "")
-
-        # Extract account name and ID from the link text and href
-        parts = href.split("/")
-        provider = parts[6] if len(parts) > 6 else ""
-        bank_id = parts[7] if len(parts) > 7 else ""
-        account_id = parts[8] if len(parts) > 8 else ""
-
-        # Parse name, balance, and latest transaction from text
-        name_match = re.search(r"^(.+?)(?:\s*\$[\d,.-]+|\s*·)", text)
-        balance_match = re.search(r"\$([\d,.-]+)", text)
-        date_match = re.search(r"Latest transaction:\s*([\d-]+)", text)
-
+    for li in soup.find_all("li", attrs={"wire:key": re.compile(r"^home-account-")}):
+        account_id = li["wire:key"][len("home-account-"):]
+        group = li.find_parent(attrs={"wire:key": re.compile(r"^home-connection-group-")})
+        group_key = group["wire:key"][len("home-connection-group-"):] if group else ""
+        provider, _, connection_id = group_key.partition("~")
+        h4 = li.find("h4")
+        name = (h4.get("title") or h4.get_text(strip=True)) if h4 else ""
+        bal = li.find(attrs={"dusk": "home-account-balance"})
+        menu = li.find(attrs={"data-account-state": True})
+        last4 = re.search(r"\((\d{4})\)\s*$", name)
         accounts.append({
-            "name": name_match.group(1).strip() if name_match else text.split("$")[0].strip(),
-            "balance": f"${balance_match.group(1)}" if balance_match else "N/A",
-            "latest_transaction": date_match.group(1) if date_match else "N/A",
+            "name": name,
+            "last4": last4.group(1) if last4 else "",
+            "balance": bal.get_text(strip=True).replace("\u2212", "-") if bal else "N/A",
+            "state": menu.get("data-account-state", "") if menu else "",
+            "institution": group.get("aria-label", "") if group else "",
             "provider": provider,
-            "bank_id": bank_id,
+            "connection_id": connection_id,
             "account_id": account_id,
-            "type": "depository / checking",
         })
-
     return accounts
 
 
 def _parse_categories_from_html(html: str) -> List[Dict[str, Any]]:
-    """Parse categories from the categorizer page sidebar."""
+    """Parse categories from the categorizer page.
+
+    fintableMcpDom (2026-11-10): the old parser took the text of every <button> on the page,
+    so it returned the real categories PLUS UI chrome ("Edit category", "Delete category",
+    "Cancel", "Integrations" -- 117 items for 37 categories). A category is now a
+    <div wire:key="category-<slug>_<cid>"> whose <p> is the name, nested in a
+    <div wire:key="category-group-<hash>"> whose badge is the group header. Anchored on the
+    wire:key, so a button label can never be counted as a category again.
+    """
     soup = BeautifulSoup(html, "html.parser")
     categories = []
-
-    # Categories are shown as buttons in the sidebar
-    current_group = "Uncategorized"
-
-    # Look for category group headers and individual category buttons
-    sidebar = soup.find_all(attrs={"wire:snapshot": True})
-    for el in sidebar:
-        snapshot_raw = el.get("wire:snapshot", "")
-        if "sidebar-category-selector" not in snapshot_raw:
+    for el in soup.find_all("div", attrs={"wire:key": re.compile(r"^category-(?!group-)")}):
+        p = el.find("p")
+        name = p.get_text(strip=True) if p else ""
+        if not name:
             continue
-
-        # Found the sidebar component — parse its contents
-        for child in el.descendants:
-            if hasattr(child, "get_text"):
-                text = child.get_text(strip=True)
-                if child.name == "a" and child.get("href", "").startswith("http"):
-                    continue
-                wire_click = child.get("wire:click", "") if hasattr(child, "get") else ""
-                if "deleteCategory" in str(wire_click):
-                    continue
-
-    # Simpler approach: extract from the snapshot data
-    for el in soup.find_all(attrs={"wire:snapshot": True}):
-        raw = el.get("wire:snapshot", "")
-        if "sidebar-category-selector" not in raw:
-            continue
-        try:
-            parsed = json.loads(raw)
-            user_data = parsed.get("data", {}).get("user", [])
-        except json.JSONDecodeError:
-            pass
-
-    # Parse visible category buttons from HTML
-    for btn in soup.find_all("button", attrs={"type": "button"}):
-        text = btn.get_text(strip=True)
-        if not text or len(text) > 50:
-            continue
-        # Skip non-category buttons
-        if text in ("Create category", "Use template", "Reset Categorizer", "Test Rule",
-                     "Sync", "Add", "Run All Rules", "Create rule", "Close modal", "Next",
-                     "Support", "Re-Sync to Spreadsheets"):
-            continue
-        wire_click = btn.get("wire:click", "")
-        if text and not wire_click.startswith("delete"):
-            categories.append({"name": text})
-
+        edit = el.find(attrs={"x-on:click": re.compile(r"edit-category")})
+        cid = re.search(r"cid:\s*'([^']+)'", edit["x-on:click"]) if edit else None
+        group_el = el.find_parent("div", attrs={"wire:key": re.compile(r"^category-group-")})
+        badge = group_el.find(attrs={"data-flux-badge": True}) if group_el else None
+        categories.append({
+            "name": name,
+            "group": badge.get_text(strip=True) if badge else "",
+            "id": cid.group(1) if cid else el["wire:key"][len("category-"):],
+        })
     return categories
 
 
@@ -471,57 +448,59 @@ _RULE_SIMPLE_RE = re.compile(r"^\s*['\"‘“]?(?P<pattern>.*?)['\"’”]?\s*»
 _RULE_ADVANCED_RE = re.compile(r"^\s*(?P<category>.+?)\s*\(Advanced\)\s*\|\s*(?P<expr>.+?)\s*$")
 
 
+def _classify_rule(display: str, cell_category: str) -> tuple:
+    m = _RULE_ADVANCED_RE.match(display)
+    if m:
+        return "advanced", m.group("expr"), cell_category or m.group("category")
+    m = _RULE_SIMPLE_RE.match(display)
+    if m and "»" in display:
+        return "simple", m.group("pattern").strip().strip("'\""), cell_category or m.group("category")
+    return "unknown", "", cell_category
+
+
 def _parse_rules_from_html(html: str) -> List[Dict[str, Any]]:
     """Parse category rules from the rules page HTML.
 
-    Anchored on the rule ROW, not on the view-rule button. The button used to carry the
-    rule's display text; it is now an icon-only action inside a tooltip in the actions
-    cell, so `button.get_text()` is the empty string and the old
-    `len(text.split("»")) == 2` test dropped every row on the floor -- silently, because
-    a drop and an absence looked the same. Measured 2026-09-05: 237 rows, 233 simple and
-    4 advanced. A row we cannot classify is EMITTED as kind="unknown" with its raw text,
-    never discarded: an unparseable rule is a finding for the caller, not a missing one.
+    Anchored on the rule ROW, never on a button's text (a button became icon-only once and
+    every rule dropped silently -- 215ee50). Two row shapes are understood:
+
+      current (2026-11-10, fintableMcpDom): <div wire:key="rule-<uuid>"> holding a <p> with
+        the display text and a data-flux-badge with the category. All rules render on ONE
+        page (258 measured, no paginator in the DOM or the livepage-rules snapshot).
+      legacy  (2026-09-05): one <tr> per rule with a $dispatch('view-rule', {rid}) button,
+        display in the first <td>, category in the second.
+
+    A row we cannot classify is EMITTED as kind="unknown" with its raw text, never
+    discarded: an unparseable rule is a finding for the caller, not a missing one.
     """
     soup = BeautifulSoup(html, "html.parser")
     rules: List[Dict[str, Any]] = []
-    seen_rows = set()
 
+    for row in soup.find_all("div", attrs={"wire:key": re.compile(r"^rule-")}):
+        p = row.find("p")
+        display = p.get_text(" ", strip=True) if p else ""
+        badge = row.find(attrs={"data-flux-badge": True})
+        kind, pattern, category = _classify_rule(display, badge.get_text(" ", strip=True) if badge else "")
+        rules.append({"id": row["wire:key"][len("rule-"):], "pattern": pattern,
+                      "category": category, "kind": kind, "display": display})
+    if rules:
+        return rules
+
+    seen_rows = set()
     for el in soup.find_all(attrs={"wire:click": re.compile(r"view-rule")}):
         row = el.find_parent("tr")
         if row is None or id(row) in seen_rows:
             continue
         seen_rows.add(id(row))
-
-        wire_click = el.get("wire:click", "")
-        rid_match = re.search(r"rid:\s*'([^']+)'", wire_click)
-        rid = rid_match.group(1) if rid_match else ""
-
+        rid_match = re.search(r"rid:\s*'([^']+)'", el.get("wire:click", ""))
         cells = row.find_all("td")
         display = cells[0].get_text(" ", strip=True) if cells else row.get_text(" ", strip=True)
         # The second cell is the category on its own -- authoritative, and free of the
         # quoting/guillemet games the display cell plays.
         cell_category = cells[1].get_text(" ", strip=True) if len(cells) > 1 else ""
-
-        m = _RULE_ADVANCED_RE.match(display)
-        if m:
-            kind, pattern = "advanced", m.group("expr")
-            category = cell_category or m.group("category")
-        else:
-            m = _RULE_SIMPLE_RE.match(display)
-            if m and "»" in display:
-                kind, pattern = "simple", m.group("pattern").strip().strip("'\"")
-                category = cell_category or m.group("category")
-            else:
-                kind, pattern = "unknown", ""
-                category = cell_category
-
-        rules.append({
-            "id": rid,
-            "pattern": pattern,
-            "category": category,
-            "kind": kind,
-            "display": display,
-        })
+        kind, pattern, category = _classify_rule(display, cell_category)
+        rules.append({"id": rid_match.group(1) if rid_match else "", "pattern": pattern,
+                      "category": category, "kind": kind, "display": display})
 
     return rules
 
@@ -638,8 +617,11 @@ async def fintable_list_accounts(params: ListAccountsInput) -> str:
         async with _get_client() as client:
             html, csrf, snapshots = await _fetch_page(client, "accounts")
             accounts = _parse_accounts_from_html(html)
-            if not accounts:
-                return "No accounts found. Make sure you have bank connections set up in Fintable."
+            _silent_zero_guard(
+                "accounts", html, len(accounts),
+                "one <li wire:key=\"home-account-acc_...\"> per account inside a "
+                "<section wire:key=\"home-connection-group-...\">",
+            )
             return json.dumps({"total": len(accounts), "accounts": accounts}, indent=2)
     except Exception as e:
         return _handle_error(e)
@@ -673,8 +655,10 @@ async def fintable_list_categories(params: ListCategoriesInput) -> str:
         async with _get_client() as client:
             html, csrf, snapshots = await _fetch_page(client, "categorizer")
             categories = _parse_categories_from_html(html)
-            if not categories:
-                return "No categories found. The categorizer may not be set up yet."
+            _silent_zero_guard(
+                "categories", html, len(categories),
+                "one <div wire:key=\"category-<slug>_<cid>\"> per category with its name in a <p>",
+            )
             return json.dumps({"total": len(categories), "categories": categories}, indent=2)
     except Exception as e:
         return _handle_error(e)
@@ -683,7 +667,7 @@ async def fintable_list_categories(params: ListCategoriesInput) -> str:
 class ListRulesInput(BaseModel):
     """Input for listing categorization rules."""
     model_config = ConfigDict(str_strip_whitespace=True, extra="forbid")
-    page: Optional[int] = Field(default=1, description="Page number for pagination", ge=1)
+    page: Optional[int] = Field(default=1, description="Always 1: Fintable renders every rule on one page", ge=1)
 
 
 @mcp.tool(
@@ -703,7 +687,7 @@ async def fintable_list_rules(params: ListRulesInput) -> str:
     When 'Run All Rules' is triggered, transactions matching the pattern get categorized.
 
     Args:
-        params: page number for pagination (rules are paginated).
+        params: page (always 1 -- every rule is on one page; page>1 is refused).
 
     Returns:
         str: JSON list of rules with id, pattern, category, and display text.
@@ -712,24 +696,18 @@ async def fintable_list_rules(params: ListRulesInput) -> str:
         async with _get_client() as client:
             html, csrf, snapshots = await _fetch_page(client, "rules")
 
-            # If page > 1, navigate to that page via Livewire
+            # fintableMcpDom (2026-11-10): every rule renders on the one page -- 258 measured,
+            # no paginator in the DOM and none in the livepage-rules snapshot. Page 1 IS all
+            # of them; a page 2 does not exist, so asking for it is refused, not answered [].
             if params.page and params.page > 1:
-                snap = snapshots.get("livepage-rules")
-                if snap:
-                    result = await _livewire_call(
-                        client, csrf, snap["snapshot_raw"],
-                        "gotoPage", [params.page, "page"],
-                    )
-                    if "components" in result:
-                        for comp in result["components"]:
-                            effects_html = comp.get("effects", {}).get("html", "")
-                            if effects_html:
-                                html = effects_html
-
+                raise ValueError(
+                    f"page={params.page}: Fintable renders ALL rules on a single page; "
+                    "call with page=1 (the default) to get every rule."
+                )
             rules = _parse_rules_from_html(html)
             _silent_zero_guard(
                 "rules", html, len(rules),
-                "one <tr> per rule containing a wire:click=\"$dispatch('view-rule', ...)\" button",
+                "one <div wire:key=\"rule-<uuid>\"> per rule (or a legacy <tr> with a view-rule button)",
             )
             by_kind: Dict[str, int] = {}
             for r in rules:
