@@ -1,56 +1,68 @@
 ---
 project: fintableRuleWriter
-session_n: 1
+session_n: 2
 gh_repo: "jasoncbraatz/fintable-mcp"
 branch: "main"
-gh_sha: "bc8e352e54de224720813cadbb0ced9a7fafc75d"
+gh_sha: "b01fd7ce207cd89b8f5ee5d2a6d2282d78dde9e3"
 updated: "2026-11-10"
 definition_of_done: "create_rule and create_bulk_rules refuse to report success they did not observe (tests), and the live Fintable account holds the 24 rules from rule-translation.md section 1 with before/after exports and a rollback list of the new rule ids"
 verify_cmd: "cd ~/repos/fintable-mcp && python3 -m pytest -q tests && B=~/Desktop/downloads/bookkeeper/backups && test -s $B/fintable-rules-before-20261110.json && test -s $B/fintable-rules-after-20261110.json && python3 -c \"import json,os;d=json.load(open(os.path.expanduser(\\\"~/Desktop/downloads/bookkeeper/backups/fintable-rules-added-20261110.json\\\")));assert len(d)==24\""
 verify_seat: ""     # (ruling #670) set to a roster box name ONLY if verify_cmd must run on a
                     # specific seat (e.g. it calls `claude -p`, which needs a logged-in
                     # keychain, not the board's bare ssh). Empty = run wherever `complete` runs.
-lessons_consulted: []
-live_theme: "session 0 — this skeleton was written by `rail.py handoff-init` and nobody has played an inning yet"
-phase: "SESSION 0. No inning has been played. The next worker's first act is to replace next_at_bat below with a real one."
+lessons_consulted: ["2026-11-10-fintable-dom-2026-11-10-fintable", "2026-09-01-fintable-rules-engine-measured-doing-create", "2026-10-10-fintable-mcp-live-verify-from-box", "2026-09-30-ledgerprimitive3-i30-fintable-s-rules-page"]
+live_theme: "inning 1: writer made honest (post-verify + 6 tests, 28/28 green); live leg blocked: no logged-in fintable session on darwin + ruling #1314 (Save applies retroactively)"
+phase: "CODE HALF DONE, LIVE HALF BLOCKED. create_rule/create_bulk_rules now refuse unobserved success (tests). Zero writes to Fintable so far. Waiting on ruling #1314 and on Jason logging into fintable.io in Chrome."
 gate_passed: false
-next_at_bat: "MAKE THE FINTABLE MCP'S RULE WRITER HONEST, then use it to copy 24 BraatzBooks rules onto Fintable.\n\nContext: ~/Desktop/downloads/HANDOFF-diytouchstone.md (tail); ~/repos/fintable-mcp (PUBLIC repo: synthetic fixtures only, raw captures stay in ~/.local/state/fintable-mcp/captures/); your sibling lane fintableMcpDom repaired the READERS today (258 rules / 18 accounts / 37 categories live).\n\nTHE DEFECT (read fintable_mcp.py fintable_create_rule, ~line 1019): it looks for a Livewire component whose name contains \"create-rule\" or \"modal-rule\", else calls `createSimpleRule` on \"livepage-rules\", and then returns {\"success\": true} WITHOUT ever checking that a rule exists. Those component/method names were guessed against a DOM Fintable has since redesigned. A writer that reports success it never observed is the same lie as a reader that reports zero.\n\nWHAT JASON ASKED (2026-11-10): \"The category SOT can now come from Braatzbooks, which will require building rules on fintable.\" The measured list: ~/repos/braatzio-plan/v3/ledger/touchstone/receipts/rule-translation.md section 1 = 24 TRANSLATABLE rules (pattern -> category), each proven on a 645-string corpus. Categories already exist on Fintable (all 35 DIY names; check each of the 24 targets is among the 37 before writing; if one is missing, STOP on that rule and list it -- do not create categories).\n\nFIRST AT-BAT (no write to Fintable): find the real create-a-simple-rule flow in the current pages (captures + the Livewire snapshots/components on the rules page). Write down the component, method and payload you will use, and why you believe it, in the handoff. Add a POST-VERIFY to create_rule and create_bulk_rules: after the call, re-list and require exactly one new rule with that pattern and category, else return an error that says UNVERIFIED and what was observed. Unit tests on synthetic fixtures for: verified create, create that the server ignored (must error), duplicate pattern already present (must refuse before calling).\n\nTHEN, live, in this order:\n1. Export every current rule (all pages) to ~/Desktop/downloads/bookkeeper/backups/fintable-rules-before-20261110.json (private, not git). Expect 258.\n2. Create ONE of the 24. Re-list. Require 259 and the exact pattern -> category. If not: STOP, write what happened, do not try a second.\n3. Create the other 23, verifying each. Expect 282.\n4. Save fintable-rules-after-20261110.json and fintable-rules-added-20261110.json (the 24 new rule ids + pattern + category) = the rollback list. Rollback procedure in the handoff: delete exactly those ids.\n5. Sync ~/Scripts/fintable-mcp/fintable_mcp.py with the repo (same mechanism fintableMcpDom used) and note that the desktop app must restart its MCP server to load it.\n\nFENCE: NEVER call run_all_rules, resync_spreadsheets or sync_accounts (re-categorizing history is a separate owner decision). delete_rule only on a rule THIS lane created wrongly in step 2/3, and say so. No category creation. No credentials in git or in the handoff. If Fintable shows a confirmation, a paywall or anything unexpected, stop and report."
+next_at_bat: "1. Read ruling #1314. If B (recommended): no save until Jason has seen per-rule Matched-N. If A: proceed. If the ruling says park, park.
+2. Auth: no browser on darwin had a fintable session on 2026-11-10 (rookiepy Chrome + CDP :9222/:9366/:63160 all lacked the session cookie; only ads/cf cookies). Jason must log into fintable.io in Chrome first -- that is needs-jason, do not try to log in yourself.
+3. With a session: python3 scripts/probe_rule_modal.py (READ-ONLY: one selectRuleType round-trip, never saves). It prints the step-1 form's wire:model fields and wire:click actions. Confirm _RULE_SAVE_METHOD ('save', UNPROBED) and the update keys (ruleType/text/cid) in fintable_mcp.py; there may be an intermediate test/preview step that must be called first (lesson: wizard ends in a 'Matched N transactions' dry-run). Fix the constants + the test expectation, cp fintable_mcp.py src/fintable_mcp/server.py.
+4. Then the live steps 1-5 from the original brief (before-export 258 -> ONE create -> verify 259 -> 23 more via create_bulk_rules (stops at first UNVERIFIED; its created[] list carries ids = rollback list) -> after-export + added json -> sync ~/Scripts/fintable-mcp). Check each of the 24 categories in rule-translation.md section 1 against list_categories first; the writer itself refuses missing/ambiguous categories.
+FENCE unchanged: never run_all_rules / resync_spreadsheets / sync_accounts; delete_rule only on a rule this lane created wrongly."
 deploys_to: []
-blockers: []
+blockers: ["ruling #1314 (Save applies retroactively; needs-ceo)", "needs-jason: no logged-in fintable.io session in any Chrome on darwin"]
 drift_flags: []
 parking_lot: []
 ---
 
-# fintableRuleWriter — LIVING HANDOFF
+# fintableRuleWriter — LIVING HANDOFF (session 2 next)
 
-## Read first
-`docs/NORTH-STAR-fintableRuleWriter.md` if it exists, else `docs/NORTH-STAR.md` (the invariants and the
-destination), then run the `verify_cmd` in the frontmatter above. Its RED lines are the at-bat
-and its GREEN lines are the guard rails.
+WAITING_ON: kind=ruling key=1314
 
-## Where this came from
-`rail.py handoff-init --project fintableRuleWriter` wrote this file as a SKELETON so an unattended
-worker would not arrive at a repo with no at-bat. Everything below the frontmatter is a
-placeholder. The first worker to play an inning here rewrites all of it.
+## Inning 1 (2026-11-10, local-mbp2024-10504-d): what moved
 
-## If this lane RESTARTS a live surface, fill in `deploys_to:`
-The empty list in the frontmatter is the key, not a decoration (SM 1218841995855069, ruling
-#490). Name the surface this lane restarts the way another lane would spell it —
-`deploys_to: ["flowers:braatzledger-surface"]` — and `rail.py claim` will refuse to hold two
-live claims on it, estate-wide, printing which lane holds it. Two lanes restarting one surface
-starve each other through its own journal gate: each lane's verification traffic is what
-refuses the other lane's restart, so the second lane does not fail, it silently loses a
-deploy. Leave the list empty if this lane restarts nothing; an empty declaration is refused
-nothing.
+**Writer made honest (the code half of DONE).** `fintable_create_rule` used to send a guessed
+call (`create-rule` component / `createSimpleRule` method — neither exists on the 2026-11-10 page)
+and then return `{"success": true}` without looking. Now it:
+1. lists rules first and **refuses DUPLICATE** (same simple pattern, case/space-insensitive) before any write;
+2. resolves the category NAME to a cid from the categorizer page, **refusing missing or ambiguous names** (it never creates categories);
+3. sends one Livewire call to `modal-rule` with updates `{ruleType: simple, text: <pattern>, cid: <cid>}` + method `_RULE_SAVE_METHOD`;
+4. **re-lists and requires exactly one new rule id, none vanished, kind=simple, same pattern, same category**. Otherwise it returns `success:false, error:"UNVERIFIED"` plus what it observed. Success carries the new rule's id.
 
-## If `verify_cmd` can only judge from ONE box, fill in `verify_seat:`
-Leave it empty unless the ruler calls `claude -p` or otherwise needs a seat this box is not --
-`complete` forwarded to the board host runs verify_cmd on the BOARD, and a ruler that needs a
-logged-in keychain fails there even though the exact same bits were GREEN on the seat that has
-one (ruling #670, SM 1219004888726763). Naming a seat does not move the completion: the verdict
-still lands on whichever box ran `complete`, only the verify_cmd's own execution is forwarded
-over ssh to the named box.
+`fintable_create_bulk_rules` counts a rule as created only if it came back `verified`. Its `created[]` list now holds the observed rule objects (id/pattern/category), which is the rollback list. It **stops at the first refusal/UNVERIFIED** by default (`stop_on_failure`), and the result reports `not_attempted`.
+
+Tests: `tests/test_rule_writer.py`, 6 new tests on the synthetic 2026-11-10 fixtures: verified create, server-ignored create → UNVERIFIED, wrong category → UNVERIFIED, duplicate refused with zero writes, missing category refused with zero writes, and bulk stopping at the first UNVERIFIED. The whole suite passes: `pytest -q tests` = 28 passed. `src/fintable_mcp/server.py` is byte-identical to `fintable_mcp.py`.
+
+## The create flow: what is KNOWN vs GUESSED
+From the raw 08:08 capture (`~/.local/state/fintable-mcp/captures/2026-11-10/rules.html`), the page has exactly one rule editor, the Livewire component **`modal-rule`**. Its data is
+`{rid, step, showModal, viewOnly, text, advancedPrompt, exampleTransactionJson, generatedJsonLogic, isLoading, generationError, cid, ruleType}`.
+At step 0 it renders only the type picker (`wire:click="selectRuleType"`, `wire:model="ruleType"`). A simple rule is `(text, cid)`; ledgerPrimitive3 i30 read the same spec shape back out of existing rules.
+- KNOWN: component `modal-rule`, fields `text` + `cid` + `ruleType`, step-0 action `selectRuleType`. The page-level actions are `deleteRule(uuid)`, `moveRuleToEnd(uuid)` and `runAllRules`, all on `livepage-rules`.
+- GUESSED: the save action name (`save`). The only two `wire:click="save"` buttons on the static page belong to the category modals. The step-1+ form is not in the static HTML. **The post-verify is what makes this guess safe**: a wrong guess comes back UNVERIFIED and is never reported as success.
+- `scripts/probe_rule_modal.py` settles it read-only once a session exists.
+
+## Why no live step ran
+1. **No session.** rookiepy found Chrome cookies for fintable.io but no session cookie (ads/GA/cf_clearance only). The CDP Chromes on :9222, :9366 and :63160 had none either. There is no Keychain credential. The sibling lane's 08:08 session has expired. → needs Jason to log into fintable.io in Chrome.
+2. **Ruling #1314 (needs-ceo, irreversible).** Lesson 2026-09-01 says Fintable's rule Save applies the rule **retroactively** to matching history. That is the same re-categorization the fence reserves as an owner decision under `run_all_rules`. Deleting a rule does not restore the old categories, so the rollback list rolls back the rule list, not the books. I recommended B: show the owner per-rule Matched-N before any save.
+
+Nothing was written to Fintable this inning. There is no before-export yet.
+
+## Rollback procedure (for when creates happen)
+Delete exactly the ids in `~/Desktop/downloads/bookkeeper/backups/fintable-rules-added-20261110.json` with `fintable_delete_rule`. Caveat (#1314): this does not un-categorize transactions the rules re-categorized on save.
+
+## Found in passing
+- `create_bulk_rules(run_after_create=True)` still swallows a run_all_rules exception and reports `rules_executed:false`. `run_all_rules`, `delete_rule` and `create_category` also return success without verifying. These are out of this DoD; tee them up for a later writer-honesty pass.
+- The `verify_cmd` hard-codes `20261110` export filenames. If the live leg happens on a later date, write the files under those exact names (they are receipts named for the project day) or open a ruler amend. Do not rename them silently.
 
 ## Is the phase DONE?
-No — no inning has been played. Ask this question explicitly in every handoff from here on:
-a milestone that is met but never declared keeps getting continued.
+**No.** The code half is met (tests). The live half (24 rules on Fintable, exports, rollback list) has not started and is gated on #1314 and a login.
