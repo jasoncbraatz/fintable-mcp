@@ -3,7 +3,7 @@ project: fintableMcpDom
 session_n: 2
 gh_repo: "jasoncbraatz/fintable-mcp"
 branch: "main"
-gh_sha: "e52747c1e08d61d3c8c8ba32cd802f8f99eed89b"
+gh_sha: "ce2b3b7c5ae7ef20727c097b1aa92fcfd2aa4f99"
 updated: "2026-11-10"
 definition_of_done: "list_rules, list_accounts and list_categories each return real items from saved 2026-11-10 fixtures and from the live account, each refuses on a zero-item parse, and the copy in ~/Scripts/fintable-mcp is identical to the repo"
 verify_cmd: "cd ~/repos/fintable-mcp && python3 -m pytest -q tests && python3 scripts/smoke_readers.py && cmp -s fintable_mcp.py ~/Scripts/fintable-mcp/fintable_mcp.py"
@@ -59,6 +59,8 @@ list_categories  OK    total=37  distinct_group=5
 exit=0
 ```
 Fence held: no create/delete/run/resync/sync tool was called. Only GETs.
+
+OPS: none -- read-only MCP readers called on demand by the desktop app, no daemon or schedule to watch; DOM drift surfaces as a loud PARSER/DOM refusal on the next call (every reader refuses a zero-item parse), and `python3 scripts/smoke_readers.py` (exit 0/1, counts only) is the manual check.
 
 ## Is the phase DONE?
 The DoD has three legs: (1) real items from the saved fixtures AND live: yes, per the tests and the
