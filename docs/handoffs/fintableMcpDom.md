@@ -60,6 +60,8 @@ exit=0
 ```
 Fence held: no create/delete/run/resync/sync tool was called. Only GETs.
 
+OPS: none -- read-only MCP readers called on demand by the desktop app, no daemon or schedule to watch; DOM drift surfaces as a loud PARSER/DOM refusal on the next call (every reader refuses a zero-item parse), and `python3 scripts/smoke_readers.py` (exit 0/1, counts only) is the manual check.
+
 ## Is the phase DONE?
 The DoD has three legs: (1) real items from the saved fixtures AND live: yes, per the tests and the
 smoke above; (2) each refuses on a zero-item parse: yes, tested per reader and per tool; (3)
