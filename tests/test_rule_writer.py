@@ -53,6 +53,7 @@ class _Server:
         self.rules_html = RULES
         self.calls = []
         self.on_save = on_save
+        self.matched = 2
 
         class _Client:
             async def __aenter__(s):
@@ -67,9 +68,21 @@ class _Server:
             return html, "csrf", snaps
 
         async def call(client, csrf, snapshot_raw, method, params=None, updates=None):
+            # modal-rule is a chained wizard: selectRuleType -> step 1, test -> step 2 (preview),
+            # save only takes effect from a step-2 snapshot (as probed live 2026-11-10).
             self.calls.append((method, updates))
-            self.rules_html = self.on_save(self.rules_html, updates)
-            return {"components": []}
+            data = {**json.loads(snapshot_raw).get("data", {}), **(updates or {})}
+            html = ""
+            if method == F._RULE_SELECT_METHOD:
+                data["step"] = 1
+            elif method == F._RULE_PREVIEW_METHOD and data.get("step") == 1:
+                data["step"] = 2
+                html = f"<div>Matched <b>{self.matched}</b> transactions</div>"
+            elif method == F._RULE_SAVE_METHOD and data.get("step") == 2:
+                self.rules_html = self.on_save(self.rules_html, data)
+            elif method == "deleteRule":
+                self.rules_html = self.on_save(self.rules_html, updates)
+            return {"components": [{"snapshot": json.dumps({"data": data}), "effects": {"html": html}}]}
 
         monkeypatch.setattr(F, "_get_client", lambda: _Client())
         monkeypatch.setattr(F, "_fetch_page", fetch)
@@ -86,9 +99,20 @@ def test_verified_create_reports_the_new_rule(monkeypatch):
     assert out["success"] is True and out["verified"] is True
     assert out["rule"]["id"] == NEW_ID
     assert out["total_rules"] == 259
-    method, updates = srv.calls[0]
-    assert method == F._RULE_SAVE_METHOD
-    assert updates == {"ruleType": "simple", "text": "Zebra Feed", "cid": "category-02_FIXTURE002"}
+    assert out["preview_matched"] == 2
+    assert srv.calls == [
+        (F._RULE_SELECT_METHOD, {"ruleType": "simple"}),
+        (F._RULE_PREVIEW_METHOD, {"text": "Zebra Feed", "cid": "category-02_FIXTURE002"}),
+        (F._RULE_SAVE_METHOD, None),
+    ]
+
+
+def test_preview_mismatch_refused_before_save(monkeypatch):
+    srv = _Server(monkeypatch, lambda html, upd: pytest.fail("saved despite a preview mismatch"))
+    out = json.loads(asyncio.run(F.fintable_create_rule(F.CreateRuleInput(
+        pattern="Zebra Feed", category="Category 02", expect_matched=5))))
+    assert out["success"] is False and out["error"] == "PREVIEW_MISMATCH" and out["preview_matched"] == 2
+    assert F._RULE_SAVE_METHOD not in [m for m, _ in srv.calls]
 
 
 def test_ignored_create_is_unverified(monkeypatch):
@@ -133,7 +157,7 @@ def test_bulk_stops_at_first_unverified_and_lists_only_observed(monkeypatch):
     assert out["created_count"] == 1 and out["created"][0]["id"] == NEW_ID
     assert out["failed_count"] == 1 and out["failed"][0]["result"]["error"] == "UNVERIFIED"
     assert out["not_attempted"] == 1
-    assert len(srv.calls) == 2
+    assert [m for m, _ in srv.calls].count(F._RULE_SAVE_METHOD) == 2
 
 
 def _delete(rid):

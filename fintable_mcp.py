@@ -153,6 +153,10 @@ def _extract_cookies_from_browser() -> Optional[str]:
         if not cookies:
             logger.warning("rookiepy found no cookies for fintable.io — are you logged in to Chrome?")
             return None
+        if not any(c.get("name") == "fintable_session" for c in cookies):
+            # ads/GA/cf_clearance only: not a login, and returning it would shadow FINTABLE_COOKIES
+            logger.warning("rookiepy found fintable.io cookies but no fintable_session — falling through")
+            return None
         # Build a cookie header string from the extracted cookies
         cookie_str = "; ".join(f"{c['name']}={c['value']}" for c in cookies)
         logger.info(f"Auto-extracted {len(cookies)} cookies from Chrome for fintable.io")
@@ -998,6 +1002,11 @@ class CreateRuleInput(BaseModel):
         min_length=1,
         max_length=100,
     )
+    expect_matched: Optional[int] = Field(
+        default=None,
+        description="If set, refuse to save unless Fintable's 'Preview matches' step reports exactly this many matched transactions (saving applies the rule retroactively).",
+        ge=0,
+    )
 
     @field_validator("pattern", "category")
     @classmethod
@@ -1013,12 +1022,21 @@ class CreateRuleInput(BaseModel):
 # `modal-rule` Livewire component, whose snapshot data is
 #   {rid, step, showModal, viewOnly, text, advancedPrompt, exampleTransactionJson,
 #    generatedJsonLogic, isLoading, generationError, cid, ruleType}
-# with a `selectRuleType` action at step 0. A simple rule is (text, cid). The save action's
-# name was NOT observable in the static page (the form renders only after step 0) -- it is
-# _RULE_SAVE_METHOD below, and the POST-VERIFY is what makes a wrong guess harmless: nothing
-# is reported created unless a re-list shows it.
+# with a `selectRuleType` action at step 0. A simple rule is (text, cid). Probed live
+# 2026-11-10 (inning 3, scripts/probe_rule_modal.py): the editor is a 3-step wizard whose
+# snapshot must be CHAINED -- selectRuleType{ruleType} -> step 1 (wire:model text/cid, button
+# `test` "Preview matches") -> step 2 ("Matched N transactions", button `save` "Save and apply
+# rule": applies to all matching history and future rows, manual choices kept). `save` sent
+# against a step-0 snapshot does nothing. The POST-VERIFY still decides success.
 _RULE_COMPONENT = "modal-rule"
+_RULE_SELECT_METHOD = "selectRuleType"
+_RULE_PREVIEW_METHOD = "test"
 _RULE_SAVE_METHOD = "save"
+
+
+def _preview_matched(html: str) -> Optional[int]:
+    m = re.search(r"Matched\s+([\d,]+)\s+transactions?", re.sub(r"<[^>]+>", " ", html))
+    return int(m.group(1).replace(",", "")) if m else None
 
 
 def _norm(s: str) -> str:
@@ -1111,10 +1129,23 @@ async def fintable_create_rule(params: CreateRuleInput) -> str:
                                    "message": f"The rules page has no '{_RULE_COMPONENT}' component; nothing written.",
                                    "components": sorted(snapshots)})
 
-            await _livewire_call(
-                client, csrf, snap["snapshot_raw"], _RULE_SAVE_METHOD, [],
-                updates={"ruleType": "simple", "text": params.pattern, "cid": cid},
-            )
+            r1 = await _livewire_call(client, csrf, snap["snapshot_raw"], _RULE_SELECT_METHOD, [],
+                                      updates={"ruleType": "simple"})
+            r2 = await _livewire_call(client, csrf, r1["components"][0]["snapshot"], _RULE_PREVIEW_METHOD, [],
+                                      updates={"text": params.pattern, "cid": cid})
+            preview = r2["components"][0]
+            pdata = json.loads(preview["snapshot"]).get("data", {})
+            matched = _preview_matched(preview.get("effects", {}).get("html", ""))
+            if pdata.get("step") != 2 or pdata.get("text") != params.pattern or pdata.get("cid") != cid:
+                return json.dumps({"success": False, "error": "NO_PREVIEW",
+                                   "message": "The editor did not reach its preview step with this rule; nothing saved.",
+                                   "observed": {k: pdata.get(k) for k in ("step", "ruleType", "text", "cid")}})
+            if params.expect_matched is not None and matched != params.expect_matched:
+                return json.dumps({"success": False, "error": "PREVIEW_MISMATCH",
+                                   "message": (f"Preview matched {matched} transactions, expected "
+                                               f"{params.expect_matched}; nothing saved."),
+                                   "preview_matched": matched})
+            await _livewire_call(client, csrf, preview["snapshot"], _RULE_SAVE_METHOD, [])
 
             after_html, _, _ = await _fetch_page(client, "rules")
             after = _parse_rules_from_html(after_html)
@@ -1130,7 +1161,7 @@ async def fintable_create_rule(params: CreateRuleInput) -> str:
             return json.dumps({
                 "success": True, "verified": True,
                 "message": f"Rule created and observed: '{params.pattern}' -> {params.category}",
-                "rule": rule, "total_rules": len(after),
+                "rule": rule, "total_rules": len(after), "preview_matched": matched,
             })
     except Exception as e:
         return _handle_error(e)
@@ -1139,10 +1170,11 @@ async def fintable_create_rule(params: CreateRuleInput) -> str:
 class CreateBulkRulesInput(BaseModel):
     """Input for creating multiple rules at once."""
     model_config = ConfigDict(str_strip_whitespace=True, extra="forbid")
-    rules: List[Dict[str, str]] = Field(
+    rules: List[Dict[str, Any]] = Field(
         ...,
         description=(
             "List of rules to create. Each rule is a dict with 'pattern' and 'category' keys. "
+            "Optional 'expect_matched' (int) per rule refuses the save unless the preview matches that many. "
             "Example: [{'pattern': 'Home Depot', 'category': 'COGS'}, {'pattern': 'Uber', 'category': 'Transportation'}]"
         ),
         min_length=1,
@@ -1180,8 +1212,8 @@ async def fintable_create_bulk_rules(params: CreateBulkRulesInput) -> str:
     results = {"created": [], "failed": []}
     try:
         for rule_def in params.rules:
-            pattern = rule_def.get("pattern", "").strip()
-            category = rule_def.get("category", "").strip()
+            pattern = str(rule_def.get("pattern", "")).strip()
+            category = str(rule_def.get("category", "")).strip()
             if not pattern or not category:
                 results["failed"].append({
                     "rule": rule_def,
@@ -1189,7 +1221,8 @@ async def fintable_create_bulk_rules(params: CreateBulkRulesInput) -> str:
                 })
                 continue
             try:
-                input_model = CreateRuleInput(pattern=pattern, category=category)
+                input_model = CreateRuleInput(pattern=pattern, category=category,
+                                              expect_matched=rule_def.get("expect_matched"))
                 result_str = await fintable_create_rule(input_model)
                 try:
                     result_data = json.loads(result_str)
@@ -1198,7 +1231,7 @@ async def fintable_create_bulk_rules(params: CreateBulkRulesInput) -> str:
             except Exception as e:
                 result_data = {"success": False, "error": str(e)[:200]}
             if result_data.get("success") and result_data.get("verified"):
-                results["created"].append(result_data["rule"])
+                results["created"].append({**result_data["rule"], "preview_matched": result_data.get("preview_matched")})
                 continue
             results["failed"].append({"rule": f"'{pattern}' → {category}", "result": result_data})
             if params.stop_on_failure:
